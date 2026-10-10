@@ -1,0 +1,107 @@
+/* Choreography targets chapters AFTER Selected Works; archive rules only repair controls. */
+[data-scroll-scene]{--scene-progress:0;--scene-balance:0;--scene-spread:0;--scene-lift:0px;--scene-drift:0px;--scene-turn:0deg;--scene-yaw:0deg;--scene-fan:0deg;--scene-gap:0px}
+
+/* About: the title holds its place while the three prose layers travel at different depths. */
+[data-scroll-scene=about] .about-grid{perspective:1200px}
+[data-scroll-scene=about] .about-grid>div:first-child{align-self:start;transform:rotateY(var(--scene-turn));transform-origin:left center}
+[data-scroll-scene=about] .about-copy{position:relative;transform-style:preserve-3d}
+[data-scroll-scene=about] .about-copy>p{transform:translate3d(0,calc(var(--scene-lift) * .35),0)}
+[data-scroll-scene=about] .about-copy>p:nth-child(2){transform:translate3d(0,calc(var(--scene-lift) * .65),12px)}
+[data-scroll-scene=about] .about-copy>p:nth-child(3){transform:translate3d(0,var(--scene-lift),24px)}
+[data-scroll-scene=about] .about-copy:before{content:"";position:absolute;left:-20px;top:28px;bottom:0;width:1px;background:var(--line-strong);transform:scaleY(var(--scene-progress));transform-origin:top;pointer-events:none}
+@media(min-width:1000px){[data-scroll-scene=about] .about-grid>div:first-child{position:sticky;top:94px}}
+
+/* Journey: a camera sweep around the phone and a coordinated depth wave through its modules. */
+[data-scroll-scene=journey]{transform:perspective(1100px) translateY(calc(var(--scene-lift) * .4)) rotateY(var(--scene-yaw)) rotateX(calc(var(--scene-turn) * -.4));transition:transform .08s linear}
+[data-scroll-scene=journey] .journey-module{--module-depth:1;transform:translate3d(0,calc(var(--scene-lift) * var(--module-depth) * -.25),calc(var(--scene-gap) * var(--module-depth))) rotateY(calc(var(--scene-turn) * -.5)) rotateZ(calc(var(--scene-turn) * .5));transition:transform .08s linear,border-color .3s}
+[data-scroll-scene=journey] .journey-module:nth-child(2n){--module-depth:-.65}
+[data-scroll-scene=journey] .journey-module:nth-child(3n){--module-depth:1.4}
+[data-scroll-scene=journey] .journey-module.module-active{transform:translate3d(0,calc(-8px + var(--scene-lift) * -.2),calc(25px + var(--scene-gap))) rotateY(0deg) rotateZ(0deg)}
+[data-scroll-scene=journey] .journey-module:hover,[data-scroll-scene=journey] .journey-module:focus-visible{transform:translate3d(0,-10px,52px) rotateY(0deg) rotateZ(0deg);transition:transform .25s}
+[data-scroll-scene=journey] .journey-platform{transform:rotateX(65deg) scaleX(calc(.88 + var(--scene-spread) * .12));transform-origin:center}
+
+/* Technology: scroll opens the glass cross-section; pointer and the build button remain independent. */
+[data-scroll-scene=stack] .tech-stage{transform:translateY(calc(var(--scene-lift) * .3)) rotateZ(calc(var(--scene-turn) * -.22));transition:transform .08s linear}
+[data-scroll-scene=stack] .tech-substrate>span:first-child{transform:translate3d(calc(-9px - var(--scene-gap) * .35),calc(14px + var(--scene-gap)),-60px)}
+[data-scroll-scene=stack] .tech-substrate>span:nth-child(2){transform:translate3d(calc(-4px - var(--scene-gap) * .15),calc(7px + var(--scene-gap) * .5),-30px)}
+[data-scroll-scene=stack].tech-stack-expanded .tech-substrate>span:first-child{transform:translate3d(calc(-19px - var(--scene-gap) * .35),calc(32px + var(--scene-gap)),-100px)}
+[data-scroll-scene=stack].tech-stack-expanded .tech-substrate>span:nth-child(2){transform:translate3d(calc(-10px - var(--scene-gap) * .15),calc(17px + var(--scene-gap) * .5),-50px)}
+[data-scroll-scene=stack] .tech-substrate>span{transition:transform .12s linear}
+[data-scroll-scene=stack] .tech-hub-layers>span:first-child{transform:translate3d(calc(9px + var(--scene-gap) * .2),calc(-10px - var(--scene-gap) * .4),-22px)}
+[data-scroll-scene=stack] .tech-hub-layers>span:last-child{transform:translate3d(calc(19px + var(--scene-gap) * .35),calc(-22px - var(--scene-gap) * .8),-44px)}
+[data-scroll-scene=stack].tech-stack-expanded .tech-hub-layers>span:first-child{transform:translate3d(calc(18px + var(--scene-gap) * .2),calc(-22px - var(--scene-gap) * .4),-35px)}
+[data-scroll-scene=stack].tech-stack-expanded .tech-hub-layers>span:last-child{transform:translate3d(calc(38px + var(--scene-gap) * .35),calc(-45px - var(--scene-gap) * .8),-70px)}
+[data-scroll-scene=stack] .tech-hub-layers>span{transition:transform .12s linear}
+
+/* Gallery: a restrained camera fan, not an opacity reveal. Touch still uses native horizontal swipe. */
+[data-scroll-scene=gallery]{padding-top:16px;padding-bottom:28px;perspective:1300px}
+[data-scroll-scene=gallery] .anime-card{--fan-direction:-1;--fan-depth:.5;transform:translateY(calc(var(--scene-lift) * var(--fan-depth))) rotateX(var(--card-x,0deg)) rotateY(calc(var(--card-y,0deg) + var(--scene-fan) * var(--fan-direction))) rotateZ(calc(var(--scene-turn) * var(--fan-direction) * .3));transition:transform .08s linear,border-color .3s}
+[data-scroll-scene=gallery] .anime-card:nth-child(2){--fan-direction:0;--fan-depth:-.25}
+[data-scroll-scene=gallery] .anime-card:nth-child(3){--fan-direction:1;--fan-depth:.75}
+[data-scroll-scene=video]{transform:perspective(1200px) rotateX(calc(var(--scene-turn) * -.45)) scale(calc(.985 + var(--scene-spread) * .015));transform-origin:center;transition:transform .08s linear}
+[data-scroll-scene=royal] figcaption{transform:translate3d(calc(var(--scene-drift) * -.5),calc(var(--scene-lift) * -.3),0)}
+[data-scroll-scene=royal] .royal-frame{transform:translate(calc(var(--scene-drift) * -.25),calc(var(--scene-lift) * .3))}
+/* The royal image itself is untouched: object-fit:contain retains the whole composition. */
+
+/* Relay docks into the scene as the narrative counterbalances it; fields stay put during typing. */
+[data-scroll-scene=relay]{perspective:1400px}
+[data-scroll-scene=relay] .lab-intro{transform:translateY(calc(var(--scene-lift) * -.3))}
+[data-scroll-scene=relay] .chat-panel{transform:translate3d(calc(var(--scene-drift) * .4),calc(var(--scene-lift) * .6),0) rotateY(calc(var(--scene-turn) * -.6));transform-origin:right center;transition:transform .08s linear}
+[data-scroll-scene=relay] .chat-panel:focus-within{transform:none}
+[data-scroll-scene=people] .person-row{--row-direction:1;transform:translateX(calc(var(--scene-drift) * var(--row-direction)));transition:transform .08s linear,background .25s}
+[data-scroll-scene=people] .person-row:nth-child(2n){--row-direction:-1}
+[data-scroll-scene=community]{perspective:1200px}
+[data-scroll-scene=community] .community{--community-depth:.25;transform:translateY(calc(var(--scene-lift) * var(--community-depth))) rotateX(calc(var(--scene-turn) * -.35));transform-origin:top;transition:transform .08s linear}
+[data-scroll-scene=community] .community:nth-child(2n){--community-depth:-.2}
+[data-scroll-scene=community] .community[open]{transform:none}
+
+/* The two ethos lines travel in opposite directions; the closing panels settle into a flat reading pose. */
+.ethos-line{display:block}
+[data-scroll-scene=ethos] .ethos-line:first-child{transform:translateX(var(--scene-drift))}
+[data-scroll-scene=ethos] .ethos-line:last-child{transform:translateX(calc(var(--scene-drift) * -1))}
+[data-scroll-scene=ethos] .ethos-bottom{transform:translateY(calc(var(--scene-lift) * .25))}
+[data-scroll-scene=rating]{perspective:1200px}
+[data-scroll-scene=rating] .rating-intro{transform:translateY(calc(var(--scene-lift) * -.3))}
+[data-scroll-scene=rating] .rating-form{transform:translateY(calc(var(--scene-lift) * .45)) rotateX(calc(var(--scene-turn) * -.5));transform-origin:top;transition:transform .08s linear}
+[data-scroll-scene=rating] .rating-form:focus-within{transform:none}
+[data-scroll-scene=footer] .footer-heading{transform:perspective(1200px) translateY(calc(var(--scene-lift) * .5)) rotateX(calc(var(--scene-turn) * -.5));transform-origin:bottom}
+[data-scroll-scene=footer] .footer-socials>a{transform:translateY(calc(var(--scene-lift) * .15))}
+[data-scroll-scene=footer] .footer-socials>a:nth-child(2n){transform:translateY(calc(var(--scene-lift) * .4))}
+[data-scroll-scene=footer] .contact-circle{transform:rotate(calc(var(--scene-turn) * -1)) scale(calc(.96 + var(--scene-spread) * .04))}
+
+/* Screenshot polish: aligned controls and links, with native 44px touch targets. */
+.shelf-navigation .nav-buttons{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.shelf-navigation .nav-buttons button{width:44px;height:44px}
+.search-box button{display:grid;place-items:center;width:36px;min-width:36px;height:40px;background:transparent;border-radius:5px;color:var(--muted);padding:0}
+.search-box button[hidden]{display:none}
+.visit-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:44px;padding:0 15px;border:1px solid var(--line-strong);border-radius:7px;background:var(--glass);font:600 11px Manrope,sans-serif;line-height:1.4;transition:background .2s,border-color .2s}
+.visit-button:hover{border-color:var(--accent);background:var(--surface-2)}.visit-button svg{flex-shrink:0}
+.card-visit{margin-top:13px;font-size:10px;min-height:44px;padding-inline:12px}
+.work-stack{margin-top:22px;padding-top:17px;border-top:1px solid var(--line)}
+.work-stack>strong{display:block;font:500 10px Space,sans-serif;letter-spacing:1px;margin-bottom:10px;color:var(--muted)}
+.work-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:23px}
+.work-modal .work-status{font-size:10px;line-height:1.7;margin-top:14px;color:var(--quiet)}
+.work-modal .modal-summary{margin-bottom:0}.work-modal .work-cover{border:1px solid var(--line);border-radius:7px;overflow:hidden}
+
+/* All splash sheets share the avatar's center instead of drifting to its right. */
+.intro-panel{inset:auto;left:50%;top:50%;width:156px;height:156px;animation-name:splash-sheet-front;transform:translate(-50%,-50%) rotateY(-10deg) rotateZ(-5deg)}
+.intro-panel-two{inset:auto;left:50%;top:50%;animation-name:splash-sheet-mid;transform:translate(-50%,-50%) translate3d(9px,-9px,-12px) rotateY(-10deg) rotateZ(-2deg)}
+.intro-panel-three{inset:auto;left:50%;top:50%;animation-name:splash-sheet-back;transform:translate(-50%,-50%) translate3d(18px,-18px,-24px) rotateY(-10deg) rotateZ(1deg)}
+.intro-orbit{inset:auto;left:50%;top:50%;width:236px;height:140px;transform:translate(-50%,-50%) rotate(-25deg);animation-name:splash-ring-fit}
+@keyframes splash-sheet-front{from{opacity:0;transform:translate(-50%,-50%) translate3d(-65px,40px,-100px) rotateY(35deg) rotateZ(-20deg)}to{opacity:1;transform:translate(-50%,-50%) rotateY(-10deg) rotateZ(-5deg)}}
+@keyframes splash-sheet-mid{from{opacity:0;transform:translate(-50%,-50%) translate3d(65px,-40px,-140px) rotateY(-40deg)}to{opacity:1;transform:translate(-50%,-50%) translate3d(9px,-9px,-12px) rotateY(-10deg) rotateZ(-2deg)}}
+@keyframes splash-sheet-back{from{opacity:0;transform:translate(-50%,-50%) translate3d(0,-75px,-180px) rotateX(65deg)}to{opacity:1;transform:translate(-50%,-50%) translate3d(18px,-18px,-24px) rotateY(-10deg) rotateZ(1deg)}}
+@keyframes splash-ring-fit{from{opacity:0;transform:translate(-50%,-50%) rotate(-70deg) scale(.7)}to{opacity:.7;transform:translate(-50%,-50%) rotate(-25deg) scale(1)}}
+
+@media(max-width:600px){
+  [data-scroll-scene=gallery] .anime-card{transform:translateY(calc(var(--scene-lift) * var(--fan-depth) * .5)) rotateX(var(--card-x,0deg)) rotateY(calc(var(--card-y,0deg) + var(--scene-fan) * var(--fan-direction)))}
+  [data-scroll-scene=about] .about-copy:before{display:none}
+  [data-scroll-scene=journey]{transform:perspective(1000px) translateY(calc(var(--scene-lift) * .3)) rotateY(var(--scene-yaw)) rotateX(calc(var(--scene-turn) * -.3))}
+  .intro-panel{width:146px;height:146px}.intro-orbit{width:204px;height:126px}
+  .shelf-navigation{gap:10px}.shelf-navigation>div{gap:7px}.shelf-navigation>div>span{margin-right:0}
+  .work-actions .visit-button{width:100%}.work-modal .modal-content{padding:30px 23px}.work-modal h2{font-size:clamp(24px,6.5vw,32px);line-height:1.2}
+}
+@media(prefers-reduced-motion:reduce){
+  [data-scroll-scene],[data-scroll-scene] .about-grid>div,[data-scroll-scene] .about-copy>p,[data-scroll-scene] .journey-module,[data-scroll-scene] .tech-stage,[data-scroll-scene] .anime-card,[data-scroll-scene] figcaption,[data-scroll-scene] .royal-frame,[data-scroll-scene] .lab-intro,[data-scroll-scene] .chat-panel,[data-scroll-scene] .person-row,[data-scroll-scene] .community,[data-scroll-scene] .ethos-line,[data-scroll-scene] .ethos-bottom,[data-scroll-scene] .rating-intro,[data-scroll-scene] .rating-form,[data-scroll-scene] .footer-heading,[data-scroll-scene] .footer-socials>a,[data-scroll-scene] .contact-circle{transform:none!important}
+  .intro-panel{transform:translate(-50%,-50%) rotateZ(-5deg)!important}.intro-panel-two{transform:translate(-50%,-50%) translate(9px,-9px) rotateZ(-2deg)!important}.intro-panel-three{transform:translate(-50%,-50%) translate(18px,-18px) rotateZ(1deg)!important}.intro-orbit{transform:translate(-50%,-50%) rotate(-25deg)!important}
+}

@@ -47,6 +47,10 @@ Transisi penutup hero dimulai dari posisi awal Selected Works, sehingga hero pen
 - Tiga rating **Contoh**, semuanya lima bintang: Rizky — “anjayy keren mat”; Nanda — “tutor dung mat”; Fajar — “infokan promt”. Contoh tersedia sejak prerender, ikut rail horizontal, tidak dikirim ke Redis, dan tidak dihitung dalam jumlah/rerata rating asli.
 - Tidak ada dependency runtime baru, renderer WebGL baru, atau konfigurasi wajib tambahan. Rating publik cukup **dua env Upstash** yang dijelaskan di bawah. API, metadata sosial, SEO, konten, dan transisi hero → Selected Works yang telah disetujui dipertahankan.
 
+## Scroll polish — 11 Oktober 2026
+
+Source stabil dari repo dipertahankan. Animasi bagian 01 tetap sama. Motion baru pada About, Journey, stack teknologi, My Waifu, Relay, jejaring, Ethos, rating, dan footer dikendalikan posisi scroll native lewat `src/hooks/useScrollScenes.ts` dan `src/scroll-scenes.css`. Gerak dapat dibalik, memakai amplitude mobile yang lebih kecil, tanpa dependency baru atau WebGL tambahan. Kontrol screenshot dan pemusatan kaca splash dirapikan. Laporan terbaru: `docs/SCROLL_POLISH_QA.md` dan `docs/SCROLL_POLISH_AUDIT.json`; 55 tes dan build produksi lulus. Data/API/env tetap utuh.
+
 ## Jalankan lokal
 
 Gunakan Node 22 atau 24. Jalankan dari folder yang berisi `package.json`:

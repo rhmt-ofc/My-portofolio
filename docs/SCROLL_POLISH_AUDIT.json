@@ -1,0 +1,48 @@
+{
+  "baseline_commit": "ed7d0dcef8fa586aa308f9c10d63a5e8d4232c46",
+  "scope": "scroll motion after section 01 and screenshot controls/splash alignment",
+  "counts": {
+    "projects": 18,
+    "journey": 6,
+    "tools": 19,
+    "people": 14,
+    "communities": 5
+  },
+  "protected_files_byte_identical": 132,
+  "hero_cover_controller": "unchanged",
+  "build": "passed",
+  "tests": {
+    "passed": 55,
+    "failed": 0
+  },
+  "h1": 1,
+  "duplicate_ids": 0,
+  "asset_references": 65,
+  "og_image": "https://res.cloudinary.com/dhxfke7kq/image/upload/v1791627186/Ssstt/dsoqtqltngd5e2yg4cbw.jpg",
+  "runtime": {
+    "js": [
+      {
+        "path": "dist/assets/index-neZDp1w_.js",
+        "bytes": 304146,
+        "gzip_bytes": 94488
+      }
+    ],
+    "css": [
+      {
+        "path": "dist/assets/index-puGZ0EE7.css",
+        "bytes": 94769,
+        "gzip_bytes": 19309
+      }
+    ]
+  },
+  "animation_controller": {
+    "scroll": "native, event-driven, one queued RAF",
+    "geometry": "cached offset flow; measured on resize/content-size changes",
+    "react_renders_per_scroll": 0,
+    "new_dependencies": 0,
+    "new_webgl": false,
+    "reduced_motion": "controller absent; static content retained"
+  },
+  "browser_gpu_device_qa": "not performed: supported control-browser unavailable",
+  "remote_pushed": false
+}

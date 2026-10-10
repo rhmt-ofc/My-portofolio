@@ -15,6 +15,7 @@ import PeopleAndCommunities from './components/PeopleAndCommunities';
 import Personal from './components/Personal';
 import { useMotion } from './hooks/useMotion';
 import { useExperience } from './hooks/useExperience';
+import { useScrollScenes } from './hooks/useScrollScenes';
 import { useTheme } from './hooks/useTheme';
 const links=[{id:'home',name:'Home'},{id:'about',name:'About'},{id:'archive',name:'Work'},{id:'journey',name:'Journey'},{id:'ecosystem',name:'Tools'},{id:'universe',name:'Waifu'},{id:'lab',name:'Relay'},{id:'people',name:'Jejaring'},{id:'contact',name:'Contact'}];
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
   const [menu,setMenu]=useState(false),[current,setCurrent]=useState('home');
   const still=reduced||motionPaused;
   useExperience(!still);
+  useScrollScenes(!still);
   useEffect(()=>{const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){setCurrent(e.target.id);document.documentElement.dataset.chapter=e.target.id;}});},{rootMargin:'-15% 0px -60% 0px'});document.querySelectorAll('main section[id],footer[id]').forEach(el=>io.observe(el));return()=>io.disconnect();},[]);
   return <><SplashScreen/><a className="skip-link" href="#main">Lewati ke konten</a>
     <header className="site-header"><div className="header-inner"><a href="#home" className="brand" aria-label="R_HMT, kembali ke awal"><Mark/><span>R_HMT</span></a>
@@ -42,7 +44,7 @@ export default function App() {
       </div>
       <section className="about section-pad" id="about" aria-labelledby="about-title"><div className="wrap about-grid"><div><Chapter number="02">BEYOND THE CODE</Chapter><h2 id="about-title">How it started.<br/><em>Sedikit konteks.</em></h2><span className="about-signature">R_hmt.</span><div className="about-values"><span><Smartphone size={18}/>Mobile beginnings</span><span><Braces size={18}/>Learning by building</span><span><RelayMark/>Human × AI</span></div></div><div className="about-copy"><p className="lead">{PROFILE.about}</p><p>{PROFILE.motivation}</p><p>{PROFILE.approach}</p></div></div></section>
       <Journey/><Ecosystem paused={still}/><Personal/><AiSandbox/><PeopleAndCommunities/>
-      <section className="ethos section-pad" id="ethos" aria-labelledby="ethos-title"><div className="wrap"><Chapter number="08">THE ETHOS</Chapter><p className="eyebrow" id="ethos-title">A NOTE TO MYSELF</p><blockquote>“Masih belajar.<br/>Masih <em>mencoba.</em>”</blockquote><div className="ethos-bottom"><span className="about-signature">R_hmt.</span><p>{PROFILE.ethos}</p></div></div></section>
+      <section className="ethos section-pad" id="ethos" aria-labelledby="ethos-title"><div className="wrap"><Chapter number="08">THE ETHOS</Chapter><p className="eyebrow" id="ethos-title">A NOTE TO MYSELF</p><blockquote><span className="ethos-line">“Masih belajar.</span><span className="ethos-line">Masih <em>mencoba.</em>”</span></blockquote><div className="ethos-bottom"><span className="about-signature">R_hmt.</span><p>{PROFILE.ethos}</p></div></div></section>
       <Ratings paused={still}/>
       <footer className="footer section-pad" id="contact"><div className="wrap"><p className="eyebrow">IDE, PERTANYAAN, ATAU SEKADAR MENYAPA?</p><div className="footer-heading"><h2>Let’s start<br/><em>a conversation.</em></h2><a href={PROFILE.socials[1].url} className="contact-circle" target="_blank" rel="noopener noreferrer" aria-label="Hubungi R_HMT melalui Telegram"><ArrowUpRight size={34}/></a></div><div className="footer-socials">{PROFILE.socials.map(s=><ExternalLink href={s.url} key={s.name}><span>{s.name}</span><small>{s.handle}</small></ExternalLink>)}</div><div className="footer-bottom"><a href="#home" className="brand"><Mark/><span>R_HMT</span></a><p>© {new Date().getFullYear()} R_HMT OFC.<br/>Catatan proyek dan proses belajar.</p><a href="#home" className="back-top">Kembali ke awal<ArrowUpRight size={16}/></a></div></div></footer>
     </main></>;
