@@ -8,11 +8,13 @@ export function canonicalOrigin(siteURL,vercelURL){
   return url.origin+'/';
 }
 export async function applySEO(page){
-  const origin=canonicalOrigin(process.env.PORTFOLIO_SITE_URL||loadEnv('production',process.cwd(),'PORTFOLIO_').PORTFOLIO_SITE_URL,process.env.VERCEL_PROJECT_PRODUCTION_URL),old='https://rhmt.biz.id/';
+  const productionDomain = process.env.PORTFOLIO_SITE_URL || 'https://rhmt.biz.id/';
+  const origin=canonicalOrigin(productionDomain, process.env.VERCEL_PROJECT_PRODUCTION_URL),old='https://rhmt.biz.id/';
 
-  page=page.replaceAll(old,origin);
-  await fs.writeFile('dist/robots.txt',`User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}sitemap.xml\n`);
-  await fs.writeFile('dist/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${origin}</loc><lastmod>2026-10-10</lastmod></url></urlset>\n`);
+  const today = new Date().toISOString().slice(0, 10);
+  page = page.replaceAll(old, origin).replace(/"dateModified":"[^"]+"/, `"dateModified":"${today}"`);
+  await fs.writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}sitemap.xml\n`);
+  await fs.writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${origin}</loc><lastmod>${today}</lastmod></url></urlset>\n`);
   console.log(`Canonical, sitemap and robots: ${origin}`);
   return page;
 }

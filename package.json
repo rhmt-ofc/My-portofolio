@@ -20,6 +20,7 @@
     "three": "0.180.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/node": "22.14.0",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
