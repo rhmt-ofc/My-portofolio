@@ -8,8 +8,9 @@ export function canonicalOrigin(siteURL,vercelURL){
   return url.origin+'/';
 }
 export async function applySEO(page){
-  const productionDomain = process.env.PORTFOLIO_SITE_URL || 'https://rhmt.biz.id/';
-  const origin=canonicalOrigin(productionDomain, process.env.VERCEL_PROJECT_PRODUCTION_URL),old='https://rhmt.biz.id/';
+  const envUrl = process.env.PORTFOLIO_SITE_URL;
+  const productionDomain = (envUrl && !envUrl.includes('vercel.app')) ? envUrl : 'https://rhmt.biz.id/';
+  const origin = canonicalOrigin(productionDomain), old = 'https://rhmt.biz.id/';
 
   const today = new Date().toISOString().slice(0, 10);
   page = page.replaceAll(old, origin).replace(/"dateModified":"[^"]+"/, `"dateModified":"${today}"`);
