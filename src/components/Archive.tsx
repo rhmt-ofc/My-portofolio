@@ -11,6 +11,28 @@ export function WorkCover({ work }: { work: Project }) {
   return <div className={`work-cover cover-${work.id}`} data-spatial="project" data-project={work.id} role="img" aria-label={`Ilustrasi konsep ${work.name}`}><img className="spatial-fallback" src={`/components/works/${work.id}.svg`} alt="" aria-hidden="true"/></div>;
 }
 
+export function WorkFavicon({ url, title }: { url?: string; title: string }) {
+  const [failed, setFailed] = useState(false);
+  if (!url || failed) return null;
+  let domain = '';
+  try {
+    domain = new URL(url).hostname;
+  } catch {
+    return null;
+  }
+  if (!domain) return null;
+  return (
+    <img
+      className="work-favicon"
+      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 export default function Archive() {
   const [filter, setFilter] = useState('all'); const [query, setQuery] = useState('');
   const { shelf, position, visiblePosition, move, moveBy, handlers } = useWorkShelf(`${filter}\u0000${query}`);
@@ -44,14 +66,14 @@ export default function Archive() {
       {selection.map((work, i) => <article className={`work-card ${visiblePosition === i ? 'shelf-current' : ''}`} key={work.id}>
         <button className="work-visual-button" onClick={() => open(work)} aria-label={`Baca cerita ${work.name}`}><WorkCover work={work}/><span className="work-open"><ArrowUpRight size={22}/></span></button>
         <div className="work-meta"><span>{String(i + 1).padStart(2, '0')} / {work.category}</span><span>{statusLabels[work.status]}</span></div>
-        <button className="work-title" onClick={() => open(work)}><h3>{work.name}</h3><ArrowUpRight size={18}/></button>
+        <button className="work-title" onClick={() => open(work)}><h3><WorkFavicon url={work.url} title={work.name}/><span>{work.name}</span></h3><ArrowUpRight size={18}/></button>
         <p>{work.summary}</p>
         {work.url && <a className="visit-button card-visit" href={work.url} target="_blank" rel="noopener noreferrer"><span>Website</span><ArrowUpRight size={15}/></a>}
       </article>)}</div>
       {!selection.length && <div className="empty-state"><Search size={30}/><h3>Belum ketemu.</h3><p>Coba nama karya, teknologi, atau kata yang berbeda.</p><button className="text-link" onClick={() => setQuery('')}>Bersihkan pencarian</button></div>}
       {selection.length > 1 && <div className="shelf-track"><input type="range" min="0" max={selection.length - 1} value={cursor} aria-label="Pilih posisi pada rak karya" aria-valuetext={`Karya ${cursor + 1} dari ${selection.length}`} onChange={e => move(Number(e.target.value))}/></div>}
       <div className="archive-bottom"><span>Semua {PROJECTS.length} proyek tetap di arsip.</span><span className="micro-note">BUKA COVER / DESKRIPSI & STACK</span></div>
-      {active && <Modal label={active.name} onClose={close} className="work-modal"><WorkCover work={active}/><h2>{active.name}</h2><p className="modal-summary">{active.description}</p><div className="work-stack"><strong>Stack:</strong><div className="tag-list">{active.ecosystem.map(t => <span key={t}>{t}</span>)}</div></div>{active.url && <div className="work-actions"><VisitButton href={active.url}/></div>}<p className="work-status">Status: {statusLabels[active.status]}</p></Modal>}
+      {active && <Modal label={active.name} onClose={close} className="work-modal"><WorkCover work={active}/><h2><WorkFavicon url={active.url} title={active.name}/><span>{active.name}</span></h2><p className="modal-summary">{active.description}</p><div className="work-stack"><strong>Stack:</strong><div className="tag-list">{active.ecosystem.map(t => <span key={t}>{t}</span>)}</div></div>{active.url && <div className="work-actions"><VisitButton href={active.url}/></div>}<p className="work-status">Status: {statusLabels[active.status]}</p></Modal>}
     </div>
   </section>;
 }
