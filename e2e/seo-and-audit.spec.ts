@@ -26,7 +26,7 @@ test.describe('SEO, Metadata, and Rendering Verification', () => {
     const ogImage = await page.locator('meta[property="og:image"]').getAttribute('content');
     const ogUrl = await page.locator('meta[property="og:url"]').getAttribute('content');
     expect(ogTitle).toBeTruthy();
-    expect(ogImage).toContain('/images/pp.webp');
+    expect(ogImage).toContain('res.cloudinary.com');
     expect(ogUrl).toBe('https://rhmt.biz.id/');
 
     // 4. JSON-LD structured data
