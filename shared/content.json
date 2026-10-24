@@ -514,6 +514,24 @@
           "label": "TikTok"
         }
       ]
+    },
+    {
+      "name": "Nanas",
+      "handle": "nanasofc",
+      "avatar": "Nanas.png",
+      "role": "Vibe Coder",
+      "socials": [
+        {
+          "platform": "whatsapp-channel",
+          "url": "https://whatsapp.com/channel/0029VbCsS2r2phHIV3O0nO1a",
+          "label": "Channel WA"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@nanasofc",
+          "label": "TikTok"
+        }
+      ]
     }
   ],
   "PROJECTS": [
