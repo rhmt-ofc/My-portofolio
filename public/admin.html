@@ -775,6 +775,18 @@
               <input type="text" id="field-stack" class="form-input" placeholder="React, Vite, Node.js, Tailwind CSS" required>
             </div>
 
+            <!-- 7. URL ICON / FAVICON RESMI -->
+            <div class="form-group">
+              <label class="form-label" for="field-icon">7. URL Icon / Favicon Resmi Web (Opsional)</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="url" id="field-icon" class="form-input" placeholder="https://.../favicon.png atau /icon.jpg">
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-detect-icon" style="white-space: nowrap;">
+                  🔍 Deteksi Otomatis
+                </button>
+              </div>
+              <small style="color: var(--text-subtle); display: block; margin-top: 5px;">Hanya isi jika website memiliki favicon resmi. Jika dikosongkan, tidak akan menampilkan icon sembarangan.</small>
+            </div>
+
             <!-- ACTIONS -->
             <div style="display: flex; gap: 12px; margin-top: 32px;">
               <button type="submit" class="btn btn-gold" id="btn-submit-project" style="flex: 1;">
@@ -902,16 +914,11 @@
       setTimeout(() => { toast.className = ''; }, 3500);
     }
 
-    // Helper: Extract domain and construct Google Favicon URL
-    function getFaviconUrl(url) {
-      if (!url) return null;
-      try {
-        const domain = new URL(url).hostname;
-        if (!domain) return null;
-        return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`;
-      } catch {
-        return null;
-      }
+    // Helper: Hanya gunakan icon resmi jika tersedia di data project
+    function getProjectIcon(p) {
+      if (!p || !p.icon || typeof p.icon !== 'string') return null;
+      const trimmed = p.icon.trim();
+      return trimmed || null;
     }
 
     // Switch Tabs
@@ -1061,7 +1068,7 @@
         else if (p.status === 'CONCEPT') { statusClass = 'status-concept'; statusLabel = 'Konsep'; }
 
         const stack = Array.isArray(p.ecosystem) ? p.ecosystem : [];
-        const faviconUrl = getFaviconUrl(p.url);
+        const officialIcon = getProjectIcon(p);
 
         return `
           <div class="project-card ${isFirst ? 'card-first-spotlight' : ''}" id="card-${p.id}">
@@ -1076,7 +1083,7 @@
                 <span class="status-badge ${statusClass}">${statusLabel}</span>
               </div>
               <div class="card-title-row">
-                ${faviconUrl ? `<img class="project-favicon" src="${faviconUrl}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}
+                ${officialIcon ? `<img class="project-favicon" src="${officialIcon}" alt="${p.name} icon" loading="lazy" onerror="this.style.display='none'">` : ''}
                 <h3 class="card-title">${p.name}</h3>
               </div>
               <p class="card-desc">${p.description || '-'}</p>
@@ -1207,11 +1214,11 @@
       document.getElementById('prev-category').textContent = cat;
       document.getElementById('prev-desc').textContent = desc;
 
-      // Update Preview Favicon
+      // Update Preview Favicon (Hanya tampilkan jika icon resmi diisi)
       const prevFavicon = document.getElementById('prev-favicon');
-      const faviconUrl = getFaviconUrl(url);
-      if (faviconUrl) {
-        prevFavicon.src = faviconUrl;
+      const customIcon = document.getElementById('field-icon') ? document.getElementById('field-icon').value.trim() : '';
+      if (customIcon) {
+        prevFavicon.src = customIcon;
         prevFavicon.style.display = 'inline-block';
       } else {
         prevFavicon.style.display = 'none';
@@ -1228,7 +1235,7 @@
       document.getElementById('prev-stack').innerHTML = stack.map(s => `<span class="stack-tag">${s}</span>`).join('');
     }
 
-    ['field-name', 'field-category', 'field-status', 'field-url', 'field-desc', 'field-stack'].forEach(id => {
+    ['field-name', 'field-category', 'field-status', 'field-url', 'field-icon', 'field-desc', 'field-stack'].forEach(id => {
       document.getElementById(id).addEventListener('input', updateLivePreview);
       document.getElementById(id).addEventListener('change', updateLivePreview);
     });
@@ -1254,6 +1261,7 @@
       document.getElementById('field-url').value = target.url || '';
       document.getElementById('field-desc').value = target.description || '';
       document.getElementById('field-stack').value = (target.ecosystem || []).join(', ');
+      document.getElementById('field-icon').value = target.icon || '';
 
       document.getElementById('form-mode-title').textContent = `Edit Karya: ${target.name}`;
       document.getElementById('form-mode-desc').textContent = 'Perbarui bagian yang diinginkan lalu klik simpan untuk commit ke GitHub.';
@@ -1267,6 +1275,7 @@
     function resetProjectForm() {
       document.getElementById('project-form').reset();
       document.getElementById('field-id').value = '';
+      if (document.getElementById('field-icon')) document.getElementById('field-icon').value = '';
       document.getElementById('form-mode-title').textContent = 'Tambah Karya Baru';
       document.getElementById('form-mode-desc').textContent = 'Isi 6 kolom informasi berikut untuk mempublikasikan project ke portofolio.';
       document.getElementById('btn-cancel-edit').style.display = 'none';
@@ -1294,7 +1303,8 @@
         status: document.getElementById('field-status').value,
         url: document.getElementById('field-url').value.trim(),
         description: document.getElementById('field-desc').value.trim(),
-        ecosystem: document.getElementById('field-stack').value
+        ecosystem: document.getElementById('field-stack').value,
+        icon: document.getElementById('field-icon').value.trim()
       };
 
       try {
@@ -1400,6 +1410,38 @@
         showToast(err.message, 'error');
       } finally {
         btnText.textContent = orig;
+      }
+    });
+
+    // Detect Icon Button
+    document.getElementById('btn-detect-icon').addEventListener('click', async () => {
+      const url = document.getElementById('field-url').value.trim();
+      if (!url) {
+        showToast('Masukkan URL Web terlebih dahulu!', 'error');
+        return;
+      }
+      const btn = document.getElementById('btn-detect-icon');
+      const orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Mendeteksi...';
+
+      try {
+        const res = await apiRequest('/api/admin', {
+          method: 'POST',
+          body: JSON.stringify({ action: 'detect_icon', url })
+        });
+        if (res.iconUrl) {
+          document.getElementById('field-icon').value = res.iconUrl;
+          updateLivePreview();
+          showToast('Icon resmi ditemukan dan dipasangkan!');
+        } else {
+          showToast(res.message || 'Tidak ada favicon resmi di web tersebut.', 'info');
+        }
+      } catch (err) {
+        showToast('Gagal mendeteksi icon: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = orig;
       }
     });
 

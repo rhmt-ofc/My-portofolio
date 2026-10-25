@@ -169,6 +169,7 @@ export default async function handler(req, res) {
           name: String(project.name).trim(),
           category: String(project.category || 'Utilities').trim(),
           url: String(project.url || '').trim(),
+          icon: String(project.icon || '').trim(),
           description: String(project.description || '').trim(),
           problem: String(project.problem || 'Eksplorasi pembuatan aplikasi yang fungsional dan relevan.').trim(),
           exploration: String(project.exploration || 'Pengembangan fitur dan alur kerja menggunakan teknologi modern.').trim(),
@@ -302,6 +303,55 @@ export default async function handler(req, res) {
           message: 'Posisi tidak berubah.',
           projects: contentData.PROJECTS
         });
+      }
+
+      if (action === 'detect_icon') {
+        const { url: targetUrl } = req.body || {};
+        if (!targetUrl) {
+          return res.status(400).json({ error: 'URL website tidak ditentukan.' });
+        }
+
+        try {
+          const fetched = await fetch(targetUrl, {
+            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' },
+            signal: AbortSignal.timeout(4000)
+          });
+          const html = await fetched.text();
+          
+          // Match icon links in head
+          const head = html.slice(0, 20000);
+          const iconMatch = head.match(/<link[^>]+rel=["']?(?:shortcut )?icon|apple-touch-icon["']?[^>]*>/i);
+          let foundIcon = '';
+          if (iconMatch) {
+            const hrefMatch = iconMatch[0].match(/href=["']?([^\s"'>]+)/i);
+            if (hrefMatch) {
+              foundIcon = new URL(hrefMatch[1], targetUrl).href;
+            }
+          }
+
+          if (!foundIcon) {
+            // Check default /favicon.ico
+            try {
+              const icoUrl = new URL('/favicon.ico', targetUrl).href;
+              const icoRes = await fetch(icoUrl, { method: 'HEAD', signal: AbortSignal.timeout(2500) });
+              if (icoRes.ok && !icoRes.headers.get('content-type')?.includes('text/html')) {
+                foundIcon = icoUrl;
+              }
+            } catch {}
+          }
+
+          return res.status(200).json({
+            success: true,
+            iconUrl: foundIcon || null,
+            message: foundIcon ? 'Favicon resmi ditemukan!' : 'Website ini tidak memiliki tag icon/favicon resmi.'
+          });
+        } catch (err) {
+          return res.status(200).json({
+            success: false,
+            iconUrl: null,
+            message: 'Gagal mendeteksi icon: ' + err.message
+          });
+        }
       }
 
       if (action === 'update_profile') {
