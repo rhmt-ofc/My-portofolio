@@ -674,25 +674,6 @@
       "visualType": "illustrative"
     },
     {
-      "id": "hd-upscale",
-      "name": "HD Upscale",
-      "category": "AI Tools",
-      "url": "https://hd-upscale-nine.vercel.app/",
-      "description": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K, opsi face enhance, perbandingan hasil, dan download gambar.",
-      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
-      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
-      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
-      "ecosystem": [
-        "JavaScript",
-        "Tailwind CSS",
-        "REST API"
-      ],
-      "summary": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K",
-      "status": "ARCHIVED",
-      "type": "work",
-      "visualType": "illustrative"
-    },
-    {
       "id": "repo-flow",
       "name": "Repo Flow",
       "category": "Utilities",
@@ -709,6 +690,25 @@
       ],
       "summary": "Upload project dan kelola file repository GitHub dari satu antarmuka.",
       "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative"
+    },
+    {
+      "id": "hd-upscale",
+      "name": "HD Upscale",
+      "category": "AI Tools",
+      "url": "https://hd-upscale-nine.vercel.app/",
+      "description": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K, opsi face enhance, perbandingan hasil, dan download gambar.",
+      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
+      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
+      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
+      "ecosystem": [
+        "JavaScript",
+        "Tailwind CSS",
+        "REST API"
+      ],
+      "summary": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K",
+      "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative"
     },
