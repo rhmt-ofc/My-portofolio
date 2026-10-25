@@ -616,25 +616,6 @@
       "visualType": "illustrative"
     },
     {
-      "id": "veritas",
-      "name": "Veritas (Artikel OCR)",
-      "category": "AI Tools",
-      "url": "https://artikel-ocr.vercel.app/",
-      "description": "Antarmuka analisis artikel ilmiah, PDF, dan URL dengan ringkasan, ekstraksi metodologi, deteksi bias, serta ruang tanya jawab berbasis dokumen. Situs menampilkan integrasi OCR iLovePDF.",
-      "problem": "Membaca dokumen ilmiah panjang atau artikel web bertele-tele sangat memakan waktu, terutama ketika menyalin teks manual dari PDF pindaian.",
-      "exploration": "Integrasi pipeline OCR andal dipadukan dengan kecerdasan buatan perangkum teks untuk analisis dokumen secepat kilat.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
-      "ecosystem": [
-        "React",
-        "OCR",
-        "iLovePDF API"
-      ],
-      "summary": "Analisis PDF dan artikel URL dengan ringkasan, metodologi, dan konteks dokumen.",
-      "status": "ONLINE_UNVERIFIED",
-      "type": "work",
-      "visualType": "illustrative"
-    },
-    {
       "id": "repo-flow",
       "name": "Repo Flow",
       "category": "Utilities",
@@ -650,6 +631,25 @@
         "IndexedDB"
       ],
       "summary": "Upload project dan kelola file repository GitHub dari satu antarmuka.",
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative"
+    },
+    {
+      "id": "veritas",
+      "name": "Veritas (Artikel OCR)",
+      "category": "AI Tools",
+      "url": "https://artikel-ocr.vercel.app/",
+      "description": "Antarmuka analisis artikel ilmiah, PDF, dan URL dengan ringkasan, ekstraksi metodologi, deteksi bias, serta ruang tanya jawab berbasis dokumen. Situs menampilkan integrasi OCR iLovePDF.",
+      "problem": "Membaca dokumen ilmiah panjang atau artikel web bertele-tele sangat memakan waktu, terutama ketika menyalin teks manual dari PDF pindaian.",
+      "exploration": "Integrasi pipeline OCR andal dipadukan dengan kecerdasan buatan perangkum teks untuk analisis dokumen secepat kilat.",
+      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "ecosystem": [
+        "React",
+        "OCR",
+        "iLovePDF API"
+      ],
+      "summary": "Analisis PDF dan artikel URL dengan ringkasan, metodologi, dan konteks dokumen.",
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative"
