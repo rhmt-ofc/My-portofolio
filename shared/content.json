@@ -776,15 +776,15 @@
       "category": "Utilities",
       "url": "https://cek-provider-six.vercel.app/",
       "description": "DOMPUL CEK adalah antarmuka pengecekan kartu XL dan AXIS. Nomor diproses lewat API untuk menampilkan status kartu, pulsa, masa aktif, masa tenggang, dan paket yang sedang aktif.",
-      "problem": "Kesalahan pengenalan nomor seluler oleh pengguna saat pengisian pulsa menimbulkan kekacauan sistem pengiriman transaksi lokal.",
-      "exploration": "Membangun mesin ekspresi reguler (RegEx) berkinerja tinggi terhadap dataset awalan nomor handphone dari seluruh operator lokal.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
+      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
+      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
       "ecosystem": [
         "JavaScript",
         "REST API"
       ],
-      "summary": "Cek informasi kartu XL/AXIS: pulsa, masa aktif, dan paket.",
-      "status": "ONLINE_UNVERIFIED",
+      "summary": "DOMPUL CEK adalah antarmuka pengecekan kartu XL dan AXIS. Nomor diproses lewat API untuk menampilkan",
+      "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative"
     },
