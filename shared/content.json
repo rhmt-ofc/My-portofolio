@@ -577,6 +577,26 @@
   ],
   "PROJECTS": [
     {
+      "id": "finora-journey",
+      "name": "Finora Journey",
+      "category": "Productivity",
+      "url": "https://finorajourney.my.id/",
+      "description": "Ruang pengelolaan keuangan pribadi dan bisnis dengan transaksi, kategori, utang, target, limit pengeluaran, laporan, dan simulasi skenario. Dilengkapi penyimpanan lokal dan ruang agent untuk eksplorasi rencana keuangan.",
+      "summary": "Catatan keuangan pribadi dan bisnis, target, serta simulasi skenario.",
+      "problem": "",
+      "exploration": "",
+      "outcome": "Deskripsi ditulis dari halaman dan bundle publik yang diakses 10 Oktober 2026; alur backend tidak diuji.",
+      "ecosystem": [
+        "Next.js",
+        "React",
+        "Dexie",
+        "IndexedDB"
+      ],
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative"
+    },
+    {
       "id": "tierlist-maker",
       "name": "Tierlist Maker",
       "category": "Utilities",
@@ -862,26 +882,6 @@
       "summary": "Eksplorasi Web Audio API, osilator, dan visualisasi suara langsung di browser.",
       "status": "ARCHIVED",
       "type": "experiment",
-      "visualType": "illustrative"
-    },
-    {
-      "id": "finora-journey",
-      "name": "Finora Journey",
-      "category": "Productivity",
-      "url": "https://finorajourney.my.id/",
-      "description": "Ruang pengelolaan keuangan pribadi dan bisnis dengan transaksi, kategori, utang, target, limit pengeluaran, laporan, dan simulasi skenario. Dilengkapi penyimpanan lokal dan ruang agent untuk eksplorasi rencana keuangan.",
-      "summary": "Catatan keuangan pribadi dan bisnis, target, serta simulasi skenario.",
-      "problem": "",
-      "exploration": "",
-      "outcome": "Deskripsi ditulis dari halaman dan bundle publik yang diakses 10 Oktober 2026; alur backend tidak diuji.",
-      "ecosystem": [
-        "Next.js",
-        "React",
-        "Dexie",
-        "IndexedDB"
-      ],
-      "status": "ONLINE_UNVERIFIED",
-      "type": "work",
       "visualType": "illustrative"
     },
     {
