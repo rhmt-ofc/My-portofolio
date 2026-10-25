@@ -659,16 +659,16 @@
       "category": "AI Tools",
       "url": "https://hd-upscale-nine.vercel.app/",
       "description": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K, opsi face enhance, perbandingan hasil, dan download gambar.",
-      "problem": "Skala pembesaran gambar konvensional hanya merenggangkan grid pixel, menciptakan kekaburan visual dan noise yang merusak estetika desain grafik.",
-      "exploration": "Eksplorasi kalkulasi sintetik detail frekuensi tinggi lewat neural-network vision AI ketimbang sekadar interpolasi bilinear.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
+      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
+      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
       "ecosystem": [
         "JavaScript",
         "Tailwind CSS",
         "REST API"
       ],
-      "summary": "Upload gambar, pilih resolusi dan face enhance, lalu unduh hasil upscale.",
-      "status": "ONLINE_UNVERIFIED",
+      "summary": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K",
+      "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative"
     },
