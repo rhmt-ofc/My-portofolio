@@ -6,7 +6,7 @@ function localApi(): Plugin {
     configureServer(server) {
       server.middlewares.use('/api', async (req, res, next) => {
         const route = req.url?.split('?')[0];
-        if (!['/chat', '/health', '/contact', '/ratings'].includes(route || '')) return next();
+        if (!['/chat', '/health', '/contact', '/ratings', '/admin'].includes(route || '')) return next();
         let raw = '';
         try {
           for await (const chunk of req) {

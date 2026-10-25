@@ -4,11 +4,16 @@
   "installCommand": "npm ci",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin.html" }
+  ],
   "functions": {
     "api/chat.js": { "maxDuration": 30 },
     "api/ratings.js": { "maxDuration": 15 },
     "api/contact.js": { "maxDuration": 10 },
-    "api/health.js": { "maxDuration": 10 }
+    "api/health.js": { "maxDuration": 10 },
+    "api/admin.js": { "maxDuration": 30 }
   },
   "headers": [
     {

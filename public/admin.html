@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard &mdash; R_HMT Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d0f;
+      --surface: #11171a;
+      --surface-card: #151e22;
+      --surface-hover: #1b262b;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(234, 179, 8, 0.4);
+      --gold: #eab308;
+      --gold-glow: rgba(234, 179, 8, 0.15);
+      --emerald: #10b981;
+      --emerald-glow: rgba(16, 185, 129, 0.15);
+      --sky: #0284c7;
+      --rose: #f43f5e;
+      --purple: #a855f7;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --radius: 12px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #26343b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334752; }
+
+    /* Login Screen */
+    #login-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 13, 15, 0.95);
+      backdrop-filter: blur(16px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .login-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 420px;
+      padding: 36px 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px var(--gold-glow);
+      text-align: center;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(234, 179, 8, 0.1);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .login-card h1 {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .login-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    /* Forms & Inputs */
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-glow);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 85px;
+      line-height: 1.5;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 11px 18px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #facc15, #ca8a04);
+      color: #000;
+      box-shadow: 0 4px 14px rgba(234, 179, 8, 0.3);
+    }
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #fde047, #eab308);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: var(--surface-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-hover);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .btn-danger {
+      background: rgba(244, 63, 94, 0.15);
+      color: #fda4af;
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+    .btn-danger:hover {
+      background: rgba(244, 63, 94, 0.25);
+    }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 8px;
+    }
+
+    /* App Header */
+    header.dashboard-header {
+      background: rgba(17, 23, 26, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 24px;
+    }
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .logo-tag {
+      background: rgba(234, 179, 8, 0.15);
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+    .sync-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--emerald);
+      background: var(--emerald-glow);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .sync-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--emerald);
+    }
+
+    /* Main Container & Tabs */
+    main.dashboard-main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 16px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      color: var(--text);
+      background: var(--surface);
+    }
+    .tab-btn.active {
+      color: var(--gold);
+      background: var(--gold-glow);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      margin-top: 6px;
+      color: var(--text);
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    /* Projects Grid / Table */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .project-card:hover {
+      border-color: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4);
+    }
+    .card-top {
+      margin-bottom: 14px;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .category-badge {
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .status-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-live {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .status-unverified {
+      background: rgba(2, 132, 199, 0.15);
+      color: #38bdf8;
+      border: 1px solid rgba(2, 132, 199, 0.3);
+    }
+    .status-archived {
+      background: rgba(234, 179, 8, 0.15);
+      color: #facc15;
+      border: 1px solid rgba(234, 179, 8, 0.3);
+    }
+    .status-concept {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .card-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .stack-tag {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      background: var(--surface-card);
+      color: var(--text-muted);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      gap: 8px;
+    }
+    .card-links {
+      display: flex;
+      gap: 6px;
+    }
+
+    /* Form Container Layout */
+    .form-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 28px;
+    }
+    @media (max-width: 1024px) {
+      .form-layout { grid-template-columns: 1fr; }
+    }
+    .form-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .form-box-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .form-box-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .form-grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* Live Preview Sticky */
+    .preview-sticky {
+      position: sticky;
+      top: 88px;
+    }
+    .preview-header {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    #toast.success { border-color: rgba(16, 185, 129, 0.5); color: #34d399; }
+    #toast.error { border-color: rgba(244, 63, 94, 0.5); color: #fda4af; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 13, 15, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 1500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      max-width: 440px;
+      width: 100%;
+      padding: 28px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN OVERLAY -->
+  <div id="login-overlay">
+    <div class="login-card">
+      <div class="brand-badge">R_HMT &middot; COMMAND CENTER</div>
+      <h1>Admin Dashboard</h1>
+      <p>Masukkan PIN atau Secret Key untuk mengelola portofolio.</p>
+
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label" for="admin-pin">PIN / Secret Key</label>
+          <input type="password" id="admin-pin" class="form-input" placeholder="Masukkan PIN..." autofocus required>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 12px; color: var(--text-muted);">
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="checkbox" id="remember-pin" checked> Ingat di browser ini
+          </label>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width: 100%;">
+          <span>Buka Dashboard</span> &rarr;
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD HEADER -->
+  <header class="dashboard-header">
+    <div class="header-content">
+      <div class="logo-area">
+        <span class="logo-text">R_HMT</span>
+        <span class="logo-tag">ADMIN</span>
+        <div class="sync-indicator">
+          <span class="sync-dot"></span>
+          <span>Zero-DB Git Sync</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <a href="/" target="_blank" class="btn btn-secondary btn-sm" title="Lihat Website Live">
+          Web Utama &nearr;
+        </a>
+        <button id="logout-btn" class="btn btn-secondary btn-sm" title="Kunci Dashboard">
+          Kunci / Keluar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD MAIN -->
+  <main class="dashboard-main">
+    
+    <!-- STATS OVERVIEW -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Karya & Proyek</div>
+        <div class="stat-value" id="stat-total">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Status Aktif / Demo</div>
+        <div class="stat-value" style="color: var(--emerald);" id="stat-live">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Arsip / Riwayat</div>
+        <div class="stat-value" style="color: var(--gold);" id="stat-archived">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Kategori Karya</div>
+        <div class="stat-value" style="color: var(--purple);" id="stat-categories">0</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="tab-list">📁 Daftar Karya (<span id="tab-count">0</span>)</button>
+      <button class="tab-btn" data-tab="tab-form" id="tab-form-btn">➕ Tambah / Edit Karya</button>
+      <button class="tab-btn" data-tab="tab-profile">👤 Biodata & Foto Profil</button>
+    </div>
+
+    <!-- TAB 1: LIST PROJECTS -->
+    <section id="tab-list">
+      <div class="controls-bar">
+        <div class="search-box">
+          <input type="text" id="search-input" class="form-input" placeholder="Cari nama project atau tech stack...">
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <select id="filter-category" class="form-select" style="width: auto;">
+            <option value="all">Semua Kategori</option>
+          </select>
+          <select id="filter-status" class="form-select" style="width: auto;">
+            <option value="all">Semua Status</option>
+            <option value="ONLINE_UNVERIFIED">Aktif / Live (Unverified)</option>
+            <option value="LIVE_VERIFIED">Demo Terverifikasi</option>
+            <option value="ARCHIVED">Arsip (Non-aktif)</option>
+            <option value="CONCEPT">Konsep</option>
+          </select>
+          <button class="btn btn-gold btn-sm" id="btn-add-new">
+            + Tambah Project
+          </button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid" id="projects-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 2: ADD/EDIT FORM (6 KOLOM) -->
+    <section id="tab-form" style="display: none;">
+      <div class="form-layout">
+        <div class="form-box">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+              <h2 class="form-box-title" id="form-mode-title">Tambah Karya Baru</h2>
+              <p class="form-box-sub" id="form-mode-desc">Isi 6 kolom informasi berikut untuk mempublikasikan project ke portofolio.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btn-cancel-edit" style="display: none;">
+              Batal Edit / Buat Baru
+            </button>
+          </div>
+
+          <form id="project-form">
+            <input type="hidden" id="field-id">
+
+            <!-- 1. NAMA PROJECT -->
+            <div class="form-group">
+              <label class="form-label" for="field-name">1. Nama Project *</label>
+              <input type="text" id="field-name" class="form-input" placeholder="Contoh: Finora Journey" required>
+            </div>
+
+            <div class="form-grid-2">
+              <!-- 2. KATEGORI -->
+              <div class="form-group">
+                <label class="form-label" for="field-category">2. Kategori *</label>
+                <select id="field-category" class="form-select" required>
+                  <option value="AI Tools">AI Tools</option>
+                  <option value="Utilities">Utilities</option>
+                  <option value="Productivity">Productivity</option>
+                  <option value="Archive Experiments">Archive Experiments</option>
+                  <option value="Web Development">Web Development</option>
+                </select>
+              </div>
+
+              <!-- 4. STATUS -->
+              <div class="form-group">
+                <label class="form-label" for="field-status">4. Status *</label>
+                <select id="field-status" class="form-select" required>
+                  <option value="ONLINE_UNVERIFIED">Aktif / Online</option>
+                  <option value="LIVE_VERIFIED">Demo Terverifikasi</option>
+                  <option value="ARCHIVED">Arsip / Non-aktif</option>
+                  <option value="CONCEPT">Konsep / Eksperimen</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 3. URL WEB / DEMO -->
+            <div class="form-group">
+              <label class="form-label" for="field-url">3. URL Web / Demo *</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="url" id="field-url" class="form-input" placeholder="https://contoh-project.vercel.app/" required>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-test-url" style="white-space: nowrap;">
+                  Uji Link &nearr;
+                </button>
+              </div>
+            </div>
+
+            <!-- 5. DESKRIPSI SINGKAT -->
+            <div class="form-group">
+              <label class="form-label" for="field-desc">5. Deskripsi Singkat *</label>
+              <textarea id="field-desc" class="form-textarea" placeholder="Jelaskan fungsi, keunggulan, atau masalah yang diselesaikan aplikasi ini..." required></textarea>
+            </div>
+
+            <!-- 6. TECH STACK / ECOSYSTEM -->
+            <div class="form-group">
+              <label class="form-label" for="field-stack">6. Tech Stack (Pisahkan dengan koma) *</label>
+              <input type="text" id="field-stack" class="form-input" placeholder="React, Vite, Node.js, Tailwind CSS" required>
+            </div>
+
+            <!-- ACTIONS -->
+            <div style="display: flex; gap: 12px; margin-top: 32px;">
+              <button type="submit" class="btn btn-gold" id="btn-submit-project" style="flex: 1;">
+                <span id="btn-submit-text">💾 Simpan & Push ke GitHub</span>
+              </button>
+              <button type="button" class="btn btn-secondary" id="btn-reset-form">
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- LIVE PREVIEW CARD -->
+        <div class="preview-sticky">
+          <div class="preview-header">&bull; Live Card Preview</div>
+          <div class="project-card" style="box-shadow: 0 15px 35px rgba(0,0,0,0.4); border-color: rgba(234, 179, 8, 0.3);">
+            <div class="card-top">
+              <div class="card-meta">
+                <span class="category-badge" id="prev-category">Kategori</span>
+                <span class="status-badge status-live" id="prev-status">ONLINE</span>
+              </div>
+              <h3 class="card-title" id="prev-name">Nama Project</h3>
+              <p class="card-desc" id="prev-desc">Deskripsi singkat project akan muncul di sini secara real-time saat Tuan mengetik.</p>
+              <div class="card-stack" id="prev-stack">
+                <span class="stack-tag">React</span>
+                <span class="stack-tag">Vite</span>
+              </div>
+            </div>
+            <div class="card-actions">
+              <span style="font-size: 11px; color: var(--gold);">Pratinjau Tampilan Web</span>
+              <span class="btn btn-secondary btn-sm" style="pointer-events: none; opacity: 0.7;">Lihat Demo &nearr;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: PROFILE & PP -->
+    <section id="tab-profile" style="display: none;">
+      <div style="max-width: 680px; margin: 0 auto;" class="form-box">
+        <h2 class="form-box-title">Foto Profil & Biodata</h2>
+        <p class="form-box-sub">Perbarui foto utama (PP) dan informasi biodata yang tampil di portofolio.</p>
+
+        <form id="profile-form">
+          <div class="form-group">
+            <label class="form-label" for="profile-role">Role / Tagline</label>
+            <input type="text" id="profile-role" class="form-input" placeholder="Self-taught developer & curious explorer">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="profile-avatar">URL Foto Profil (PP) Baru</label>
+            <input type="url" id="profile-avatar" class="form-input" placeholder="https://res.cloudinary.com/... atau link foto web">
+            <small style="color: var(--text-subtle); display: block; margin-top: 4px;">Tempel tautan URL gambar avatar/foto Tuan.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="profile-about">Tentang Diri (About)</label>
+            <textarea id="profile-about" class="form-textarea" style="min-height: 110px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="profile-approach">Pendekatan & Belajar (Approach)</label>
+            <textarea id="profile-approach" class="form-textarea" style="min-height: 100px;"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 10px;">
+            <span id="btn-profile-text">💾 Simpan Pembaruan Profil ke GitHub</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast">Notifikasi</div>
+
+  <!-- DELETE CONFIRMATION MODAL -->
+  <div id="delete-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-card">
+      <h3 style="font-size: 18px; margin-bottom: 8px; color: var(--rose);">Hapus Project?</h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+        Apakah Tuan yakin ingin menghapus <strong id="delete-target-name" style="color: var(--text);"></strong>? Tindakan ini akan menghapus data dari shared/content.json dan membuat commit baru di GitHub.
+      </p>
+      <div style="display: flex; gap: 10px; justify-content: flex-end;">
+        <button class="btn btn-secondary btn-sm" id="btn-cancel-delete">Batal</button>
+        <button class="btn btn-danger btn-sm" id="btn-confirm-delete">Ya, Hapus Project</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // State
+    let adminKey = localStorage.getItem('r_hmt_admin_pin') || sessionStorage.getItem('r_hmt_admin_pin') || '';
+    let projectsData = [];
+    let profileData = {};
+    let activeDeleteId = null;
+
+    // Elements
+    const loginOverlay = document.getElementById('login-overlay');
+    const loginForm = document.getElementById('login-form');
+    const adminPinInput = document.getElementById('admin-pin');
+    const rememberCheckbox = document.getElementById('remember-pin');
+    const logoutBtn = document.getElementById('logout-btn');
+    const toast = document.getElementById('toast');
+
+    // Tabs
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabSections = {
+      'tab-list': document.getElementById('tab-list'),
+      'tab-form': document.getElementById('tab-form'),
+      'tab-profile': document.getElementById('tab-profile')
+    };
+
+    function showToast(msg, type = 'success') {
+      toast.textContent = msg;
+      toast.className = `show ${type}`;
+      setTimeout(() => { toast.className = ''; }, 3500);
+    }
+
+    // Switch Tabs
+    function switchTab(targetTabId) {
+      tabBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === targetTabId));
+      Object.keys(tabSections).forEach(id => {
+        if (tabSections[id]) tabSections[id].style.display = (id === targetTabId) ? 'block' : 'none';
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    document.getElementById('btn-add-new').addEventListener('click', () => {
+      resetProjectForm();
+      switchTab('tab-form');
+    });
+
+    // Authentication & Fetch
+    async function apiRequest(endpoint = '/api/admin', options = {}) {
+      const headers = {
+        'Content-Type': 'application/json',
+        'x-admin-key': adminKey,
+        ...(options.headers || {})
+      };
+      const res = await fetch(endpoint, { ...options, headers });
+      if (res.status === 401) {
+        logout();
+        throw new Error('PIN / Secret Key salah atau sesi telah kedaluwarsa.');
+      }
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Terjadi kesalahan pada server.');
+      }
+      return data;
+    }
+
+    async function checkAuthAndLoad() {
+      if (!adminKey) {
+        loginOverlay.style.display = 'flex';
+        return;
+      }
+      try {
+        const data = await apiRequest();
+        loginOverlay.style.display = 'none';
+        projectsData = data.projects || [];
+        profileData = data.profile || {};
+        renderDashboard();
+      } catch (err) {
+        loginOverlay.style.display = 'flex';
+        showToast(err.message, 'error');
+      }
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const entered = adminPinInput.value.trim();
+      if (!entered) return;
+      adminKey = entered;
+      try {
+        const data = await apiRequest();
+        if (rememberCheckbox.checked) {
+          localStorage.setItem('r_hmt_admin_pin', adminKey);
+        } else {
+          sessionStorage.setItem('r_hmt_admin_pin', adminKey);
+        }
+        loginOverlay.style.display = 'none';
+        projectsData = data.projects || [];
+        profileData = data.profile || {};
+        renderDashboard();
+        showToast('Login berhasil! Terhubung ke GitHub.');
+      } catch (err) {
+        adminKey = '';
+        showToast(err.message, 'error');
+      }
+    });
+
+    function logout() {
+      adminKey = '';
+      localStorage.removeItem('r_hmt_admin_pin');
+      sessionStorage.removeItem('r_hmt_admin_pin');
+      loginOverlay.style.display = 'flex';
+      adminPinInput.value = '';
+    }
+    logoutBtn.addEventListener('click', logout);
+
+    // Render Dashboard
+    function renderDashboard() {
+      // Stats
+      const total = projectsData.length;
+      const live = projectsData.filter(p => p.status === 'LIVE_VERIFIED' || p.status === 'ONLINE_UNVERIFIED').length;
+      const archived = projectsData.filter(p => p.status === 'ARCHIVED').length;
+      const categories = [...new Set(projectsData.map(p => p.category))].filter(Boolean);
+
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-live').textContent = live;
+      document.getElementById('stat-archived').textContent = archived;
+      document.getElementById('stat-categories').textContent = categories.length;
+      document.getElementById('tab-count').textContent = total;
+
+      // Populate Category Filter
+      const catSelect = document.getElementById('filter-category');
+      const currentCatVal = catSelect.value;
+      catSelect.innerHTML = '<option value="all">Semua Kategori</option>' +
+        categories.map(c => `<option value="${c}">${c}</option>`).join('');
+      if (categories.includes(currentCatVal)) catSelect.value = currentCatVal;
+
+      renderProjectsList();
+      populateProfileForm();
+    }
+
+    function renderProjectsList() {
+      const container = document.getElementById('projects-container');
+      const searchQuery = document.getElementById('search-input').value.toLowerCase();
+      const selectedCat = document.getElementById('filter-category').value;
+      const selectedStatus = document.getElementById('filter-status').value;
+
+      const filtered = projectsData.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchQuery) ||
+          (p.ecosystem || []).some(t => t.toLowerCase().includes(searchQuery)) ||
+          (p.description || '').toLowerCase().includes(searchQuery);
+        const matchesCat = (selectedCat === 'all') || (p.category === selectedCat);
+        const matchesStatus = (selectedStatus === 'all') || (p.status === selectedStatus);
+        return matchesSearch && matchesCat && matchesStatus;
+      });
+
+      if (!filtered.length) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 48px; background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius);">
+            <p style="color: var(--text-muted); font-size: 14px;">Tidak ada project yang sesuai dengan filter.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(p => {
+        let statusClass = 'status-unverified';
+        let statusLabel = 'Aktif (Unverified)';
+        if (p.status === 'LIVE_VERIFIED') { statusClass = 'status-live'; statusLabel = 'Demo Terverifikasi'; }
+        else if (p.status === 'ARCHIVED') { statusClass = 'status-archived'; statusLabel = 'Arsip'; }
+        else if (p.status === 'CONCEPT') { statusClass = 'status-concept'; statusLabel = 'Konsep'; }
+
+        const stack = Array.isArray(p.ecosystem) ? p.ecosystem : [];
+
+        return `
+          <div class="project-card">
+            <div class="card-top">
+              <div class="card-meta">
+                <span class="category-badge">${p.category || 'Utilities'}</span>
+                <span class="status-badge ${statusClass}">${statusLabel}</span>
+              </div>
+              <h3 class="card-title">${p.name}</h3>
+              <p class="card-desc">${p.description || '-'}</p>
+              <div class="card-stack">
+                ${stack.map(s => `<span class="stack-tag">${s}</span>`).join('')}
+              </div>
+            </div>
+            <div class="card-actions">
+              <div class="card-links">
+                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Buka tautan">Web &nearr;</a>` : ''}
+              </div>
+              <div style="display: flex; gap: 6px;">
+                <button class="btn btn-secondary btn-sm" onclick="editProject('${p.id}')">✏️ Edit</button>
+                <button class="btn btn-danger btn-sm" onclick="askDeleteProject('${p.id}', '${p.name.replace(/'/g, "\\'")}')">🗑️</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('search-input').addEventListener('input', renderProjectsList);
+    document.getElementById('filter-category').addEventListener('change', renderProjectsList);
+    document.getElementById('filter-status').addEventListener('change', renderProjectsList);
+
+    // Live Preview Binding
+    function updateLivePreview() {
+      const name = document.getElementById('field-name').value.trim() || 'Nama Project';
+      const cat = document.getElementById('field-category').value;
+      const status = document.getElementById('field-status').value;
+      const desc = document.getElementById('field-desc').value.trim() || 'Deskripsi singkat project akan muncul di sini secara real-time saat Tuan mengetik.';
+      const rawStack = document.getElementById('field-stack').value.trim();
+      const stack = rawStack ? rawStack.split(/[,·|]/).map(t => t.trim()).filter(Boolean) : ['React', 'Vite'];
+
+      document.getElementById('prev-name').textContent = name;
+      document.getElementById('prev-category').textContent = cat;
+      document.getElementById('prev-desc').textContent = desc;
+
+      const prevStatusEl = document.getElementById('prev-status');
+      prevStatusEl.className = 'status-badge ' + (
+        status === 'LIVE_VERIFIED' ? 'status-live' :
+        status === 'ARCHIVED' ? 'status-archived' :
+        status === 'CONCEPT' ? 'status-concept' : 'status-unverified'
+      );
+      prevStatusEl.textContent = status.replace('_', ' ');
+
+      document.getElementById('prev-stack').innerHTML = stack.map(s => `<span class="stack-tag">${s}</span>`).join('');
+    }
+
+    ['field-name', 'field-category', 'field-status', 'field-desc', 'field-stack'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updateLivePreview);
+      document.getElementById(id).addEventListener('change', updateLivePreview);
+    });
+
+    document.getElementById('btn-test-url').addEventListener('click', () => {
+      const url = document.getElementById('field-url').value.trim();
+      if (!url) {
+        showToast('Tuliskan URL terlebih dahulu!', 'error');
+        return;
+      }
+      window.open(url, '_blank');
+    });
+
+    // Edit Project
+    window.editProject = function(id) {
+      const target = projectsData.find(p => p.id === id);
+      if (!target) return;
+
+      document.getElementById('field-id').value = target.id;
+      document.getElementById('field-name').value = target.name || '';
+      document.getElementById('field-category').value = target.category || 'Utilities';
+      document.getElementById('field-status').value = target.status || 'ONLINE_UNVERIFIED';
+      document.getElementById('field-url').value = target.url || '';
+      document.getElementById('field-desc').value = target.description || '';
+      document.getElementById('field-stack').value = (target.ecosystem || []).join(', ');
+
+      document.getElementById('form-mode-title').textContent = `Edit Karya: ${target.name}`;
+      document.getElementById('form-mode-desc').textContent = 'Perbarui bagian yang diinginkan lalu klik simpan untuk commit ke GitHub.';
+      document.getElementById('btn-cancel-edit').style.display = 'inline-flex';
+      document.getElementById('btn-submit-text').textContent = '💾 Simpan Perubahan ke GitHub';
+
+      updateLivePreview();
+      switchTab('tab-form');
+    };
+
+    function resetProjectForm() {
+      document.getElementById('project-form').reset();
+      document.getElementById('field-id').value = '';
+      document.getElementById('form-mode-title').textContent = 'Tambah Karya Baru';
+      document.getElementById('form-mode-desc').textContent = 'Isi 6 kolom informasi berikut untuk mempublikasikan project ke portofolio.';
+      document.getElementById('btn-cancel-edit').style.display = 'none';
+      document.getElementById('btn-submit-text').textContent = '💾 Simpan & Push ke GitHub';
+      updateLivePreview();
+    }
+
+    document.getElementById('btn-cancel-edit').addEventListener('click', resetProjectForm);
+    document.getElementById('btn-reset-form').addEventListener('click', resetProjectForm);
+
+    // Save Project Submit
+    document.getElementById('project-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById('btn-submit-project');
+      const submitText = document.getElementById('btn-submit-text');
+      const origText = submitText.textContent;
+
+      submitBtn.disabled = true;
+      submitText.textContent = '⏳ Menghubungi GitHub & Commit...';
+
+      const projectPayload = {
+        id: document.getElementById('field-id').value || undefined,
+        name: document.getElementById('field-name').value.trim(),
+        category: document.getElementById('field-category').value,
+        status: document.getElementById('field-status').value,
+        url: document.getElementById('field-url').value.trim(),
+        description: document.getElementById('field-desc').value.trim(),
+        ecosystem: document.getElementById('field-stack').value
+      };
+
+      try {
+        const res = await apiRequest('/api/admin', {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'save_project',
+            project: projectPayload
+          })
+        });
+
+        showToast(`Berhasil di-push ke GitHub! Vercel otomatis rebuild.`);
+        resetProjectForm();
+        
+        // Reload fresh data
+        const fresh = await apiRequest();
+        projectsData = fresh.projects || [];
+        renderDashboard();
+        switchTab('tab-list');
+      } catch (err) {
+        showToast(err.message, 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitText.textContent = origText;
+      }
+    });
+
+    // Delete Modal
+    window.askDeleteProject = function(id, name) {
+      activeDeleteId = id;
+      document.getElementById('delete-target-name').textContent = `"${name}"`;
+      document.getElementById('delete-modal').style.display = 'flex';
+    };
+
+    document.getElementById('btn-cancel-delete').addEventListener('click', () => {
+      activeDeleteId = null;
+      document.getElementById('delete-modal').style.display = 'none';
+    });
+
+    document.getElementById('btn-confirm-delete').addEventListener('click', async () => {
+      if (!activeDeleteId) return;
+      const delBtn = document.getElementById('btn-confirm-delete');
+      delBtn.disabled = true;
+      delBtn.textContent = 'Menghapus...';
+
+      try {
+        await apiRequest('/api/admin', {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'delete_project',
+            id: activeDeleteId
+          })
+        });
+
+        showToast('Project berhasil dihapus dari GitHub!');
+        document.getElementById('delete-modal').style.display = 'none';
+        
+        const fresh = await apiRequest();
+        projectsData = fresh.projects || [];
+        renderDashboard();
+      } catch (err) {
+        showToast(err.message, 'error');
+      } finally {
+        delBtn.disabled = false;
+        delBtn.textContent = 'Ya, Hapus Project';
+        activeDeleteId = null;
+      }
+    });
+
+    // Profile Tab
+    function populateProfileForm() {
+      if (!profileData) return;
+      document.getElementById('profile-role').value = profileData.role || '';
+      document.getElementById('profile-avatar').value = profileData.avatar || '';
+      document.getElementById('profile-about').value = profileData.about || '';
+      document.getElementById('profile-approach').value = profileData.approach || '';
+    }
+
+    document.getElementById('profile-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btnText = document.getElementById('btn-profile-text');
+      const orig = btnText.textContent;
+      btnText.textContent = '⏳ Memperbarui di GitHub...';
+
+      const payload = {
+        role: document.getElementById('profile-role').value.trim(),
+        avatarUrl: document.getElementById('profile-avatar').value.trim(),
+        about: document.getElementById('profile-about').value.trim(),
+        approach: document.getElementById('profile-approach').value.trim()
+      };
+
+      try {
+        await apiRequest('/api/admin', {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'update_profile',
+            profile: payload
+          })
+        });
+
+        showToast('Profil & Foto berhasil diperbarui ke GitHub!');
+      } catch (err) {
+        showToast(err.message, 'error');
+      } finally {
+        btnText.textContent = orig;
+      }
+    });
+
+    // Start
+    checkAuthAndLoad();
+  </script>
+</body>
+</html>
