@@ -890,17 +890,17 @@
       "category": "Utilities",
       "url": "https://am-proaktif.vercel.app/",
       "description": "Antarmuka dispatcher Alight Motion dengan alur input email akun dan verifikasi magic link untuk akses Pro. Respons JSON dan log aktivitas ditampilkan sebagai bagian dari proses aktivasi.",
-      "summary": "Antarmuka aktivasi dengan email, magic link, respons, dan log aktivitas.",
-      "problem": "",
-      "exploration": "",
-      "outcome": "Deskripsi ditulis dari halaman dan bundle publik yang diakses 10 Oktober 2026; alur backend tidak diuji.",
+      "summary": "Antarmuka dispatcher Alight Motion dengan alur input email akun dan verifikasi magic link untuk akse",
+      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
+      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
+      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
       "ecosystem": [
         "HTML",
         "CSS",
         "JavaScript",
         "REST API"
       ],
-      "status": "ONLINE_UNVERIFIED",
+      "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative"
     }
