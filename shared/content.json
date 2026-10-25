@@ -555,6 +555,24 @@
           "label": "TikTok"
         }
       ]
+    },
+    {
+      "name": "Korvali",
+      "handle": "korvali",
+      "avatar": "Korvali.png",
+      "role": "",
+      "socials": [
+        {
+          "platform": "website",
+          "url": "https://www.korvali.net",
+          "label": "Website"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@www.korvali.net",
+          "label": "TikTok"
+        }
+      ]
     }
   ],
   "PROJECTS": [
