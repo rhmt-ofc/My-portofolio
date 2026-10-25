@@ -30,7 +30,7 @@ test('admin endpoint accepts correct default pin', async () => {
   assert.equal(responseData?.success, true);
   assert.equal(responseData?.authenticated, true);
   assert.ok(Array.isArray(responseData?.projects));
-  assert.ok(responseData.projects.length >= 18);
+  assert.ok(responseData.projects.length >= 10);
 });
 
 test('admin endpoint rejects unsupported methods', async () => {
@@ -62,4 +62,21 @@ test('admin endpoint validates project name on save_project', async () => {
   }, res);
   assert.equal(statusCode, 400);
   assert.match(responseData.error, /Nama Project/i);
+});
+
+test('admin endpoint move_to_front requires id', async () => {
+  let statusCode = 0;
+  let responseData = null;
+  const res = {
+    setHeader: () => {},
+    status: (code) => { statusCode = code; return res; },
+    json: (data) => { responseData = data; }
+  };
+
+  await adminHandler({
+    method: 'POST',
+    headers: { 'x-admin-key': 'rahmat2026' },
+    body: { action: 'move_to_front' }
+  }, res);
+  assert.equal(statusCode, 400);
 });

@@ -232,6 +232,78 @@ export default async function handler(req, res) {
         });
       }
 
+      if (action === 'move_to_front') {
+        if (!id) {
+          return res.status(400).json({ error: 'ID project yang akan dipindahkan tidak ditentukan.' });
+        }
+
+        const { json: contentData } = await fetchFromGitHub('shared/content.json');
+        if (!Array.isArray(contentData.PROJECTS)) {
+          return res.status(400).json({ error: 'Daftar project tidak ditemukan.' });
+        }
+
+        const index = contentData.PROJECTS.findIndex(p => p.id === id);
+        if (index === -1) {
+          return res.status(404).json({ error: `Project dengan ID "${id}" tidak ditemukan.` });
+        }
+
+        const [target] = contentData.PROJECTS.splice(index, 1);
+        contentData.PROJECTS.unshift(target);
+
+        const commitResult = await commitToGitHub(
+          'shared/content.json',
+          contentData,
+          `feat(projects): rotate "${target.name}" to front via admin dashboard`
+        );
+
+        return res.status(200).json({
+          success: true,
+          movedId: id,
+          movedName: target.name,
+          projects: contentData.PROJECTS,
+          commit: commitResult.commit?.html_url || commitResult.commit?.sha
+        });
+      }
+
+      if (action === 'move_step') {
+        const { direction } = req.body || {};
+        if (!id || !['up', 'down'].includes(direction)) {
+          return res.status(400).json({ error: 'Parameter id dan direction ("up" / "down") diperlukan.' });
+        }
+
+        const { json: contentData } = await fetchFromGitHub('shared/content.json');
+        const index = (contentData.PROJECTS || []).findIndex(p => p.id === id);
+        if (index === -1) {
+          return res.status(404).json({ error: `Project dengan ID "${id}" tidak ditemukan.` });
+        }
+
+        const targetIndex = direction === 'up' ? index - 1 : index + 1;
+        if (targetIndex >= 0 && targetIndex < contentData.PROJECTS.length) {
+          const temp = contentData.PROJECTS[index];
+          contentData.PROJECTS[index] = contentData.PROJECTS[targetIndex];
+          contentData.PROJECTS[targetIndex] = temp;
+
+          const commitResult = await commitToGitHub(
+            'shared/content.json',
+            contentData,
+            `feat(projects): reorder "${temp.name}" ${direction} via admin dashboard`
+          );
+
+          return res.status(200).json({
+            success: true,
+            movedId: id,
+            projects: contentData.PROJECTS,
+            commit: commitResult.commit?.html_url || commitResult.commit?.sha
+          });
+        }
+
+        return res.status(200).json({
+          success: true,
+          message: 'Posisi tidak berubah.',
+          projects: contentData.PROJECTS
+        });
+      }
+
       if (action === 'update_profile') {
         if (!profileUpdate || typeof profileUpdate !== 'object') {
           return res.status(400).json({ error: 'Data profil tidak valid.' });

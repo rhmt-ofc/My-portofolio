@@ -139,24 +139,39 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
       font-family: inherit;
       font-size: 13px;
       font-weight: 600;
       border-radius: 10px;
-      padding: 11px 18px;
+      padding: 10px 16px;
       cursor: pointer;
       transition: all 0.2s ease;
       border: none;
       text-decoration: none;
+      user-select: none;
+    }
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
     .btn-gold {
       background: linear-gradient(135deg, #facc15, #ca8a04);
       color: #000;
       box-shadow: 0 4px 14px rgba(234, 179, 8, 0.3);
     }
-    .btn-gold:hover {
+    .btn-gold:hover:not(:disabled) {
       background: linear-gradient(135deg, #fde047, #eab308);
+      transform: translateY(-1px);
+    }
+    .btn-front {
+      background: rgba(234, 179, 8, 0.15);
+      color: #facc15;
+      border: 1px solid rgba(234, 179, 8, 0.35);
+    }
+    .btn-front:hover:not(:disabled) {
+      background: rgba(234, 179, 8, 0.25);
+      border-color: var(--gold);
       transform: translateY(-1px);
     }
     .btn-secondary {
@@ -164,7 +179,7 @@
       color: var(--text);
       border: 1px solid var(--border);
     }
-    .btn-secondary:hover {
+    .btn-secondary:hover:not(:disabled) {
       background: var(--surface-hover);
       border-color: rgba(255, 255, 255, 0.2);
     }
@@ -173,18 +188,24 @@
       color: #fda4af;
       border: 1px solid rgba(244, 63, 94, 0.3);
     }
-    .btn-danger:hover {
+    .btn-danger:hover:not(:disabled) {
       background: rgba(244, 63, 94, 0.25);
     }
     .btn-sm {
-      padding: 6px 12px;
+      padding: 6px 11px;
       font-size: 12px;
       border-radius: 8px;
+    }
+    .btn-icon-sm {
+      padding: 6px 9px;
+      font-size: 11px;
+      border-radius: 8px;
+      min-width: 28px;
     }
 
     /* App Header */
     header.dashboard-header {
-      background: rgba(17, 23, 26, 0.8);
+      background: rgba(17, 23, 26, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       position: sticky;
@@ -321,6 +342,44 @@
       position: relative;
     }
 
+    /* Favicon & Card Title */
+    .project-favicon {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      vertical-align: middle;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 6px;
+    }
+
+    /* Position Index Badge */
+    .pos-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .pos-badge-first {
+      background: rgba(234, 179, 8, 0.2);
+      color: #fde047;
+      border: 1px solid rgba(234, 179, 8, 0.4);
+      box-shadow: 0 0 10px rgba(234, 179, 8, 0.2);
+    }
+
     /* Projects Grid / Table */
     .projects-grid {
       display: grid;
@@ -335,12 +394,17 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.2s ease;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
     }
     .project-card:hover {
-      border-color: rgba(255, 255, 255, 0.18);
+      border-color: rgba(255, 255, 255, 0.22);
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4);
+      box-shadow: 0 12px 30px -6px rgba(0,0,0,0.5);
+    }
+    .project-card.card-first-spotlight {
+      border-color: rgba(234, 179, 8, 0.35);
+      background: linear-gradient(180deg, rgba(234, 179, 8, 0.04) 0%, var(--surface) 100%);
     }
     .card-top {
       margin-bottom: 14px;
@@ -350,7 +414,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .category-badge {
       font-size: 11px;
@@ -393,7 +457,7 @@
       font-size: 16px;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 6px;
+      line-height: 1.35;
     }
     .card-desc {
       font-size: 13px;
@@ -422,15 +486,17 @@
     }
     .card-actions {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       padding-top: 14px;
       border-top: 1px solid var(--border);
       gap: 8px;
     }
-    .card-links {
+    .card-reorder-group {
       display: flex;
-      gap: 6px;
+      align-items: center;
+      gap: 4px;
     }
 
     /* Form Container Layout */
@@ -507,6 +573,7 @@
     }
     #toast.success { border-color: rgba(16, 185, 129, 0.5); color: #34d399; }
     #toast.error { border-color: rgba(244, 63, 94, 0.5); color: #fda4af; }
+    #toast.info { border-color: rgba(234, 179, 8, 0.5); color: #fde047; }
 
     /* Modal */
     .modal-backdrop {
@@ -612,7 +679,7 @@
     <section id="tab-list">
       <div class="controls-bar">
         <div class="search-box">
-          <input type="text" id="search-input" class="form-input" placeholder="Cari nama project atau tech stack...">
+          <input type="text" id="search-input" class="form-input" placeholder="Cari nama project, tech stack, atau deskripsi...">
         </div>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
           <select id="filter-category" class="form-select" style="width: auto;">
@@ -726,10 +793,16 @@
           <div class="project-card" style="box-shadow: 0 15px 35px rgba(0,0,0,0.4); border-color: rgba(234, 179, 8, 0.3);">
             <div class="card-top">
               <div class="card-meta">
-                <span class="category-badge" id="prev-category">Kategori</span>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span class="pos-badge pos-badge-first">#01</span>
+                  <span class="category-badge" id="prev-category">Kategori</span>
+                </div>
                 <span class="status-badge status-live" id="prev-status">ONLINE</span>
               </div>
-              <h3 class="card-title" id="prev-name">Nama Project</h3>
+              <div class="card-title-row">
+                <img id="prev-favicon" class="project-favicon" style="display: none;" alt="" onerror="this.style.display='none'">
+                <h3 class="card-title" id="prev-name">Nama Project</h3>
+              </div>
               <p class="card-desc" id="prev-desc">Deskripsi singkat project akan muncul di sini secara real-time saat Tuan mengetik.</p>
               <div class="card-stack" id="prev-stack">
                 <span class="stack-tag">React</span>
@@ -805,6 +878,7 @@
     let projectsData = [];
     let profileData = {};
     let activeDeleteId = null;
+    let isReordering = false;
 
     // Elements
     const loginOverlay = document.getElementById('login-overlay');
@@ -826,6 +900,18 @@
       toast.textContent = msg;
       toast.className = `show ${type}`;
       setTimeout(() => { toast.className = ''; }, 3500);
+    }
+
+    // Helper: Extract domain and construct Google Favicon URL
+    function getFaviconUrl(url) {
+      if (!url) return null;
+      try {
+        const domain = new URL(url).hostname;
+        if (!domain) return null;
+        return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`;
+      } catch {
+        return null;
+      }
     }
 
     // Switch Tabs
@@ -963,7 +1049,11 @@
         return;
       }
 
-      container.innerHTML = filtered.map(p => {
+      container.innerHTML = filtered.map((p) => {
+        // Find real index in full projectsData for positioning
+        const realIdx = projectsData.findIndex(item => item.id === p.id);
+        const isFirst = realIdx === 0;
+
         let statusClass = 'status-unverified';
         let statusLabel = 'Aktif (Unverified)';
         if (p.status === 'LIVE_VERIFIED') { statusClass = 'status-live'; statusLabel = 'Demo Terverifikasi'; }
@@ -971,27 +1061,49 @@
         else if (p.status === 'CONCEPT') { statusClass = 'status-concept'; statusLabel = 'Konsep'; }
 
         const stack = Array.isArray(p.ecosystem) ? p.ecosystem : [];
+        const faviconUrl = getFaviconUrl(p.url);
 
         return `
-          <div class="project-card">
+          <div class="project-card ${isFirst ? 'card-first-spotlight' : ''}" id="card-${p.id}">
             <div class="card-top">
               <div class="card-meta">
-                <span class="category-badge">${p.category || 'Utilities'}</span>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span class="pos-badge ${isFirst ? 'pos-badge-first' : ''}" title="Urutan ke-${realIdx + 1} di portofolio">
+                    #${String(realIdx + 1).padStart(2, '0')}
+                  </span>
+                  <span class="category-badge">${p.category || 'Utilities'}</span>
+                </div>
                 <span class="status-badge ${statusClass}">${statusLabel}</span>
               </div>
-              <h3 class="card-title">${p.name}</h3>
+              <div class="card-title-row">
+                ${faviconUrl ? `<img class="project-favicon" src="${faviconUrl}" alt="" loading="lazy" onerror="this.style.display='none'">` : ''}
+                <h3 class="card-title">${p.name}</h3>
+              </div>
               <p class="card-desc">${p.description || '-'}</p>
               <div class="card-stack">
                 ${stack.map(s => `<span class="stack-tag">${s}</span>`).join('')}
               </div>
             </div>
             <div class="card-actions">
-              <div class="card-links">
-                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Buka tautan">Web &nearr;</a>` : ''}
-              </div>
-              <div style="display: flex; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Buka tautan website">Web &nearr;</a>` : ''}
                 <button class="btn btn-secondary btn-sm" onclick="editProject('${p.id}')">✏️ Edit</button>
-                <button class="btn btn-danger btn-sm" onclick="askDeleteProject('${p.id}', '${p.name.replace(/'/g, "\\'")}')">🗑️</button>
+              </div>
+
+              <!-- REORDER / ROTASI CONTROLS -->
+              <div class="card-reorder-group">
+                ${isFirst ? `
+                  <span style="font-size: 11px; font-weight: 700; color: var(--gold); padding: 5px 8px; background: rgba(234,179,8,0.1); border-radius: 6px; border: 1px solid rgba(234,179,8,0.25);">
+                    ⭐ Terdepan
+                  </span>
+                ` : `
+                  <button class="btn btn-front btn-sm" onclick="moveToFront('${p.id}', '${p.name.replace(/'/g, "\\'")}')" title="Geser karya ini menjadi yang paling depan (#1) di portofolio">
+                    🔝 Ke Depan
+                  </button>
+                `}
+                <button class="btn btn-secondary btn-icon-sm" onclick="moveStep('${p.id}', 'up')" title="Geser naik 1 posisi" ${realIdx === 0 ? 'disabled' : ''}>▲</button>
+                <button class="btn btn-secondary btn-icon-sm" onclick="moveStep('${p.id}', 'down')" title="Geser turun 1 posisi" ${realIdx === projectsData.length - 1 ? 'disabled' : ''}>▼</button>
+                <button class="btn btn-danger btn-sm" onclick="askDeleteProject('${p.id}', '${p.name.replace(/'/g, "\\'")}')" title="Hapus Project">🗑️</button>
               </div>
             </div>
           </div>
@@ -1003,11 +1115,90 @@
     document.getElementById('filter-category').addEventListener('change', renderProjectsList);
     document.getElementById('filter-status').addEventListener('change', renderProjectsList);
 
+    // MOVE TO FRONT (ROTASI GESER KE PALING DEPAN)
+    window.moveToFront = async function(id, name) {
+      if (isReordering) return;
+      isReordering = true;
+
+      // Optimistic UI Update
+      const targetIdx = projectsData.findIndex(p => p.id === id);
+      if (targetIdx > 0) {
+        const [moved] = projectsData.splice(targetIdx, 1);
+        projectsData.unshift(moved);
+        renderProjectsList();
+      }
+
+      showToast(`⏳ Menggeser "${name}" ke paling depan & push GitHub...`, 'info');
+
+      try {
+        const res = await apiRequest('/api/admin', {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'move_to_front',
+            id: id
+          })
+        });
+
+        if (Array.isArray(res.projects)) {
+          projectsData = res.projects;
+          renderProjectsList();
+        }
+
+        showToast(`✨ "${name}" sekarang di posisi #1 (paling depan)! Vercel otomatis update.`);
+      } catch (err) {
+        showToast('Gagal memindahkan posisi: ' + err.message, 'error');
+        // Rollback on error
+        const fresh = await apiRequest();
+        projectsData = fresh.projects || [];
+        renderProjectsList();
+      } finally {
+        isReordering = false;
+      }
+    };
+
+    // MOVE STEP (UP / DOWN)
+    window.moveStep = async function(id, direction) {
+      if (isReordering) return;
+      isReordering = true;
+
+      const idx = projectsData.findIndex(p => p.id === id);
+      const targetIdx = direction === 'up' ? idx - 1 : idx + 1;
+
+      if (idx !== -1 && targetIdx >= 0 && targetIdx < projectsData.length) {
+        const temp = projectsData[idx];
+        projectsData[idx] = projectsData[targetIdx];
+        projectsData[targetIdx] = temp;
+        renderProjectsList();
+      }
+
+      try {
+        const res = await apiRequest('/api/admin', {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'move_step',
+            id: id,
+            direction: direction
+          })
+        });
+
+        if (Array.isArray(res.projects)) {
+          projectsData = res.projects;
+          renderProjectsList();
+        }
+        showToast(`Posisi berhasil diubah & disimpan.`);
+      } catch (err) {
+        showToast('Gagal mengubah urutan: ' + err.message, 'error');
+      } finally {
+        isReordering = false;
+      }
+    };
+
     // Live Preview Binding
     function updateLivePreview() {
       const name = document.getElementById('field-name').value.trim() || 'Nama Project';
       const cat = document.getElementById('field-category').value;
       const status = document.getElementById('field-status').value;
+      const url = document.getElementById('field-url').value.trim();
       const desc = document.getElementById('field-desc').value.trim() || 'Deskripsi singkat project akan muncul di sini secara real-time saat Tuan mengetik.';
       const rawStack = document.getElementById('field-stack').value.trim();
       const stack = rawStack ? rawStack.split(/[,·|]/).map(t => t.trim()).filter(Boolean) : ['React', 'Vite'];
@@ -1015,6 +1206,16 @@
       document.getElementById('prev-name').textContent = name;
       document.getElementById('prev-category').textContent = cat;
       document.getElementById('prev-desc').textContent = desc;
+
+      // Update Preview Favicon
+      const prevFavicon = document.getElementById('prev-favicon');
+      const faviconUrl = getFaviconUrl(url);
+      if (faviconUrl) {
+        prevFavicon.src = faviconUrl;
+        prevFavicon.style.display = 'inline-block';
+      } else {
+        prevFavicon.style.display = 'none';
+      }
 
       const prevStatusEl = document.getElementById('prev-status');
       prevStatusEl.className = 'status-badge ' + (
@@ -1027,7 +1228,7 @@
       document.getElementById('prev-stack').innerHTML = stack.map(s => `<span class="stack-tag">${s}</span>`).join('');
     }
 
-    ['field-name', 'field-category', 'field-status', 'field-desc', 'field-stack'].forEach(id => {
+    ['field-name', 'field-category', 'field-status', 'field-url', 'field-desc', 'field-stack'].forEach(id => {
       document.getElementById(id).addEventListener('input', updateLivePreview);
       document.getElementById(id).addEventListener('change', updateLivePreview);
     });
