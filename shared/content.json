@@ -635,25 +635,6 @@
       "visualType": "illustrative"
     },
     {
-      "id": "anime-quote",
-      "name": "Anime Quote",
-      "category": "Utilities",
-      "url": "https://anime-quote-six.vercel.app/",
-      "description": "Editor kartu kutipan anime dengan pilihan karakter, teks, dan tampilan, serta unduhan hasil visual ke PNG.",
-      "problem": "Kutipan anime inspiratif tersebar secara acak di internet tanpa format visual yang layak dibagikan ke media sosial.",
-      "exploration": "Eksperimen integrasi API katalog kutipan anime dipadu filter sentimen emosi dan rendering kartu visual menggunakan kanvas modern.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
-      "ecosystem": [
-        "React",
-        "CSS",
-        "PNG Export"
-      ],
-      "summary": "Merangkai kutipan dan karakter anime menjadi kartu gambar.",
-      "status": "ONLINE_UNVERIFIED",
-      "type": "work",
-      "visualType": "illustrative"
-    },
-    {
       "id": "repo-flow",
       "name": "Repo Flow",
       "category": "Utilities",
@@ -669,6 +650,25 @@
         "IndexedDB"
       ],
       "summary": "Upload project dan kelola file repository GitHub dari satu antarmuka.",
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative"
+    },
+    {
+      "id": "anime-quote",
+      "name": "Anime Quote",
+      "category": "Utilities",
+      "url": "https://anime-quote-six.vercel.app/",
+      "description": "Editor kartu kutipan anime dengan pilihan karakter, teks, dan tampilan, serta unduhan hasil visual ke PNG.",
+      "problem": "Kutipan anime inspiratif tersebar secara acak di internet tanpa format visual yang layak dibagikan ke media sosial.",
+      "exploration": "Eksperimen integrasi API katalog kutipan anime dipadu filter sentimen emosi dan rendering kartu visual menggunakan kanvas modern.",
+      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "ecosystem": [
+        "React",
+        "CSS",
+        "PNG Export"
+      ],
+      "summary": "Merangkai kutipan dan karakter anime menjadi kartu gambar.",
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative"
