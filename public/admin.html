@@ -380,6 +380,58 @@
       box-shadow: 0 0 10px rgba(234, 179, 8, 0.2);
     }
 
+    /* Demo Banner Header in Card */
+    .card-banner-header {
+      position: relative;
+      margin: -20px -20px 14px -20px;
+      height: 110px;
+      overflow: hidden;
+      border-radius: var(--radius) var(--radius) 0 0;
+      border-bottom: 1px solid var(--border);
+      background: #090e17;
+    }
+    .card-banner-header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .project-card:hover .card-banner-header img {
+      transform: scale(1.05);
+    }
+    .banner-badge-tag {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+    .banner-badge-custom {
+      background: rgba(16, 185, 129, 0.85);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .card-banner-default {
+      height: 34px;
+      margin: -20px -20px 12px -20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid var(--border);
+      border-radius: var(--radius) var(--radius) 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
     /* Projects Grid / Table */
     .projects-grid {
       display: grid;
@@ -787,6 +839,20 @@
               <small style="color: var(--text-subtle); display: block; margin-top: 5px;">Hanya isi jika website memiliki favicon resmi. Jika dikosongkan, tidak akan menampilkan icon sembarangan.</small>
             </div>
 
+            <!-- 8. DEMO BANNER / COVER PROJECT -->
+            <div class="form-group">
+              <label class="form-label" for="field-banner">8. Demo Banner / Gambar Cover (Opsional)</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="url" id="field-banner" class="form-input" placeholder="https://.../banner.png atau https://.../og-image.jpg">
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-detect-banner" style="white-space: nowrap;">
+                  🖼️ Deteksi Banner OG
+                </button>
+              </div>
+              <small style="color: var(--text-subtle); display: block; margin-top: 5px;">
+                Kosongkan untuk menggunakan <b>Banner Bawaan (Ilustrasi SVG)</b>, atau isi URL gambar manual / klik <b>Deteksi Banner OG</b> untuk membaca meta tag <code>og:image</code> website secara otomatis.
+              </small>
+            </div>
+
             <!-- ACTIONS -->
             <div style="display: flex; gap: 12px; margin-top: 32px;">
               <button type="submit" class="btn btn-gold" id="btn-submit-project" style="flex: 1;">
@@ -803,6 +869,16 @@
         <div class="preview-sticky">
           <div class="preview-header">&bull; Live Card Preview</div>
           <div class="project-card" style="box-shadow: 0 15px 35px rgba(0,0,0,0.4); border-color: rgba(234, 179, 8, 0.3);">
+            <div id="prev-banner-wrap">
+              <div class="card-banner-header" id="prev-banner-header" style="display: none;">
+                <img id="prev-banner-img" src="" alt="Live Banner Preview" onerror="this.parentElement.style.display='none'; document.getElementById('prev-banner-default').style.display='flex';">
+                <span class="banner-badge-tag banner-badge-custom">🖼️ Custom / OG Banner</span>
+              </div>
+              <div class="card-banner-default" id="prev-banner-default">
+                <span>🎨 Banner Bawaan (Ilustrasi SVG)</span>
+                <span style="font-size: 10px; color: var(--text-subtle);">Default</span>
+              </div>
+            </div>
             <div class="card-top">
               <div class="card-meta">
                 <div style="display: flex; align-items: center; gap: 6px;">
@@ -1070,8 +1146,21 @@
         const stack = Array.isArray(p.ecosystem) ? p.ecosystem : [];
         const officialIcon = getProjectIcon(p);
 
+        const bannerHtml = p.banner ? `
+          <div class="card-banner-header">
+            <img src="${p.banner}" alt="${p.name} demo banner" loading="lazy" onerror="this.parentElement.outerHTML='<div class=\\'card-banner-default\\'><span>🎨 Banner Bawaan (SVG)</span></div>'">
+            <span class="banner-badge-tag banner-badge-custom" title="Demo banner khusus dari URL / OG">🖼️ Banner Demo</span>
+          </div>
+        ` : `
+          <div class="card-banner-default">
+            <span>🎨 Banner Bawaan (SVG Ilustrasi)</span>
+            <span style="font-size: 10px; color: var(--text-subtle);">Default</span>
+          </div>
+        `;
+
         return `
           <div class="project-card ${isFirst ? 'card-first-spotlight' : ''}" id="card-${p.id}">
+            ${bannerHtml}
             <div class="card-top">
               <div class="card-meta">
                 <div style="display: flex; align-items: center; gap: 6px;">
@@ -1224,6 +1313,20 @@
         prevFavicon.style.display = 'none';
       }
 
+      // Update Preview Banner (Custom / OG vs Default)
+      const customBanner = document.getElementById('field-banner') ? document.getElementById('field-banner').value.trim() : '';
+      const prevBannerHeader = document.getElementById('prev-banner-header');
+      const prevBannerDefault = document.getElementById('prev-banner-default');
+      const prevBannerImg = document.getElementById('prev-banner-img');
+      if (customBanner) {
+        prevBannerImg.src = customBanner;
+        prevBannerHeader.style.display = 'block';
+        prevBannerDefault.style.display = 'none';
+      } else {
+        prevBannerHeader.style.display = 'none';
+        prevBannerDefault.style.display = 'flex';
+      }
+
       const prevStatusEl = document.getElementById('prev-status');
       prevStatusEl.className = 'status-badge ' + (
         status === 'LIVE_VERIFIED' ? 'status-live' :
@@ -1235,7 +1338,7 @@
       document.getElementById('prev-stack').innerHTML = stack.map(s => `<span class="stack-tag">${s}</span>`).join('');
     }
 
-    ['field-name', 'field-category', 'field-status', 'field-url', 'field-icon', 'field-desc', 'field-stack'].forEach(id => {
+    ['field-name', 'field-category', 'field-status', 'field-url', 'field-icon', 'field-banner', 'field-desc', 'field-stack'].forEach(id => {
       document.getElementById(id).addEventListener('input', updateLivePreview);
       document.getElementById(id).addEventListener('change', updateLivePreview);
     });
@@ -1262,6 +1365,7 @@
       document.getElementById('field-desc').value = target.description || '';
       document.getElementById('field-stack').value = (target.ecosystem || []).join(', ');
       document.getElementById('field-icon').value = target.icon || '';
+      document.getElementById('field-banner').value = target.banner || '';
 
       document.getElementById('form-mode-title').textContent = `Edit Karya: ${target.name}`;
       document.getElementById('form-mode-desc').textContent = 'Perbarui bagian yang diinginkan lalu klik simpan untuk commit ke GitHub.';
@@ -1276,8 +1380,9 @@
       document.getElementById('project-form').reset();
       document.getElementById('field-id').value = '';
       if (document.getElementById('field-icon')) document.getElementById('field-icon').value = '';
+      if (document.getElementById('field-banner')) document.getElementById('field-banner').value = '';
       document.getElementById('form-mode-title').textContent = 'Tambah Karya Baru';
-      document.getElementById('form-mode-desc').textContent = 'Isi 6 kolom informasi berikut untuk mempublikasikan project ke portofolio.';
+      document.getElementById('form-mode-desc').textContent = 'Isi formulir berikut untuk mempublikasikan project ke portofolio.';
       document.getElementById('btn-cancel-edit').style.display = 'none';
       document.getElementById('btn-submit-text').textContent = '💾 Simpan & Push ke GitHub';
       updateLivePreview();
@@ -1304,7 +1409,8 @@
         url: document.getElementById('field-url').value.trim(),
         description: document.getElementById('field-desc').value.trim(),
         ecosystem: document.getElementById('field-stack').value,
-        icon: document.getElementById('field-icon').value.trim()
+        icon: document.getElementById('field-icon').value.trim(),
+        banner: document.getElementById('field-banner').value.trim()
       };
 
       try {
@@ -1439,6 +1545,38 @@
         }
       } catch (err) {
         showToast('Gagal mendeteksi icon: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    });
+
+    // Detect Banner Button (OG Image / Twitter Image)
+    document.getElementById('btn-detect-banner').addEventListener('click', async () => {
+      const url = document.getElementById('field-url').value.trim();
+      if (!url) {
+        showToast('Masukkan URL Web terlebih dahulu!', 'error');
+        return;
+      }
+      const btn = document.getElementById('btn-detect-banner');
+      const orig = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Mencari OG...';
+
+      try {
+        const res = await apiRequest('/api/admin', {
+          method: 'POST',
+          body: JSON.stringify({ action: 'detect_banner', url })
+        });
+        if (res.bannerUrl) {
+          document.getElementById('field-banner').value = res.bannerUrl;
+          updateLivePreview();
+          showToast('Demo banner Open Graph (OG) berhasil ditemukan & dipasangkan!');
+        } else {
+          showToast(res.message || 'Tidak ada meta tag og:image di web tersebut.', 'info');
+        }
+      } catch (err) {
+        showToast('Gagal mendeteksi banner: ' + err.message, 'error');
       } finally {
         btn.disabled = false;
         btn.textContent = orig;

@@ -595,7 +595,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://finorajourney.my.id/art/brand-symbol.webp"
+      "icon": "https://finorajourney.my.id/art/brand-symbol.webp",
+      "banner": ""
     },
     {
       "id": "repo-flow",
@@ -616,7 +617,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://auto-reporistory-githb.vercel.app/icon.png"
+      "icon": "https://auto-reporistory-githb.vercel.app/icon.png",
+      "banner": "https://auto-reporistory-githb.vercel.app/banner.png"
     },
     {
       "id": "tierlist-maker",
@@ -636,7 +638,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": ""
+      "icon": "",
+      "banner": ""
     },
     {
       "id": "veritas",
@@ -656,7 +659,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://artikel-ocr.vercel.app/favicon.jpg"
+      "icon": "https://artikel-ocr.vercel.app/favicon.jpg",
+      "banner": ""
     },
     {
       "id": "anime-quote",
@@ -676,7 +680,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://anime-quote-six.vercel.app/images.jpeg"
+      "icon": "https://anime-quote-six.vercel.app/images.jpeg",
+      "banner": ""
     },
     {
       "id": "analisis-tanaman",
@@ -697,7 +702,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": ""
+      "icon": "",
+      "banner": ""
     },
     {
       "id": "hd-upscale",
@@ -717,7 +723,8 @@
       "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://raw.githubusercontent.com/rhteaster-ui/Pp-dev/refs/heads/main/pp-dev.png"
+      "icon": "https://raw.githubusercontent.com/rhteaster-ui/Pp-dev/refs/heads/main/pp-dev.png",
+      "banner": ""
     },
     {
       "id": "fake-loby-ml",
@@ -737,7 +744,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://cdn.oneesports.id/wp-content/uploads/sites/2/2022/07/mlbb.png"
+      "icon": "https://cdn.oneesports.id/wp-content/uploads/sites/2/2022/07/mlbb.png",
+      "banner": ""
     },
     {
       "id": "tugasku-pro",
@@ -759,7 +767,8 @@
       "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": ""
+      "icon": "",
+      "banner": ""
     },
     {
       "id": "tugasku-lite",
@@ -779,7 +788,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://tugasku3-lite.netlify.app/my-icon.png"
+      "icon": "https://tugasku3-lite.netlify.app/my-icon.png",
+      "banner": ""
     },
     {
       "id": "screenshot-web",
@@ -799,7 +809,8 @@
       "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": ""
+      "icon": "",
+      "banner": ""
     },
     {
       "id": "cek-kartu",
@@ -818,7 +829,8 @@
       "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": ""
+      "icon": "",
+      "banner": ""
     },
     {
       "id": "indosawit-news",
@@ -837,7 +849,8 @@
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://j.top4top.io/p_37192jn0n0.png"
+      "icon": "https://j.top4top.io/p_37192jn0n0.png",
+      "banner": ""
     },
     {
       "id": "image-to-prompt",
@@ -858,7 +871,8 @@
       "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": ""
+      "icon": "",
+      "banner": ""
     },
     {
       "id": "quickfake",
@@ -878,7 +892,8 @@
       "status": "ARCHIVED",
       "type": "experiment",
       "visualType": "illustrative",
-      "icon": ""
+      "icon": "",
+      "banner": ""
     },
     {
       "id": "soundify",
@@ -898,7 +913,8 @@
       "status": "ARCHIVED",
       "type": "experiment",
       "visualType": "illustrative",
-      "icon": ""
+      "icon": "",
+      "banner": ""
     },
     {
       "id": "am-proaktif",
@@ -919,7 +935,8 @@
       "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://am-proaktif.vercel.app/favicon.jpeg"
+      "icon": "https://am-proaktif.vercel.app/favicon.jpeg",
+      "banner": ""
     }
   ]
 }

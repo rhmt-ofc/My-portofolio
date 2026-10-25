@@ -80,3 +80,41 @@ test('admin endpoint move_to_front requires id', async () => {
   }, res);
   assert.equal(statusCode, 400);
 });
+
+test('admin endpoint detect_banner validates target url', async () => {
+  let statusCode = 0;
+  let responseData = null;
+  const res = {
+    setHeader: () => {},
+    status: (code) => { statusCode = code; return res; },
+    json: (data) => { responseData = data; }
+  };
+
+  await adminHandler({
+    method: 'POST',
+    headers: { 'x-admin-key': 'rahmat2026' },
+    body: { action: 'detect_banner' }
+  }, res);
+  assert.equal(statusCode, 400);
+  assert.match(responseData.error, /URL/i);
+});
+
+test('admin endpoint detect_banner finds og banner on Repo Flow', async () => {
+  let statusCode = 0;
+  let responseData = null;
+  const res = {
+    setHeader: () => {},
+    status: (code) => { statusCode = code; return res; },
+    json: (data) => { responseData = data; }
+  };
+
+  await adminHandler({
+    method: 'POST',
+    headers: { 'x-admin-key': 'rahmat2026' },
+    body: { action: 'detect_banner', url: 'https://auto-reporistory-githb.vercel.app/' }
+  }, res);
+  assert.equal(statusCode, 200);
+  assert.equal(responseData.success, true);
+  assert.ok(responseData.bannerUrl);
+  assert.match(responseData.bannerUrl, /banner\.png$/);
+});

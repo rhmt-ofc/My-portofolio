@@ -8,7 +8,30 @@ import { useWorkShelf } from '../hooks/useWorkShelf';
 const categories = [{ id: 'all', name: 'Semua' }, { id: 'AI Tools', name: 'AI & eksplorasi' }, { id: 'Utilities', name: 'Tools' }, { id: 'Productivity', name: 'Produktivitas' }, { id: 'Archive Experiments', name: 'Eksperimen' }];
 
 export function WorkCover({ work }: { work: Project }) {
-  return <div className={`work-cover cover-${work.id}`} data-spatial="project" data-project={work.id} role="img" aria-label={`Ilustrasi konsep ${work.name}`}><img className="spatial-fallback" src={`/components/works/${work.id}.svg`} alt="" aria-hidden="true"/></div>;
+  const [imgError, setImgError] = useState(false);
+  const defaultSvg = `/components/works/${work.id}.svg`;
+  const bannerSrc = (!imgError && work.banner) ? work.banner : defaultSvg;
+  return (
+    <div
+      className={`work-cover cover-${work.id}`}
+      data-spatial="project"
+      data-project={work.id}
+      data-image={bannerSrc}
+      role="img"
+      aria-label={`Demo banner ${work.name}`}
+    >
+      <img
+        className="spatial-fallback"
+        src={bannerSrc}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        onError={() => {
+          if (work.banner) setImgError(true);
+        }}
+      />
+    </div>
+  );
 }
 
 export function WorkFavicon({ url, icon, title }: { url?: string; icon?: string; title: string }) {

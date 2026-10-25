@@ -170,6 +170,7 @@ export default async function handler(req, res) {
           category: String(project.category || 'Utilities').trim(),
           url: String(project.url || '').trim(),
           icon: String(project.icon || '').trim(),
+          banner: String(project.banner || '').trim(),
           description: String(project.description || '').trim(),
           problem: String(project.problem || 'Eksplorasi pembuatan aplikasi yang fungsional dan relevan.').trim(),
           exploration: String(project.exploration || 'Pengembangan fitur dan alur kerja menggunakan teknologi modern.').trim(),
@@ -350,6 +351,87 @@ export default async function handler(req, res) {
             success: false,
             iconUrl: null,
             message: 'Gagal mendeteksi icon: ' + err.message
+          });
+        }
+      }
+
+      if (action === 'detect_banner' || action === 'detect_og') {
+        const { url: targetUrl } = req.body || {};
+        if (!targetUrl) {
+          return res.status(400).json({ error: 'URL website tidak ditentukan.' });
+        }
+
+        try {
+          const fetched = await fetch(targetUrl, {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            },
+            signal: AbortSignal.timeout(6000)
+          });
+          const html = await fetched.text();
+          const head = html.slice(0, 35000);
+
+          let foundBanner = '';
+
+          // 1. Regex check for og:image, twitter:image, og:image:secure_url
+          const patterns = [
+            /<meta[^>]+(?:property|name)=["'](?:og:image|og:image:secure_url|twitter:image|twitter:image:src)["'][^>]+content=["']([^"']+)["']/i,
+            /<meta[^>]+content=["']([^"']+)["'][^>]+(?:property|name)=["'](?:og:image|og:image:secure_url|twitter:image|twitter:image:src)["']/i
+          ];
+
+          for (const pattern of patterns) {
+            const m = head.match(pattern);
+            if (m && m[1]) {
+              const rawImg = m[1].trim();
+              try {
+                foundBanner = new URL(rawImg, targetUrl).href;
+                break;
+              } catch {}
+            }
+          }
+
+          // 2. Validate found banner or check target domain fallback
+          if (foundBanner) {
+            try {
+              const checkRes = await fetch(foundBanner, { method: 'HEAD', signal: AbortSignal.timeout(3000) });
+              if (!checkRes.ok) {
+                const pathOnly = new URL(foundBanner).pathname;
+                const altUrl = new URL(pathOnly, targetUrl).href;
+                const altCheck = await fetch(altUrl, { method: 'HEAD', signal: AbortSignal.timeout(3000) });
+                if (altCheck.ok) {
+                  foundBanner = altUrl;
+                }
+              }
+            } catch {}
+          }
+
+          // 3. If no banner meta found, probe common banner paths
+          if (!foundBanner) {
+            const probePaths = ['/banner.png', '/banner.jpg', '/og.png', '/og-image.png'];
+            for (const p of probePaths) {
+              try {
+                const probeUrl = new URL(p, targetUrl).href;
+                const probeRes = await fetch(probeUrl, { method: 'HEAD', signal: AbortSignal.timeout(2500) });
+                if (probeRes.ok && probeRes.headers.get('content-type')?.includes('image')) {
+                  foundBanner = probeUrl;
+                  break;
+                }
+              } catch {}
+            }
+          }
+
+          return res.status(200).json({
+            success: true,
+            bannerUrl: foundBanner || null,
+            message: foundBanner
+              ? 'Demo banner / Open Graph (OG) image berhasil ditemukan!'
+              : 'Website ini tidak memiliki tag meta og:image atau file banner standar.'
+          });
+        } catch (err) {
+          return res.status(200).json({
+            success: false,
+            bannerUrl: null,
+            message: 'Gagal mendeteksi Open Graph banner: ' + err.message
           });
         }
       }

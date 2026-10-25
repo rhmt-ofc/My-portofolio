@@ -1,6 +1,6 @@
 export type WorkStatus = 'LIVE_VERIFIED' | 'ONLINE_UNVERIFIED' | 'ARCHIVED' | 'CONCEPT' | 'RECOVERED';
 export interface Project {
-  id: string; name: string; category: string; url: string; icon?: string;
+  id: string; name: string; category: string; url: string; icon?: string; banner?: string;
   description: string; summary: string; problem: string; exploration: string; outcome: string;
   ecosystem: string[]; status: WorkStatus; type: 'work' | 'experiment' | 'prototype'; visualType: 'real' | 'illustrative' | 'placeholder';
 }
