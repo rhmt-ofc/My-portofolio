@@ -865,25 +865,6 @@
       "visualType": "illustrative"
     },
     {
-      "id": "web-anime",
-      "name": "Web Anime",
-      "category": "Archive Experiments",
-      "url": "",
-      "description": "Eksperimen katalog anime dan interaksi visual menggunakan transformasi CSS.",
-      "problem": "Banya visual web terasa kaku dan patah-patah karena animasi javascript berat yang tidak mengakses akselerasi perangkat keras.",
-      "exploration": "Penerapan transformasi koordinat matrix CSS 3D berakselerasi fisik untuk rotasi visual halus.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
-      "ecosystem": [
-        "CSS Transforms",
-        "React",
-        "Framer Motion"
-      ],
-      "summary": "Eksperimen katalog anime dan interaksi visual menggunakan transformasi CSS.",
-      "status": "ARCHIVED",
-      "type": "experiment",
-      "visualType": "illustrative"
-    },
-    {
       "id": "finora-journey",
       "name": "Finora Journey",
       "category": "Productivity",
