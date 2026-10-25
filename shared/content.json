@@ -757,16 +757,16 @@
       "category": "Utilities",
       "url": "https://screenshot-web-omega.vercel.app/",
       "description": "Tool capture website dari URL dengan preset viewport mobile hingga PC 4K, ukuran custom, render scale 1x–3x, pilihan full page, preview, dan download gambar.",
-      "problem": "Ekstensi screenshot biasa sering kali memecah font khusus, merusak posisi elemen CSS absolut, dan gagal menangkap layout gulir penuh.",
-      "exploration": "Membangun proxy server instansi Chromium tanpa kepala (headless) untuk merender animasi dan mengekstrak snapshot visual akurat.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
+      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
+      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
       "ecosystem": [
         "JavaScript",
         "CSS",
         "REST API"
       ],
-      "summary": "Capture halaman web dengan ukuran viewport dan skala render pilihan.",
-      "status": "ONLINE_UNVERIFIED",
+      "summary": "Tool capture website dari URL dengan preset viewport mobile hingga PC 4K, ukuran custom, render scal",
+      "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative"
     },
