@@ -654,26 +654,6 @@
       "visualType": "illustrative"
     },
     {
-      "id": "analisis-tanaman",
-      "name": "Analisis Tanaman",
-      "category": "AI Tools",
-      "url": "https://analyze-tanaman.vercel.app/welcome",
-      "description": "Flora.AI menampilkan alur identifikasi penyakit daun melalui Gemini AI, dukungan beberapa tanaman, ekspor laporan PDF, dan riwayat diagnosis. Halaman saat diperiksa juga menampilkan pemberitahuan pemeliharaan.",
-      "problem": "Mendiagnosis hama tanaman atau penyakit tanaman membutuhkan waktu lama dan ahli agronomi, menyebabkan keterlambatan penanganan di lahan.",
-      "exploration": "Mengintegrasikan penangkapan kamera ponsel secara langsung ke model multi-modal vision jarak jauh untuk analisis visual instan di lapangan.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
-      "ecosystem": [
-        "JavaScript",
-        "Tailwind CSS",
-        "Gemini AI",
-        "Vercel API"
-      ],
-      "summary": "Antarmuka analisis penyakit daun, laporan PDF, dan riwayat diagnosis.",
-      "status": "ONLINE_UNVERIFIED",
-      "type": "work",
-      "visualType": "illustrative"
-    },
-    {
       "id": "repo-flow",
       "name": "Repo Flow",
       "category": "Utilities",
@@ -689,6 +669,26 @@
         "IndexedDB"
       ],
       "summary": "Upload project dan kelola file repository GitHub dari satu antarmuka.",
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative"
+    },
+    {
+      "id": "analisis-tanaman",
+      "name": "Analisis Tanaman",
+      "category": "AI Tools",
+      "url": "https://analyze-tanaman.vercel.app/welcome",
+      "description": "Flora.AI menampilkan alur identifikasi penyakit daun melalui Gemini AI, dukungan beberapa tanaman, ekspor laporan PDF, dan riwayat diagnosis. Halaman saat diperiksa juga menampilkan pemberitahuan pemeliharaan.",
+      "problem": "Mendiagnosis hama tanaman atau penyakit tanaman membutuhkan waktu lama dan ahli agronomi, menyebabkan keterlambatan penanganan di lahan.",
+      "exploration": "Mengintegrasikan penangkapan kamera ponsel secara langsung ke model multi-modal vision jarak jauh untuk analisis visual instan di lapangan.",
+      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "ecosystem": [
+        "JavaScript",
+        "Tailwind CSS",
+        "Gemini AI",
+        "Vercel API"
+      ],
+      "summary": "Antarmuka analisis penyakit daun, laporan PDF, dan riwayat diagnosis.",
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative"
