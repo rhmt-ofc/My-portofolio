@@ -532,6 +532,29 @@
           "label": "TikTok"
         }
       ]
+    },
+    {
+      "name": "Elaina Cloud",
+      "handle": "ealinaclouc12",
+      "avatar": "ElainaCloud.png",
+      "role": "Cloud & Server Hosting",
+      "socials": [
+        {
+          "platform": "website",
+          "url": "https://elainacloud.my.id",
+          "label": "Website"
+        },
+        {
+          "platform": "whatsapp-channel",
+          "url": "https://whatsapp.com/channel/0029Vb8L5MIAu3aYkgtPCu18",
+          "label": "Channel WA"
+        },
+        {
+          "platform": "tiktok",
+          "url": "https://www.tiktok.com/@ealinaclouc12",
+          "label": "TikTok"
+        }
+      ]
     }
   ],
   "PROJECTS": [
