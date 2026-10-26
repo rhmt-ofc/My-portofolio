@@ -573,6 +573,29 @@
           "label": "TikTok"
         }
       ]
+    },
+    {
+      "name": "Stenly",
+      "handle": "llamalys",
+      "avatar": "Stenly.png",
+      "role": "",
+      "socials": [
+        {
+          "platform": "github",
+          "url": "https://github.com/glarceny",
+          "label": "GitHub"
+        },
+        {
+          "platform": "twitter",
+          "url": "https://x.com/llamalys",
+          "label": "X (Twitter)"
+        },
+        {
+          "platform": "reddit",
+          "url": "https://www.reddit.com/u/Sea-Philosopher6142",
+          "label": "Reddit"
+        }
+      ]
     }
   ],
   "PROJECTS": [
