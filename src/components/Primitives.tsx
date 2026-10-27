@@ -6,7 +6,22 @@ export function Mark({ className = '' }: { className?: string }) {
 }
 
 export function Chapter({ number, children, light = false }: { number: string; children: ReactNode; light?: boolean }) {
-  return <p className={`chapter ${light ? 'chapter-light' : ''}`}><span>{number}</span><span className="chapter-line"/>{children}</p>;
+  return (
+    <p className={`chapter ${light ? 'chapter-light' : ''}`}>
+      <span className="chapter-badge">
+        <span className="chapter-num">{number}</span>
+      </span>
+      <span className="chapter-line chapter-trace" aria-hidden="true">
+        <svg className="chapter-trace-svg" viewBox="0 0 80 10" fill="none">
+          <line x1="0" y1="5" x2="74" y2="5" className="ch-trace-base" />
+          <line x1="0" y1="5" x2="74" y2="5" className="ch-trace-beam" />
+          <circle cx="74" cy="5" r="2.5" className="ch-trace-node" />
+        </svg>
+      </span>
+      <span className="chapter-text">{children}</span>
+      <span className="chapter-sys-tag" aria-hidden="true">SEC_{number}</span>
+    </p>
+  );
 }
 
 export function ExternalLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {

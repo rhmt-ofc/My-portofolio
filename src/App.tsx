@@ -13,6 +13,7 @@ import SplashScreen from './components/SplashScreen';
 import AiSandbox from './components/AiSandbox';
 import PeopleAndCommunities from './components/PeopleAndCommunities';
 import Personal from './components/Personal';
+import { BlueprintDivider } from './components/BlueprintDivider';
 import { useMotion } from './hooks/useMotion';
 import { useExperience } from './hooks/useExperience';
 import { useScrollScenes } from './hooks/useScrollScenes';
@@ -42,10 +43,23 @@ export default function App() {
       </section>
       <Archive/>
       </div>
+      <BlueprintDivider from="01" to="02" fromLabel="DIGITAL ARCHIVE" toLabel="BEYOND THE CODE" coordinates="SYS.01 // WORKS_TO_ORIGIN"/>
       <section className="about section-pad" id="about" aria-labelledby="about-title"><div className="wrap about-grid"><div><Chapter number="02">BEYOND THE CODE</Chapter><h2 id="about-title">How it started.<br/><em>Sedikit konteks.</em></h2><span className="about-signature">R_hmt.</span><div className="about-values"><span><Smartphone size={18}/>Mobile beginnings</span><span><Braces size={18}/>Learning by building</span><span><RelayMark/>Human × AI</span></div></div><div className="about-copy"><p className="lead">{PROFILE.about}</p><p>{PROFILE.motivation}</p><p>{PROFILE.approach}</p></div></div></section>
-      <Journey/><Ecosystem paused={still}/><Personal/><AiSandbox/><PeopleAndCommunities/>
+      <BlueprintDivider from="02" to="03" fromLabel="BEYOND THE CODE" toLabel="THE EVOLUTION" coordinates="SYS.02 // OPPO_A3S_STUDY"/>
+      <Journey/>
+      <BlueprintDivider from="03" to="04" fromLabel="THE EVOLUTION" toLabel="STACK & TOOLS" coordinates="SYS.03 // HARDWARE_TO_TECH"/>
+      <Ecosystem paused={still}/>
+      <BlueprintDivider from="04" to="05" fromLabel="STACK & TOOLS" toLabel="PERSONAL UNIVERSE" coordinates="SYS.04 // WORKFLOW_TO_LIFE"/>
+      <Personal/>
+      <BlueprintDivider from="05" to="06" fromLabel="PERSONAL UNIVERSE" toLabel="AI RELAY" coordinates="SYS.05 // HUMAN_X_AI"/>
+      <AiSandbox/>
+      <BlueprintDivider from="06" to="07" fromLabel="AI RELAY" toLabel="COMMUNITIES" coordinates="SYS.06 // LOCAL_TO_NETWORK"/>
+      <PeopleAndCommunities/>
+      <BlueprintDivider from="07" to="08" fromLabel="COMMUNITIES" toLabel="THE ETHOS" coordinates="SYS.07 // NETWORK_TO_MINDSET"/>
       <section className="ethos section-pad" id="ethos" aria-labelledby="ethos-title"><div className="wrap"><Chapter number="08">THE ETHOS</Chapter><p className="eyebrow" id="ethos-title">A NOTE TO MYSELF</p><blockquote><span className="ethos-line">“Masih belajar.</span><span className="ethos-line">Masih <em>mencoba.</em>”</span></blockquote><div className="ethos-bottom"><span className="about-signature">R_hmt.</span><p>{PROFILE.ethos}</p></div></div></section>
+      <BlueprintDivider from="08" to="09" fromLabel="THE ETHOS" toLabel="VISITOR NOTES" coordinates="SYS.08 // ETHOS_TO_FEEDBACK"/>
       <Ratings paused={still}/>
+      <BlueprintDivider from="09" to="10" fromLabel="VISITOR NOTES" toLabel="CONVERSATION" coordinates="SYS.09 // END_OR_BEGINNING"/>
       <footer className="footer section-pad" id="contact"><div className="wrap"><p className="eyebrow">IDE, PERTANYAAN, ATAU SEKADAR MENYAPA?</p><div className="footer-heading"><h2>Let’s start<br/><em>a conversation.</em></h2><a href={PROFILE.socials[1].url} className="contact-circle" target="_blank" rel="noopener noreferrer" aria-label="Hubungi R_HMT melalui Telegram"><ArrowUpRight size={34}/></a></div><div className="footer-socials">{PROFILE.socials.map(s=><ExternalLink href={s.url} key={s.name}><span>{s.name}</span><small>{s.handle}</small></ExternalLink>)}</div><div className="footer-bottom"><a href="#home" className="brand"><Mark/><span>R_HMT</span></a><p>© {new Date().getFullYear()} R_HMT OFC.<br/>Catatan proyek dan proses belajar.</p><a href="#home" className="back-top">Kembali ke awal<ArrowUpRight size={16}/></a></div></div></footer>
     </main></>;
 }

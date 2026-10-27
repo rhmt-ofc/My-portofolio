@@ -1,0 +1,301 @@
+/* ==========================================================================
+   INTERACTIVE SVG BLUEPRINT & LASER TRACE SYSTEM
+   Zero-reflow, hardware-composited architectural accents
+   ========================================================================== */
+
+/* --- Chapter Header Laser Trace --- */
+.chapter {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  position: relative;
+  letter-spacing: 1.4px;
+}
+
+.chapter-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.chapter-num {
+  font: 600 11px/1 Space, sans-serif;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.chapter-line.chapter-trace {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: 60px !important;
+  height: 10px !important;
+  background: transparent !important;
+  position: relative;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.chapter-trace-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ch-trace-base {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.ch-trace-beam {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 20 60;
+  stroke-dashoffset: 80;
+  animation: ch-beam-pulse 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.ch-trace-node {
+  fill: var(--accent);
+  animation: ch-node-glow 4s ease-in-out infinite;
+}
+
+.chapter-sys-tag {
+  font: 500 7px/1.2 Space, monospace;
+  letter-spacing: 1px;
+  color: var(--quiet);
+  padding: 2px 5px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  opacity: 0.7;
+  user-select: none;
+}
+
+@keyframes ch-beam-pulse {
+  0% {
+    stroke-dashoffset: 80;
+    opacity: 0.3;
+  }
+  30%, 70% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -80;
+    opacity: 0.3;
+  }
+}
+
+@keyframes ch-node-glow {
+  0%, 100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* --- Blueprint Architectural Divider --- */
+.blueprint-divider {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  pointer-events: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.blueprint-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 500 8px/1.4 Space, monospace;
+  letter-spacing: 1.2px;
+  color: var(--quiet);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.blueprint-node-tag {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.blueprint-node-tag .bp-num {
+  font-weight: 700;
+  color: var(--accent);
+  padding: 1px 4px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-radius: 3px;
+}
+
+.blueprint-node-tag .bp-name {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.blueprint-target .bp-name {
+  color: var(--ink);
+}
+
+.blueprint-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 7px;
+  opacity: 0.75;
+}
+
+.bp-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: bp-dot-blink 2s ease-in-out infinite;
+}
+
+.blueprint-line-wrap {
+  position: relative;
+  width: 100%;
+  height: 24px;
+}
+
+.blueprint-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.bp-track {
+  stroke: var(--line-strong);
+  stroke-width: 1;
+  stroke-dasharray: 6 3;
+  opacity: 0.7;
+}
+
+.bp-beam {
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  stroke-dasharray: 120 1080;
+  stroke-dashoffset: 1200;
+  animation: bp-beam-sweep 6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.bp-tick {
+  stroke: var(--line-strong);
+  stroke-width: 1.2;
+}
+
+.bp-subtick {
+  stroke: var(--line);
+  stroke-width: 0.8;
+  opacity: 0.6;
+}
+
+.bp-center-marker {
+  stroke: var(--accent);
+  stroke-width: 1.6;
+}
+
+.bp-reticle {
+  fill: var(--surface);
+  stroke: var(--accent);
+  stroke-width: 1.2;
+  transform-origin: 600px 16px;
+  animation: bp-reticle-turn 12s linear infinite;
+}
+
+.bp-cross {
+  stroke: var(--accent);
+  stroke-width: 1;
+  opacity: 0.7;
+}
+
+.blueprint-reticles {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 12px;
+  pointer-events: none;
+}
+
+.bp-corner {
+  font: 400 12px monospace;
+  color: var(--line-strong);
+  opacity: 0.8;
+}
+
+@keyframes bp-dot-blink {
+  0%, 100% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes bp-beam-sweep {
+  0% {
+    stroke-dashoffset: 1200;
+  }
+  50%, 100% {
+    stroke-dashoffset: -1200;
+  }
+}
+
+@keyframes bp-reticle-turn {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .blueprint-divider {
+    padding: 12px 14px;
+  }
+  .blueprint-status {
+    display: none;
+  }
+  .blueprint-meta {
+    font-size: 7px;
+  }
+  .blueprint-node-tag .bp-name {
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .chapter-line.chapter-trace {
+    width: 38px !important;
+  }
+  .chapter-sys-tag {
+    display: none;
+  }
+}
+
+/* --- Accessibility (prefers-reduced-motion) --- */
+@media (prefers-reduced-motion: reduce) {
+  .ch-trace-beam,
+  .ch-trace-node,
+  .bp-beam,
+  .bp-pulse-dot,
+  .bp-reticle {
+    animation: none !important;
+  }
+  .bp-beam {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    opacity: 0.4;
+  }
+  .ch-trace-beam {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    opacity: 0.6;
+  }
+}
