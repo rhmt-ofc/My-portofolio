@@ -150,46 +150,51 @@ html[data-motion=off] .hero-inventory>a:hover{transform:none}
   position: fixed;
   inset: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   margin: 0;
   padding: 0;
   border: 0;
-  background: rgba(8, 12, 20, 0.94);
-  backdrop-filter: blur(20px);
+  background: rgba(4, 7, 12, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 999999;
   cursor: zoom-out;
 }
 
 .lightbox-wrap {
   position: relative;
-  max-width: 95vw;
-  max-height: 95vh;
+  max-width: 92vw;
+  max-height: 90dvh;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: default;
 }
 
 .lightbox-wrap img {
-  max-width: 95vw;
-  max-height: 92vh;
+  max-width: 92vw;
+  max-height: 85dvh;
   width: auto;
   height: auto;
   object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .lightbox-close {
   position: absolute;
-  top: -46px;
+  top: -48px;
   right: 0;
   color: #fff !important;
-  background: rgba(255, 255, 255, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
   border-radius: 50% !important;
+  cursor: pointer;
+  z-index: 10;
 }
 
 /* Owner Rating Reply Styling */

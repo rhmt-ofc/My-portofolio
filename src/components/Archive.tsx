@@ -100,12 +100,12 @@ export default function Archive() {
         {active.url && <div className="work-actions"><VisitButton href={active.url}/></div>}
         <p className="work-status">Status: {statusLabels[active.status]}</p>
       </Modal>}
-      {fullImage && <dialog className="image-lightbox" open onClick={() => setFullImage(null)} aria-label="Tampilan penuh banner">
-        <div className="lightbox-wrap">
-          <img src={fullImage} alt="" />
+      {fullImage && <div className="image-lightbox" onClick={() => setFullImage(null)} role="dialog" aria-modal="true" aria-label="Tampilan penuh banner">
+        <div className="lightbox-wrap" onClick={e => e.stopPropagation()}>
+          <img src={fullImage} alt="Tampilan penuh banner proyek" />
           <button type="button" className="icon-button lightbox-close" onClick={() => setFullImage(null)} aria-label="Tutup tampilan penuh"><X size={24}/></button>
         </div>
-      </dialog>}
+      </div>}
     </div>
   </section>;
 }
