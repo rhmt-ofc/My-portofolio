@@ -35,3 +35,52 @@
 html[data-motion=off] .relay-signal{animation:none;stroke-dashoffset:0}
 html[data-motion=off] .hero-inventory>a:hover{transform:none}
 @media(prefers-reduced-motion:reduce){.hero-inventory>a:hover{transform:none}}
+
+/* Explicit Modal Banner Rendering - Guaranteed Uncropped Aspect */
+.work-modal .work-modal-cover,
+.work-modal .work-cover {
+  width: 100% !important;
+  margin: 0 0 20px 0 !important;
+  aspect-ratio: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: 52vh !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #0f172a !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.work-modal .work-modal-cover > .spatial-fallback,
+.work-modal .work-cover > .spatial-fallback,
+.work-modal .work-modal-cover img,
+.work-modal .work-cover img {
+  position: static !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 52vh !important;
+  object-fit: contain !important;
+  border-radius: 6px !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  display: block !important;
+}
+
+@media(max-width: 600px) {
+  .work-modal .work-modal-cover,
+  .work-modal .work-cover {
+    max-height: 42vh !important;
+    margin: 0 0 16px 0 !important;
+  }
+  .work-modal .work-modal-cover > .spatial-fallback,
+  .work-modal .work-cover > .spatial-fallback,
+  .work-modal .work-modal-cover img,
+  .work-modal .work-cover img {
+    max-height: 42vh !important;
+  }
+}

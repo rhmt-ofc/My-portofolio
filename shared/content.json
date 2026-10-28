@@ -686,7 +686,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "",
-      "banner": ""
+      "banner": "/images/works/tierlist-banner.webp"
     },
     {
       "id": "veritas",
@@ -728,7 +728,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://anime-quote-six.vercel.app/images.jpeg",
-      "banner": ""
+      "banner": "/images/works/animequote-banner.webp"
     },
     {
       "id": "analisis-tanaman",
@@ -750,7 +750,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "",
-      "banner": ""
+      "banner": "/images/works/tanaman-banner.webp"
     },
     {
       "id": "hd-upscale",
