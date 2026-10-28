@@ -753,27 +753,6 @@
       "banner": "/images/works/tanaman-banner.webp"
     },
     {
-      "id": "hd-upscale",
-      "name": "HD Upscale",
-      "category": "AI Tools",
-      "url": "https://hd-upscale-nine.vercel.app/",
-      "description": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K, opsi face enhance, perbandingan hasil, dan download gambar.",
-      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
-      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
-      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
-      "ecosystem": [
-        "JavaScript",
-        "Tailwind CSS",
-        "REST API"
-      ],
-      "summary": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K",
-      "status": "ARCHIVED",
-      "type": "work",
-      "visualType": "illustrative",
-      "icon": "https://raw.githubusercontent.com/rhteaster-ui/Pp-dev/refs/heads/main/pp-dev.png",
-      "banner": ""
-    },
-    {
       "id": "fake-loby-ml",
       "name": "Fake Loby ML",
       "category": "Utilities",
@@ -792,6 +771,27 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://cdn.oneesports.id/wp-content/uploads/sites/2/2022/07/mlbb.png",
+      "banner": ""
+    },
+    {
+      "id": "hd-upscale",
+      "name": "HD Upscale",
+      "category": "AI Tools",
+      "url": "https://hd-upscale-nine.vercel.app/",
+      "description": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K, opsi face enhance, perbandingan hasil, dan download gambar.",
+      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
+      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
+      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
+      "ecosystem": [
+        "JavaScript",
+        "Tailwind CSS",
+        "REST API"
+      ],
+      "summary": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K",
+      "status": "ARCHIVED",
+      "type": "work",
+      "visualType": "illustrative",
+      "icon": "https://raw.githubusercontent.com/rhteaster-ui/Pp-dev/refs/heads/main/pp-dev.png",
       "banner": ""
     },
     {
