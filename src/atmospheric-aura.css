@@ -220,13 +220,6 @@ html[data-chapter="ethos"] .ambient-orb-1 {
   opacity: 1;
 }
 
-/* --- Offscreen Performance Optimization --- */
-main > section:not(:first-child),
-footer {
-  content-visibility: auto;
-  contain-intrinsic-size: 800px;
-}
-
 /* --- Accessibility (prefers-reduced-motion) --- */
 @media (prefers-reduced-motion: reduce) {
   .ambient-orb {

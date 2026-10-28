@@ -7,32 +7,29 @@ import { useWorkShelf } from '../hooks/useWorkShelf';
 
 const categories = [{ id: 'all', name: 'Semua' }, { id: 'AI Tools', name: 'AI & eksplorasi' }, { id: 'Utilities', name: 'Tools' }, { id: 'Productivity', name: 'Produktivitas' }, { id: 'Archive Experiments', name: 'Eksperimen' }];
 
-export function WorkCover({ work, isModal = false, onExpand }: { work: Project; isModal?: boolean; onExpand?: () => void }) {
+export function WorkCover({ work, isModal = false }: { work: Project; isModal?: boolean }) {
   const [imgError, setImgError] = useState(false);
   const defaultSvg = `/components/works/${work.id}.svg`;
   const bannerSrc = (!imgError && work.banner) ? work.banner : defaultSvg;
   return (
     <div
-      className={`work-cover cover-${work.id} ${isModal ? 'work-modal-cover work-expandable' : ''}`}
+      className={`work-cover cover-${work.id} ${isModal ? 'work-modal-cover' : ''}`}
       data-spatial={isModal ? undefined : "project"}
       data-project={work.id}
       data-image={bannerSrc}
       role="img"
       aria-label={`Demo banner ${work.name}`}
-      onClick={isModal ? onExpand : undefined}
-      title={isModal ? "Klik/ketuk gambar untuk melihat ukuran penuh" : undefined}
     >
       <img
         className="spatial-fallback"
         src={bannerSrc}
-        alt=""
+        alt={work.name}
         aria-hidden="true"
         loading={isModal ? "eager" : "lazy"}
         onError={() => {
           if (work.banner) setImgError(true);
         }}
       />
-      {isModal && <span className="image-expand-hint" aria-hidden="true">Ketuk untuk lihat penuh</span>}
     </div>
   );
 }
@@ -55,7 +52,7 @@ export function WorkFavicon({ url, icon, title }: { url?: string; icon?: string;
 export default function Archive() {
   const [filter, setFilter] = useState('all'); const [query, setQuery] = useState('');
   const { shelf, position, visiblePosition, move, moveBy, handlers } = useWorkShelf(`${filter}\u0000${query}`);
-  const [active, setActive] = useState<Project | null>(null); const [fullImage, setFullImage] = useState<string | null>(null);
+  const [active, setActive] = useState<Project | null>(null);
 
   useEffect(() => { const sync = () => { if (location.hash.startsWith('#work-')) setActive(PROJECTS.find(p => `#work-${p.id}` === location.hash) || null); else setActive(null); }; sync(); window.addEventListener('hashchange', sync); return () => window.removeEventListener('hashchange', sync); }, []);
 
@@ -93,19 +90,13 @@ export default function Archive() {
       {selection.length > 1 && <div className="shelf-track"><input type="range" min="0" max={selection.length - 1} value={cursor} aria-label="Pilih posisi pada rak karya" aria-valuetext={`Karya ${cursor + 1} dari ${selection.length}`} onChange={e => move(Number(e.target.value))}/></div>}
       <div className="archive-bottom"><span>Semua {PROJECTS.length} proyek tetap di arsip.</span><span className="micro-note">BUKA COVER / DESKRIPSI & STACK</span></div>
       {active && <Modal label={active.name} onClose={close} className="work-modal">
-        <WorkCover work={active} isModal={true} onExpand={() => setFullImage(active.banner || `/components/works/${active.id}.svg`)}/>
+        <WorkCover work={active} isModal={true} />
         <h2><WorkFavicon url={active.url} icon={active.icon} title={active.name}/><span>{active.name}</span></h2>
         <p className="modal-summary">{active.description}</p>
         <div className="work-stack"><strong>Stack:</strong><div className="tag-list">{active.ecosystem.map(t => <span key={t}>{t}</span>)}</div></div>
         {active.url && <div className="work-actions"><VisitButton href={active.url}/></div>}
         <p className="work-status">Status: {statusLabels[active.status]}</p>
       </Modal>}
-      {fullImage && <div className="image-lightbox" onClick={() => setFullImage(null)} role="dialog" aria-modal="true" aria-label="Tampilan penuh banner">
-        <div className="lightbox-wrap" onClick={e => e.stopPropagation()}>
-          <img src={fullImage} alt="Tampilan penuh banner proyek" />
-          <button type="button" className="icon-button lightbox-close" onClick={() => setFullImage(null)} aria-label="Tutup tampilan penuh"><X size={24}/></button>
-        </div>
-      </div>}
     </div>
   </section>;
 }
