@@ -10,7 +10,7 @@ export default function SplashScreen() {
     closed.current=false;setShow(true);setProgress(1);setLeaving(false);document.documentElement.dataset.intro='on';
     const start=performance.now(),reduced=matchMedia('(prefers-reduced-motion: reduce)');
     const theme=document.documentElement.dataset.theme==='light'?'light':'dark';
-    const images=['/images/pp.webp','/images/pp-dev.webp',`/images/glass/${theme}-960.webp`];
+    const images=['/images/pp-dev-icon.webp',`/images/glass/${theme}-960.webp`];
     let hold:ReturnType<typeof setTimeout>|undefined;
     const pending:HTMLImageElement[]=[];
     const load=(src:string)=>new Promise<void>(resolve=>{const image=new Image();pending.push(image);image.onload=image.onerror=()=>resolve();image.src=src;});

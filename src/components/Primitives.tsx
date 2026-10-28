@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ArrowUpRight, X } from 'lucide-react';
 
 export function Mark({ className = '' }: { className?: string }) {
-  return <img src="/images/pp-dev.webp" width="44" height="44" className={`identity-mark ${className}`} alt="" aria-hidden="true"/>;
+  return <img src="/images/pp-dev-icon.webp" width="78" height="78" className={`identity-mark ${className}`} alt="" aria-hidden="true" loading="eager" decoding="async"/>;
 }
 
 export function Chapter({ number, children, light = false }: { number: string; children: ReactNode; light?: boolean }) {

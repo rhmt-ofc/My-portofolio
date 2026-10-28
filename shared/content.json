@@ -6,7 +6,7 @@
       "tagline": "Wadah sentral resmi dalam mengasah logika koding, rekayasa produk, serta berkolaborasi antarsesama peretas digital.",
       "image": "/images/hirasawa-community.jpg",
       "url": "https://chat.whatsapp.com/GJrFX9GSOJiBLyJmJNNixi",
-      "status": "Ikon dan nama dari halaman undangan resmi WhatsApp \u00b7 fungsi bergabung belum diuji",
+      "status": "Ikon dan nama dari halaman undangan resmi WhatsApp · fungsi bergabung belum diuji",
       "members": [
         "SHADOWNEX",
         "hmmodzvip",
@@ -20,7 +20,7 @@
       "tagline": "Kumpulan script otomatisasi penjelajah data (web scraping), repositori pembersihan data, dan bot cerdas.",
       "image": "Scrape.png",
       "url": "https://chat.whatsapp.com/BfxkoBVqORL2GIJ3SZh1Lk",
-      "status": "Tautan dari arsip \u00b7 belum diverifikasi",
+      "status": "Tautan dari arsip · belum diverifikasi",
       "members": [
         "hmmodzvip",
         "Tenkz",
@@ -33,7 +33,7 @@
       "tagline": "Tempat promosi perkakas instan, rintisan situs web prototipe, serta sarana perluasan ide produk.",
       "image": "Promosi.png",
       "url": "https://chat.whatsapp.com/HxMqke18m0OBh8uQ8Hezth",
-      "status": "Tautan dari arsip \u00b7 belum diverifikasi",
+      "status": "Tautan dari arsip · belum diverifikasi",
       "members": [
         "Ramadhan Store",
         "Tenkz",
@@ -46,7 +46,7 @@
       "tagline": "Evolusi ruang distribusi digital berskala mikro untuk pencatatan log promosi produk-produk buatan pengembang independen.",
       "image": "Promosiv2.png",
       "url": "https://chat.whatsapp.com/CKBpfDlQICEL6OoDyiHIj3",
-      "status": "Tautan dari arsip \u00b7 belum diverifikasi",
+      "status": "Tautan dari arsip · belum diverifikasi",
       "members": [
         "Ramadhan Store",
         "Thxyz404",
@@ -59,7 +59,7 @@
       "tagline": "Laboratorium rekayasa pesan interaktif, simulasi bot cerdas, webhook pemicu, dan server transaksional mikro.",
       "image": "Bots.png",
       "url": "https://chat.whatsapp.com/CKBpfDlQICEL6OoDyiHIj3",
-      "status": "Tautan dari arsip \u00b7 belum diverifikasi",
+      "status": "Tautan dari arsip · belum diverifikasi",
       "members": [
         "hmmodzvip",
         "Tenkz",
@@ -186,7 +186,7 @@
   ],
   "JOURNEY_STEPS": [
     {
-      "phase": "Phase 1 \u2014 The Spark",
+      "phase": "Phase 1 — The Spark",
       "title": "Awal dari Sebuah Perjalanan",
       "subtitle": "Semua Berawal dari Sebuah Tugas Sekolah",
       "description": "Saat kelas 10, ada tugas kelompok P5 yang sebenarnya tidak berhubungan langsung dengan web development. Karena sudah tertarik teknologi, aku mencoba pendekatan lain supaya bisa membantu kelompok. Ada seseorang di kelas yang i sukai dan menjadi salah satu pemicu untuk lebih berkontribusi, meski perasaannya cuma dipendam. Setelah tugas selesai, ketertarikan terhadap teknologi tetap berlanjut dengan sendirinya.",
@@ -198,7 +198,7 @@
       ]
     },
     {
-      "phase": "Phase 2 \u2014 Self Learning",
+      "phase": "Phase 2 — Self Learning",
       "title": "Membangun Fondasi",
       "subtitle": "Belajar dengan Cara Sendiri",
       "description": "Setelah tugas itu selesai, rasa penasaranku tidak ikut berhenti. Sebagian besar perjalanan ini kulalui hanya menggunakan Oppo A3s, perangkat sederhana yang menjadi teman belajar selama bertahun-tahun. Tanpa laptop dan dengan berbagai keterbatasannya, aku mulai memahami HTML, CSS, JavaScript, hingga perlahan membangun fondasi sebagai seorang web developer melalui proses trial & error yang tak pernah berhenti.",
@@ -210,12 +210,12 @@
       ],
       "environment": {
         "device": "Oppo A3s (Android 8.1 Oreo)",
-        "laptop": "\u2014",
+        "laptop": "—",
         "learning": "Self-Taught"
       }
     },
     {
-      "phase": "Phase 3 \u2014 AI Collaboration",
+      "phase": "Phase 3 — AI Collaboration",
       "title": "Menemukan Cara Belajar yang Paling Sesuai",
       "subtitle": "Berkembang Bersama AI",
       "description": "AI membantu i menemukan workflow belajar yang sesuai. Aku mencoba membangun proyek sambil mendiskusikan konsep, arsitektur, dan implementasinya, bukan cuma menghafal sintaks. Hasilnya tetap perlu dibaca, diuji, dan diperbaiki. Web development buat i masih sebuah hobi yang terus berkembang.",
@@ -227,7 +227,7 @@
       ]
     },
     {
-      "phase": "Phase 4 \u2014 Exploration",
+      "phase": "Phase 4 — Exploration",
       "title": "Rasa Penasaran yang Tak Pernah Berhenti",
       "subtitle": "Bereksperimen Tanpa Takut Gagal",
       "description": "Mulai mencoba framework, deployment, API, server, AI Agent, VPS, dan workflow modern. Belum semuanya dikuasai. Menurut w, bagian menariknya justru mencari tahu kenapa suatu pendekatan bekerja dan kapan sebaiknya dipakai. Beberapa eksperimen gagal, lalu di-debug dan dicoba lagi.",
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "phase": "Phase 5 \u2014 Building",
+      "phase": "Phase 5 — Building",
       "title": "Mengubah Ide Menjadi Produk",
       "subtitle": "Dari Eksperimen Menjadi Karya",
       "description": "Dari berbagai eksperimen itu, aku mulai membuat website, tools, dan proyek pribadi yang bisa digunakan. Desain, AI, automasi, dan pengalaman pengguna mulai digabungkan. Sebagian berupa proof of concept; sebagian lainnya berkembang lewat beberapa iterasi.",
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "phase": "Phase 6 \u2014 Beyond The Horizon",
+      "phase": "Phase 6 — Beyond The Horizon",
       "title": "Perjalanan Ini Belum Berakhir",
       "subtitle": "Selalu Ada Hal Baru untuk Dipelajari",
       "description": "Untuk sekarang, i masih mengeksplorasi AI, automasi, dan web development. Masih banyak fundamental yang perlu dipahami, dan setiap proyek memberi konteks baru. Awalnya memang sebuah tugas sekolah. Sekarang belajar dan bereksperimen sudah menjadi minat sendiri.",
@@ -444,7 +444,7 @@
       "socials": []
     },
     {
-      "name": "Ros\u00e9e",
+      "name": "Rosée",
       "handle": "Blckrose2",
       "avatar": "Rosee.jpg",
       "role": "",
@@ -644,6 +644,30 @@
       "banner": "https://auto-reporistory-githb.vercel.app/banner.png"
     },
     {
+      "id": "pixcraft",
+      "name": "Pixcraft Studio",
+      "category": "AI Tools",
+      "url": "https://pixcraft-studio.vercel.app/",
+      "description": "Pixcraft Studio adalah creative image workspace modern dengan AI Outpainting (Expand AI), Smart Background Removal, Magic Watermark Eraser, dan multi-frame Composer 2-5 gambar. Dilengkapi failover engine lokal beresolusi tinggi (Sharp).",
+      "problem": "Kebutuhan editing foto dan restorasi berbasis AI sering kali memerlukan langganan mahal atau server berat, dan sering gagal jika API cloud mengalami rate limit.",
+      "exploration": "Membangun arsitektur hibrida: client-side processing instan untuk composer & kompresi WebP/JPEG, dipadu pipeline serverless AI dengan auto-failover ke engine lokal Sharp Lanczos3.",
+      "outcome": "Aplikasi live production di Vercel dengan performa tinggi, zero-downtime failover, dan kontrol interaktif outpainting kanvas penuh.",
+      "ecosystem": [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "Sharp",
+        "AI Outpainting",
+        "Vercel Serverless"
+      ],
+      "summary": "Workspace pengolah gambar AI lengkap dengan Outpaint, Inpaint, Eraser & Composer multi-frame.",
+      "status": "LIVE_VERIFIED",
+      "type": "work",
+      "visualType": "illustrative",
+      "icon": "https://pixcraft-studio.vercel.app/favicon.svg",
+      "banner": "https://pixcraft-studio.vercel.app/og.png"
+    },
+    {
       "id": "tierlist-maker",
       "name": "Tierlist Maker",
       "category": "Utilities",
@@ -819,7 +843,7 @@
       "name": "Screenshot Web",
       "category": "Utilities",
       "url": "https://screenshot-web-omega.vercel.app/",
-      "description": "Tool capture website dari URL dengan preset viewport mobile hingga PC 4K, ukuran custom, render scale 1x\u20133x, pilihan full page, preview, dan download gambar.",
+      "description": "Tool capture website dari URL dengan preset viewport mobile hingga PC 4K, ukuran custom, render scale 1x–3x, pilihan full page, preview, dan download gambar.",
       "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
       "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
       "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
@@ -941,7 +965,7 @@
     },
     {
       "id": "am-proaktif",
-      "name": "Alight Motion Pro \u2014 RHMT",
+      "name": "Alight Motion Pro — RHMT",
       "category": "Utilities",
       "url": "https://am-proaktif.vercel.app/",
       "description": "Antarmuka dispatcher Alight Motion dengan alur input email akun dan verifikasi magic link untuk akses Pro. Respons JSON dan log aktivitas ditampilkan sebagai bagian dari proses aktivasi.",
