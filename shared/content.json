@@ -3,7 +3,7 @@
     {
       "name": "RHMT OFC",
       "title": "KOMUNITAS UTAMA",
-      "tagline": "Wadah diskusi seputar pemrograman, rekayasa produk, serta eksplorasi karya bersama teman-teman jejaring.",
+      "tagline": "Wadah sentral resmi diskusi seputar pemrograman, rekayasa produk, serta eksplorasi karya bersama teman-teman jejaring.",
       "image": "/images/hirasawa-community.jpg",
       "url": "https://chat.whatsapp.com/GJrFX9GSOJiBLyJmJNNixi",
       "status": "Grup WhatsApp Resmi",
@@ -12,6 +12,33 @@
         "hmmodzvip",
         "reiz_riz",
         "Zakrenz"
+      ]
+    },
+    {
+      "name": "Belajar Coding",
+      "title": "FORUM BELAJAR & DISKUSI",
+      "tagline": "Ruang kolaborasi belajar struktur kode pemrograman dasar sembari diskusi santai antarsesama pembelajar.",
+      "image": "/images/Coding.webp",
+      "url": "https://chat.whatsapp.com/Dfl4xKPiJoAH01YtWTlB97",
+      "status": "Grup Belajar",
+      "members": [
+        "SHADOWNEX",
+        "reiz_riz",
+        "iboyCloud",
+        "Zakrenz"
+      ]
+    },
+    {
+      "name": "Scrape Collection",
+      "title": "ARSIP RISET SCRAPING",
+      "tagline": "Kumpulan script otomatisasi penjelajah data (web scraping), repositori pembersihan data, dan bot cerdas.",
+      "image": "/images/Scrape.webp",
+      "url": "https://chat.whatsapp.com/BfxkoBVqORL2GIJ3SZh1Lk",
+      "status": "Arsip Riset",
+      "members": [
+        "hmmodzvip",
+        "Tenkz",
+        "Ditzzx"
       ]
     },
     {
@@ -28,16 +55,16 @@
       ]
     },
     {
-      "name": "Promosi & Diskusi",
-      "title": "FORUM PRODUK & TOOLS",
-      "tagline": "Tempat berbagi perkakas digital, rintisan situs web, serta sarana diskusi dan perluasan produk.",
-      "image": "/images/promosi-community.jpg",
-      "url": "https://chat.whatsapp.com/HxMqke18m0OBh8uQ8Hezth",
+      "name": "Promosi v2",
+      "title": "RUANG PROMOSI DIGITAL",
+      "tagline": "Tempat berbagi perkakas digital, rintisan situs web prototipe, serta sarana perluasan produk.",
+      "image": "/images/promosi-v2-community.jpg",
+      "url": "https://chat.whatsapp.com/Buq5brxzkWOD9sH4LzOaAB",
       "status": "Forum Komunitas",
       "members": [
-        "Ramadhan Store",
+        "hmmodzvip",
         "Tenkz",
-        "reiz_riz"
+        "Zakrenz"
       ]
     },
     {
@@ -54,16 +81,16 @@
       ]
     },
     {
-      "name": "Scrape Collection",
-      "title": "ARSIP RISET SCRAPING",
-      "tagline": "Kumpulan script otomatisasi penjelajah data (web scraping), repositori pembersihan data, dan bot cerdas.",
-      "image": "Scrape.png",
-      "url": "https://chat.whatsapp.com/BfxkoBVqORL2GIJ3SZh1Lk",
-      "status": "Arsip Riset",
+      "name": "Promosi & Diskusi",
+      "title": "FORUM PRODUK & TOOLS",
+      "tagline": "Wadah bertukar informasi seputar tools digital, ide rintisan aplikasi, dan sarana diskusi terbuka.",
+      "image": "/images/promosi-community.jpg",
+      "url": "https://chat.whatsapp.com/HxMqke18m0OBh8uQ8Hezth",
+      "status": "Forum Komunitas",
       "members": [
-        "hmmodzvip",
+        "Ramadhan Store",
         "Tenkz",
-        "Ditzzx"
+        "reiz_riz"
       ]
     }
   ],

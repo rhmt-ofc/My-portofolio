@@ -436,17 +436,15 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 /* ============================================================
-   OWNER RATING REPLY (CLEAN & SUBTLE)
+   OWNER RATING REPLY (ANIMATED & CRISP)
    ============================================================ */
-.owner-reply-details {
+.owner-reply-wrapper {
   margin-top: 10px;
   border-top: 1px solid var(--line);
   padding-top: 8px;
 }
 
 .owner-reply-toggle {
-  list-style: none;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -456,12 +454,9 @@ html[data-motion=off] .work-visual-button{transform:none}
   font: 500 10.5px Space, sans-serif;
   letter-spacing: 0.4px;
   color: var(--muted);
+  cursor: pointer;
   user-select: none;
   transition: color 0.2s ease;
-}
-
-.owner-reply-toggle::-webkit-details-marker {
-  display: none;
 }
 
 .owner-reply-toggle:hover {
@@ -472,6 +467,7 @@ html[data-motion=off] .work-visual-button{transform:none}
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: var(--line-strong);
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
 }
 
 .owner-reply-toggle:hover .owner-toggle-label {
@@ -479,30 +475,54 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 .owner-toggle-icon {
-  font-size: 11px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--quiet);
-  transition: transform 0.2s ease;
+  line-height: 1;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
 }
 
-.owner-reply-details[open] .owner-toggle-icon {
-  transform: rotate(45deg);
-}
-
-.owner-reply-details[open] .owner-reply-toggle {
+.owner-reply-wrapper.is-open .owner-toggle-icon {
+  transform: rotate(90deg);
   color: var(--accent);
-  margin-bottom: 8px;
+}
+
+.owner-reply-wrapper.is-open .owner-reply-toggle {
+  color: var(--accent);
+}
+
+.owner-reply-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  opacity: 0;
+}
+
+.owner-reply-wrapper.is-open .owner-reply-collapse {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 6px;
+}
+
+.owner-reply-inner {
+  overflow: hidden;
 }
 
 .owner-reply-box {
-  margin-top: 6px;
-  padding: 8px 12px;
+  padding: 9px 13px;
   background: var(--surface-2);
   border-left: 2px solid var(--accent);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  animation: panel-in 0.2s ease-out;
+  transform: translateY(-4px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.owner-reply-wrapper.is-open .owner-reply-box {
+  transform: translateY(0);
 }
 
 .owner-reply-header {
@@ -528,6 +548,17 @@ html[data-motion=off] .work-visual-button{transform:none}
   color: var(--ink) !important;
   margin: 0 !important;
   line-height: 1.6 !important;
+}
+
+.btn-wa-icon {
+  color: #25d366;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.flagship-btn:hover .btn-wa-icon,
+.sub-card-join:hover .btn-wa-icon {
+  transform: scale(1.15) rotate(-5deg);
 }
 
 /* ============================================================
