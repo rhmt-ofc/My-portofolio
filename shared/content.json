@@ -619,7 +619,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://finorajourney.my.id/art/brand-symbol.webp",
-      "banner": ""
+      "banner": "/images/works/finora-banner.webp"
     },
     {
       "id": "repo-flow",
@@ -707,7 +707,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://artikel-ocr.vercel.app/favicon.jpg",
-      "banner": ""
+      "banner": "/images/works/veritas-banner.webp"
     },
     {
       "id": "anime-quote",
