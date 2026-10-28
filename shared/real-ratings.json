@@ -1,0 +1,146 @@
+{
+  "count": 25,
+  "average": 5,
+  "reviews": [
+    {
+      "id": "baf0e94c-a2c1-4e51-8e57-464493eb4a4d",
+      "name": "Zain",
+      "comment": "Gokil🗿",
+      "stars": 5,
+      "createdAt": "2026-10-26T09:53:24.694Z"
+    },
+    {
+      "id": "376cc849-38c2-40f5-9928-bb09d1da09af",
+      "name": "Bayu",
+      "comment": "Keren rhmat, dulu lu masih tanya tanya sekarang skill mu udah di atas kuuu ajaaa, semangat buat rhmat sekarang udahhh gkkkk manggl sepuh sepuh lg yhhhh",
+      "stars": 5,
+      "createdAt": "2026-10-24T10:52:16.720Z"
+    },
+    {
+      "id": "444ff3ac-9a10-4a92-af22-6bb89722e6cf",
+      "name": "Mulyono suka gorong",
+      "comment": "Hhaha teruskan bakatmu anak muda",
+      "stars": 5,
+      "createdAt": "2026-10-22T00:42:28.134Z"
+    },
+    {
+      "id": "9a565497-1ce6-465b-a418-4ba1afd1fdc6",
+      "name": "eleina",
+      "comment": "keren cyahhhh, watasi sangat kagum padamu mamat cyahhh",
+      "stars": 5,
+      "createdAt": "2026-10-18T01:33:07.158Z"
+    },
+    {
+      "id": "967eab98-7624-46e1-ab70-b2dca227e00d",
+      "name": "Wowo",
+      "comment": "",
+      "stars": 5,
+      "createdAt": "2026-10-16T12:16:30.903Z"
+    },
+    {
+      "id": "b2fdeb21-af24-44c8-aff7-dd5c7e010e5e",
+      "name": "Faixxyy",
+      "comment": "Bagus mat 😣 pengen buat juga tapi gatau caranya :v",
+      "stars": 5,
+      "createdAt": "2026-10-14T12:58:29.213Z"
+    },
+    {
+      "id": "5acc8857-8442-40bb-b270-2593159ce2b3",
+      "name": "@syafiqueue",
+      "comment": "Anjai, kece bat, rate juga punyaku dong www.dya.web.id",
+      "stars": 5,
+      "createdAt": "2026-10-14T08:31:19.697Z"
+    },
+    {
+      "id": "457e48e2-f93b-48b9-ac03-607d4393b0e5",
+      "name": "msbreewc",
+      "comment": "gelok",
+      "stars": 5,
+      "createdAt": "2026-10-14T07:12:41.244Z"
+    },
+    {
+      "id": "cc560803-3d9b-40c3-970a-0f7940514635",
+      "name": "Sky ajalahh",
+      "comment": "Gg mat, semangatt 🔥",
+      "stars": 5,
+      "createdAt": "2026-10-13T13:29:35.667Z"
+    },
+    {
+      "id": "863e9242-62c5-4725-8e9a-fd24c145cf70",
+      "name": "AhmadXyz",
+      "comment": "Jangan lupa kunjungi my web:v\nhttps://api.fuku.eu.cc",
+      "stars": 5,
+      "createdAt": "2026-10-13T12:53:34.372Z"
+    },
+    {
+      "id": "acc07221-cec0-4709-b5be-d7f85842e177",
+      "name": "sang pemula biasa bernama hmmodz",
+      "comment": "Hallo Rahmat, Semangat Teruss Yaaaa💪",
+      "stars": 5,
+      "createdAt": "2026-10-11T08:47:14.188Z"
+    },
+    {
+      "id": "91ed18b9-2c72-440d-920e-00aa86f0f846",
+      "name": "Tenkz",
+      "comment": "keren mat",
+      "stars": 5,
+      "createdAt": "2026-10-11T08:40:42.109Z"
+    },
+    {
+      "id": "6b1d0ca8-54c7-4344-97b0-d63be0c16067",
+      "name": "-",
+      "comment": "Terjadi kesalahan saat mengambil data dari database.",
+      "stars": 5,
+      "createdAt": "2026-10-11T07:13:11.861Z"
+    },
+    {
+      "id": "39083082-1b50-40ba-9ead-4421d2ccd33e",
+      "name": "ceo menyamar",
+      "comment": "kerenn porto nya mat",
+      "stars": 5,
+      "createdAt": "2026-10-11T06:05:44.905Z"
+    },
+    {
+      "id": "aa88e8e8-993e-4d2c-b582-3f64a5c9be2a",
+      "name": "Prabowo",
+      "comment": "Keren Nak, Bagi Code nya nanti saya masukin ke sppg",
+      "stars": 5,
+      "createdAt": "2026-10-11T05:28:21.120Z"
+    },
+    {
+      "id": "84999dea-104d-4d85-9f63-6e5364aa8716",
+      "name": "Omdii",
+      "comment": "Bagi code nya😭🗿🗿",
+      "stars": 5,
+      "createdAt": "2026-10-11T04:09:36.208Z"
+    },
+    {
+      "id": "195f94c5-f7ed-4eac-afbe-bcf6103d2c73",
+      "name": "Rixky",
+      "comment": "Gg bg👍🗿",
+      "stars": 5,
+      "createdAt": "2026-10-11T02:04:29.564Z"
+    },
+    {
+      "id": "080d625f-81c9-4f0d-9f18-dd61a69131e8",
+      "name": "Woss",
+      "comment": "Gayamu reng",
+      "stars": 5,
+      "createdAt": "2026-10-11T01:29:03.017Z"
+    },
+    {
+      "id": "33b05028-d6a6-4d5d-aa9e-520a2bebe34a",
+      "name": "Ali",
+      "comment": "Bagus, menarik 💦",
+      "stars": 5,
+      "createdAt": "2026-10-11T00:26:46.040Z"
+    },
+    {
+      "id": "682be5e4-21e1-4036-a185-359a4867968b",
+      "name": "manusia",
+      "comment": "Keren bet bang, salut gw",
+      "stars": 5,
+      "createdAt": "2026-10-11T00:04:31.263Z"
+    }
+  ]
+}

@@ -7,10 +7,18 @@ type Review={id:string;name:string;stars:number;comment:string;createdAt:string;
 type Snapshot={configured:boolean;count:number;average:number;reviews:Review[];challenge:string};
 const examples:Review[]=[];
 const empty:Snapshot={configured:false,count:0,average:0,reviews:[],challenge:''};
+import fallbackRatings from '../../shared/real-ratings.json';
+const defaultRealSnapshot: Snapshot = {
+  configured: true,
+  count: fallbackRatings.count,
+  average: fallbackRatings.average,
+  reviews: fallbackRatings.reviews as Review[],
+  challenge: ''
+};
 function newID(){if(typeof crypto.randomUUID==='function')return crypto.randomUUID();const bytes=crypto.getRandomValues(new Uint8Array(16));bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;const s=Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');return `${s.slice(0,8)}-${s.slice(8,12)}-${s.slice(12,16)}-${s.slice(16,20)}-${s.slice(20)}`;}
 function Star({filled=false}:{filled?:boolean}){return <svg viewBox="0 0 32 32" className={filled?'rating-star filled':'rating-star'} aria-hidden="true"><path d="m16 3 4 8.1 9 1.3-6.5 6.3 1.5 9L16 23.5l-8 4.2 1.5-9L3 12.4l9-1.3Z"/></svg>;}
 export default function Ratings({paused=false}:{paused?:boolean}){
-  const [snapshot,setSnapshot]=useState<Snapshot>(empty),[loading,setLoading]=useState(true),[busy,setBusy]=useState(false),[error,setError]=useState(''),[sent,setSent]=useState(false);
+  const [snapshot,setSnapshot]=useState<Snapshot>(defaultRealSnapshot),[loading,setLoading]=useState(true),[busy,setBusy]=useState(false),[error,setError]=useState(''),[sent,setSent]=useState(false);
   const [name,setName]=useState(''),[comment,setComment]=useState(''),[stars,setStars]=useState(0),[hover,setHover]=useState(0),[website,setWebsite]=useState('');
   const displayed=[...snapshot.reviews];
   const {rail,auto,setAuto,move,hold}=useReviewRail(displayed.length,paused);
