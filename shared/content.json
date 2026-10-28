@@ -2,11 +2,11 @@
   "COMMUNITIES": [
     {
       "name": "RHMT OFC",
-      "title": "WHATSAPP OFFICIAL COMMUNITY",
-      "tagline": "Wadah sentral resmi dalam mengasah logika koding, rekayasa produk, serta berkolaborasi antarsesama peretas digital.",
+      "title": "KOMUNITAS UTAMA",
+      "tagline": "Wadah diskusi seputar pemrograman, rekayasa produk, serta eksplorasi karya bersama teman-teman jejaring.",
       "image": "/images/hirasawa-community.jpg",
       "url": "https://chat.whatsapp.com/GJrFX9GSOJiBLyJmJNNixi",
-      "status": "Grup WhatsApp Resmi RHMT OFC · Terverifikasi",
+      "status": "Grup WhatsApp Resmi",
       "members": [
         "SHADOWNEX",
         "hmmodzvip",
@@ -16,11 +16,11 @@
     },
     {
       "name": "Silvi MD",
-      "title": "WHATSAPP BOT ECOSYSTEM",
+      "title": "EKOSISTEM BOT WHATSAPP",
       "tagline": "Pusat pengembangan, uji coba fitur, dan pembaruan berkala bot WhatsApp Silvi MD Multi-Device.",
       "image": "/images/silvi-community.jpg",
       "url": "https://chat.whatsapp.com/FLxvyV1xnliKurNR41JnTA",
-      "status": "Grup Bot Resmi RHMT OFC · Terverifikasi",
+      "status": "Grup Bot Resmi",
       "members": [
         "hmmodzvip",
         "Tenkz",
@@ -28,12 +28,12 @@
       ]
     },
     {
-      "name": "Promosi tools/apk/produk/dll ☕☕",
-      "title": "COMMERCIAL OUTREACH HUB",
-      "tagline": "Tempat promosi perkakas instan, rintisan situs web prototipe, serta sarana perluasan ide produk.",
+      "name": "Promosi & Diskusi",
+      "title": "FORUM PRODUK & TOOLS",
+      "tagline": "Tempat berbagi perkakas digital, rintisan situs web, serta sarana diskusi dan perluasan produk.",
       "image": "/images/promosi-community.jpg",
       "url": "https://chat.whatsapp.com/HxMqke18m0OBh8uQ8Hezth",
-      "status": "Komunitas Promosi Digital Resmi · Terverifikasi",
+      "status": "Forum Komunitas",
       "members": [
         "Ramadhan Store",
         "Tenkz",
@@ -41,12 +41,12 @@
       ]
     },
     {
-      "name": "Bots Lab 🧪",
-      "title": "AI & AUTOMATION LAB",
-      "tagline": "Laboratorium rekayasa pesan interaktif, simulasi bot cerdas, webhook pemicu, dan server transaksional mikro.",
+      "name": "Bots Lab",
+      "title": "LABORATORIUM BOT & OTOMASI",
+      "tagline": "Eksplorasi pesan interaktif, simulasi bot cerdas, webhook pemicu, dan server transaksional mikro.",
       "image": "/images/bots-community.jpg",
       "url": "https://chat.whatsapp.com/CKBpfDlQICEL6OoDyiHIj3",
-      "status": "Laboratorium Bot Resmi · Terverifikasi",
+      "status": "Laboratorium Bot",
       "members": [
         "hmmodzvip",
         "Tenkz",
@@ -55,11 +55,11 @@
     },
     {
       "name": "Scrape Collection",
-      "title": "AUTOMATION RESEARCH LAB",
+      "title": "ARSIP RISET SCRAPING",
       "tagline": "Kumpulan script otomatisasi penjelajah data (web scraping), repositori pembersihan data, dan bot cerdas.",
       "image": "Scrape.png",
       "url": "https://chat.whatsapp.com/BfxkoBVqORL2GIJ3SZh1Lk",
-      "status": "Tautan dari arsip · Belum diverifikasi",
+      "status": "Arsip Riset",
       "members": [
         "hmmodzvip",
         "Tenkz",
@@ -989,7 +989,7 @@
   ],
   "RATING_REPLIES": {
     "baf0e94c-a2c1-4e51-8e57-464493eb4a4d": {
-      "author": "R_HMT (Owner)",
+      "author": "R_HMT",
       "reply": "Haha makasih Zain! Gass terus! 🚀",
       "date": "2026-10-28"
     }

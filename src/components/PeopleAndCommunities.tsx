@@ -25,9 +25,9 @@ export default function PeopleAndCommunities() {
           <div className="community-showcase-heading">
             <div>
               <span className="community-badge-pill">WhatsApp Communities</span>
-              <h3>The Community.</h3>
+              <h3>The Communities.</h3>
             </div>
-            <span className="micro-note">OFFICIAL DIGITAL HUBS</span>
+            <span className="micro-note">RUANG DISKUSI & EKOSISTEM</span>
           </div>
 
           {/* Flagship Community: RHMT OFC */}
@@ -39,16 +39,15 @@ export default function PeopleAndCommunities() {
                     <SafeImage
                       src={flagship.image.startsWith('/') ? flagship.image : asset(flagship.image)}
                       alt={flagship.name}
-                      width={76}
-                      height={76}
+                      width={72}
+                      height={72}
                       className="flagship-avatar"
                     />
-                    <img className="community-wa-mark" src="/images/tools/whatsapp.svg" alt="WhatsApp" width="22" height="22" />
+                    <img className="community-wa-mark" src="/images/tools/whatsapp.svg" alt="WhatsApp" width="20" height="20" />
                   </div>
                   <div>
-                    <span className="flagship-tag">CENTRAL COMMUNITY HUB · VERIFIED</span>
+                    <span className="flagship-tag">{flagship.title}</span>
                     <h4 className="flagship-title">{flagship.name}</h4>
-                    <p className="flagship-subtitle">{flagship.title}</p>
                   </div>
                 </div>
                 <p className="flagship-desc">{flagship.tagline}</p>
@@ -57,7 +56,6 @@ export default function PeopleAndCommunities() {
                     <ExternalLink href={flagship.url} className="button button-gold flagship-btn">
                       <MessageCircle size={16} />
                       <span>Gabung Komunitas Utama</span>
-                      <ArrowUpRight size={17} />
                     </ExternalLink>
                   </div>
                 )}
@@ -74,8 +72,8 @@ export default function PeopleAndCommunities() {
                     <SafeImage
                       src={c.image.startsWith('/') ? c.image : asset(c.image)}
                       alt={c.name}
-                      width={52}
-                      height={52}
+                      width={48}
+                      height={48}
                       className="sub-card-avatar"
                     />
                     <img className="community-wa-mark-small" src="/images/tools/whatsapp.svg" alt="WhatsApp" width="16" height="16" />
@@ -87,11 +85,10 @@ export default function PeopleAndCommunities() {
                 </div>
                 <p className="sub-card-desc">{c.tagline}</p>
                 <div className="sub-card-footer">
-                  <span className="sub-card-status">{c.status || 'Komunitas Terbuka'}</span>
+                  <span className="sub-card-status">{c.status || 'Grup Komunitas'}</span>
                   {c.url && (
-                    <ExternalLink href={c.url} className="button button-outline sub-card-join">
-                      <span>Gabung</span>
-                      <ArrowUpRight size={14} />
+                    <ExternalLink href={c.url} className="sub-card-join">
+                      <span>Gabung Grup</span>
                     </ExternalLink>
                   )}
                 </div>

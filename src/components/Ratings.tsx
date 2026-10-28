@@ -53,15 +53,15 @@ export default function Ratings({paused=false}:{paused?:boolean}){
               {RATING_REPLIES && RATING_REPLIES[r.id] && (
                 <details className="owner-reply-details">
                   <summary className="owner-reply-toggle">
-                    <span className="owner-toggle-label">💬 Tanggapan Owner</span>
-                    <span className="owner-toggle-icon">+</span>
+                    <span className="owner-toggle-label">Tanggapan owner</span>
+                    <span className="owner-toggle-icon" aria-hidden="true">+</span>
                   </summary>
                   <div className="owner-reply-box">
                     <div className="owner-reply-header">
-                      <span className="owner-badge">👑 {RATING_REPLIES[r.id].author || 'R_HMT'}</span>
-                      {RATING_REPLIES[r.id].date && <small>{RATING_REPLIES[r.id].date}</small>}
+                      <span className="owner-badge">{(RATING_REPLIES[r.id].author || 'R_HMT').replace(/\s*\(Owner\)/i, '')}</span>
+                      {RATING_REPLIES[r.id].date && <time className="owner-reply-date">{RATING_REPLIES[r.id].date}</time>}
                     </div>
-                    <p>{RATING_REPLIES[r.id].reply}</p>
+                    <p className="owner-reply-text">{RATING_REPLIES[r.id].reply}</p>
                   </div>
                 </details>
               )}

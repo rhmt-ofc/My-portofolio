@@ -436,11 +436,11 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 /* ============================================================
-   OWNER RATING REPLY PILL TOGGLE
+   OWNER RATING REPLY (CLEAN & SUBTLE)
    ============================================================ */
 .owner-reply-details {
-  margin-top: 12px;
-  border-top: 1px dashed var(--line);
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
   padding-top: 8px;
 }
 
@@ -450,14 +450,14 @@ html[data-motion=off] .work-visual-button{transform:none}
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: rgba(120, 160, 220, 0.1);
-  border: 1px solid var(--line);
-  font: 500 11px system-ui, -apple-system, sans-serif;
-  color: var(--accent);
+  padding: 0;
+  background: transparent;
+  border: none;
+  font: 500 10.5px Space, sans-serif;
+  letter-spacing: 0.4px;
+  color: var(--muted);
   user-select: none;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .owner-reply-toggle::-webkit-details-marker {
@@ -465,14 +465,22 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 .owner-reply-toggle:hover {
-  background: rgba(120, 160, 220, 0.18);
-  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.owner-toggle-label {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line-strong);
+}
+
+.owner-reply-toggle:hover .owner-toggle-label {
+  text-decoration-color: var(--accent);
 }
 
 .owner-toggle-icon {
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1;
+  font-size: 11px;
+  color: var(--quiet);
   transition: transform 0.2s ease;
 }
 
@@ -481,20 +489,19 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 .owner-reply-details[open] .owner-reply-toggle {
-  background: rgba(120, 160, 220, 0.18);
-  border-color: var(--accent);
+  color: var(--accent);
   margin-bottom: 8px;
 }
 
 .owner-reply-box {
-  margin-top: 4px;
-  padding: 10px 14px;
+  margin-top: 6px;
+  padding: 8px 12px;
   background: var(--surface-2);
-  border-left: 3px solid var(--accent);
-  border-radius: 0 8px 8px 0;
+  border-left: 2px solid var(--accent);
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   animation: panel-in 0.2s ease-out;
 }
 
@@ -511,20 +518,20 @@ html[data-motion=off] .work-visual-button{transform:none}
   text-transform: uppercase;
 }
 
-.owner-reply-header small {
+.owner-reply-date {
   font-size: 9px;
   color: var(--quiet);
 }
 
-.owner-reply-box p {
-  font-size: 11px !important;
-  color: var(--muted) !important;
+.owner-reply-text {
+  font-size: 11.5px !important;
+  color: var(--ink) !important;
   margin: 0 !important;
   line-height: 1.6 !important;
 }
 
 /* ============================================================
-   DOMINANT THE COMMUNITY SHOWCASE
+   COMMUNITIES SHOWCASE (CLEAN EDITORIAL)
    ============================================================ */
 .community-showcase-section {
   margin-bottom: 50px;
@@ -561,8 +568,8 @@ html[data-motion=off] .work-visual-button{transform:none}
 .community-flagship-card {
   background: var(--surface);
   border: 1px solid var(--line-strong);
-  box-shadow: 0 16px 40px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
+  box-shadow: 0 16px 40px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
   padding: 28px;
   margin-bottom: 24px;
   position: relative;
@@ -572,18 +579,6 @@ html[data-motion=off] .work-visual-button{transform:none}
 
 .community-flagship-card:hover {
   border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.community-flagship-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(216, 187, 146, 0.12) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 .flagship-inner {
@@ -606,9 +601,9 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 .flagship-avatar {
-  border-radius: 14px;
+  border-radius: 12px;
   border: 1px solid var(--line-strong);
-  box-shadow: 0 8px 20px var(--shadow);
+  box-shadow: 0 6px 16px var(--shadow);
   object-fit: cover;
   display: block;
 }
@@ -638,20 +633,12 @@ html[data-motion=off] .work-visual-button{transform:none}
   color: var(--ink);
 }
 
-.flagship-subtitle {
-  font-size: 11px;
-  letter-spacing: 0.8px;
-  color: var(--muted);
-  margin: 2px 0 0;
-  text-transform: uppercase;
-}
-
 .flagship-desc {
   font-size: 13.5px;
   line-height: 1.7;
   color: var(--muted);
   margin: 0;
-  max-width: 640px;
+  max-width: 680px;
 }
 
 .flagship-action {
@@ -662,38 +649,36 @@ html[data-motion=off] .work-visual-button{transform:none}
   display: inline-flex !important;
   align-items: center !important;
   gap: 10px !important;
-  padding: 0 24px !important;
-  height: 44px !important;
+  padding: 0 22px !important;
+  height: 42px !important;
   font-weight: 600 !important;
   background: var(--button-bg) !important;
   color: var(--button-ink) !important;
   border-radius: 6px !important;
 }
 
-/* Sub-Communities Grid */
+/* Sub-Communities 2-Column Balanced Grid */
 .community-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
 }
 
 .community-sub-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 8px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 14px;
-  transition: all 0.25s ease;
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 .community-sub-card:hover {
   background: var(--surface-2);
   border-color: var(--line-strong);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px var(--shadow);
 }
 
 .sub-card-header {
@@ -708,7 +693,7 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 .sub-card-avatar {
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--line);
   object-fit: cover;
   display: block;
@@ -735,22 +720,18 @@ html[data-motion=off] .work-visual-button{transform:none}
   color: var(--quiet);
   display: block;
   margin-bottom: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .sub-card-name {
   font-size: 16px;
+  font-weight: 600;
   margin: 0;
   color: var(--ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  letter-spacing: -0.3px;
 }
 
 .sub-card-desc {
-  font-size: 12px;
+  font-size: 12.5px;
   line-height: 1.6;
   color: var(--muted);
   margin: 0;
@@ -760,34 +741,34 @@ html[data-motion=off] .work-visual-button{transform:none}
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 10px;
-  border-top: 1px dashed var(--line);
-  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  gap: 12px;
 }
 
 .sub-card-status {
-  font-size: 9.5px;
+  font: 500 10px Space, sans-serif;
+  letter-spacing: 0.5px;
   color: var(--quiet);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-transform: uppercase;
 }
 
 .sub-card-join {
-  min-height: 32px !important;
-  padding: 0 14px !important;
-  font-size: 11px !important;
+  display: inline-flex !important;
+  align-items: center !important;
   gap: 6px !important;
-  border-radius: 6px !important;
-  white-space: nowrap;
-  border: 1px solid var(--line) !important;
+  font: 600 11px Space, sans-serif !important;
+  letter-spacing: 0.5px !important;
+  color: var(--accent) !important;
   background: transparent !important;
-  color: var(--ink) !important;
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .sub-card-join:hover {
-  border-color: var(--accent) !important;
-  background: var(--surface-2) !important;
+  color: var(--ink) !important;
 }
 
 .people-section-divider {
@@ -796,7 +777,7 @@ html[data-motion=off] .work-visual-button{transform:none}
   border-top: 1px solid var(--line);
 }
 
-@media(max-width: 600px) {
+@media(max-width: 768px) {
   .community-flagship-card {
     padding: 20px;
   }
@@ -807,7 +788,7 @@ html[data-motion=off] .work-visual-button{transform:none}
     font-size: 21px;
   }
   .flagship-desc {
-    font-size: 12px;
+    font-size: 12.5px;
   }
   .community-grid {
     grid-template-columns: 1fr;
