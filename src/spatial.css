@@ -193,15 +193,69 @@ html[data-motion=off] .hero-inventory>a:hover{transform:none}
 }
 
 /* Owner Rating Reply Styling */
-.owner-reply {
-  margin-top: 14px;
-  padding: 12px 14px;
-  background: rgba(33, 102, 255, 0.07);
+.owner-reply-details {
+  margin-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-top: 8px;
+}
+
+.owner-reply-toggle {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(33, 102, 255, 0.08);
+  border: 1px solid rgba(33, 102, 255, 0.25);
+  font: 500 11px system-ui, -apple-system, sans-serif;
+  color: var(--blue);
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.owner-reply-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.owner-reply-toggle:hover {
+  background: rgba(33, 102, 255, 0.16);
+  border-color: rgba(33, 102, 255, 0.45);
+}
+
+.owner-toggle-icon {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.owner-reply-details[open] .owner-toggle-icon {
+  transform: rotate(45deg);
+}
+
+.owner-reply-details[open] .owner-reply-toggle {
+  background: rgba(33, 102, 255, 0.15);
+  border-color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.owner-reply-box {
+  margin-top: 4px;
+  padding: 10px 12px;
+  background: rgba(33, 102, 255, 0.06);
   border-left: 3px solid var(--blue);
   border-radius: 0 8px 8px 0;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  animation: fadeInReply 0.2s ease-out;
+}
+
+@keyframes fadeInReply {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .owner-reply-header {
@@ -218,13 +272,17 @@ html[data-motion=off] .hero-inventory>a:hover{transform:none}
 }
 
 .owner-reply-header small {
-  font-size: 8px;
+  font-size: 9px;
   color: #7a96ba;
 }
 
-.owner-reply p {
+.owner-reply-box p {
   font-size: 11px !important;
-  color: #1e3a5f !important;
+  color: #a3c4f3 !important;
   margin: 0 !important;
-  line-height: 1.6 !important;
+  line-height: 1.5 !important;
+}
+
+[data-theme="light"] .owner-reply-box p {
+  color: #1e3a5f !important;
 }

@@ -51,13 +51,19 @@ export default function Ratings({paused=false}:{paused?:boolean}){
     <form className="rating-form" onSubmit={submit}><fieldset disabled={busy||!snapshot.configured||sent}><legend className="sr-only">Kirim rating portofolio</legend><div className="rating-picker" role="radiogroup" aria-required="true" aria-label="Jumlah bintang" onPointerLeave={()=>setHover(0)}>{[1,2,3,4,5].map(n=><button type="button" role="radio" aria-checked={stars===n} aria-label={`${n} bintang`} key={n} tabIndex={stars===n||(!stars&&n===1)?0:-1} onPointerEnter={()=>setHover(n)} onFocus={()=>setHover(n)} onBlur={()=>setHover(0)} onClick={()=>setStars(n)} onKeyDown={e=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(e.key)){e.preventDefault();const next=e.key==='Home'?1:e.key==='End'?5:Math.min(5,Math.max(1,n+(e.key==='ArrowRight'?1:-1)));setStars(next);(e.currentTarget.parentElement?.children[next-1] as HTMLButtonElement)?.focus();}}}><Star filled={n<=(hover||stars)}/></button>)}</div><label htmlFor="rating-name">Nama<span aria-hidden="true"> *</span></label><input id="rating-name" name="name" autoComplete="nickname" maxLength={50} value={name} onChange={e=>setName(e.target.value)} placeholder="Nama kamu" required/><label htmlFor="rating-comment">Komentar <small>opsional</small></label><textarea id="rating-comment" name="comment" rows={3} maxLength={600} value={comment} onChange={e=>setComment(e.target.value)} placeholder="Apa yang paling berkesan?"/><label className="rating-trap" aria-hidden="true">Website<input tabIndex={-1} autoComplete="off" name="website" value={website} onChange={e=>setWebsite(e.target.value)}/></label><button className="button button-blue" type="submit">{busy?<><LoaderCircle className="spin" size={17}/>Mengirim…</>:<>Kirim kesan<ArrowUpRight size={17}/></>}</button></fieldset>{sent&&<p className="rating-success" role="status"><Check size={18}/>Terima kasih, kesan kamu sudah diterima.</p>}{error&&<p className="rating-error" role="alert">{error}</p>}{!loading&&!snapshot.configured&&<button type="button" className="text-link" onClick={()=>void load()}>Muat ulang rating<ArrowUpRight size={15}/></button>}<p className="rating-public-note">Nama dan komentar tampil publik. Tidak perlu email atau akun.</p></form></div>
     {displayed.length>0&&<div className="review-carousel"><div className="review-navigation"><span>KESAN PENGUNJUNG / GESER UNTUK MEMBACA</span>{displayed.length>1&&<div><button aria-label={auto?'Jeda gerak komentar':'Aktifkan gerak komentar'} aria-pressed={!auto} onClick={()=>setAuto(v=>!v)}>{auto?<Pause size={16}/>:<Play size={16}/>}</button><button aria-label="Komentar sebelumnya" onClick={()=>move(-1)}><ArrowLeft size={18}/></button><button aria-label="Komentar berikutnya" onClick={()=>move(1)}><ArrowRight size={18}/></button></div>}</div><div className="visitor-notes" ref={rail} role="region" aria-label="Kesan pengunjung, geser horizontal" tabIndex={0} onKeyDown={e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();move(e.key==='ArrowLeft'?-1:1);}else hold();}}>{displayed.map(r=><article className="visitor-note" key={r.id}><div><strong>{r.name}</strong><span className="review-example" hidden={!r.demo}>Contoh</span>{!r.demo&&<time dateTime={r.createdAt}>{new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'short',year:'numeric',timeZone:'Asia/Jakarta'}).format(new Date(r.createdAt))}</time>}</div><div className="visitor-stars" aria-label={`${r.stars} dari 5 bintang`}>{[1,2,3,4,5].map(n=><Star key={n} filled={n<=r.stars}/>)}</div>{r.comment&&<p>{r.comment}</p>}
               {RATING_REPLIES && RATING_REPLIES[r.id] && (
-                <div className="owner-reply">
-                  <div className="owner-reply-header">
-                    <span className="owner-badge">👑 {RATING_REPLIES[r.id].author || 'R_HMT'}</span>
-                    {RATING_REPLIES[r.id].date && <small>{RATING_REPLIES[r.id].date}</small>}
+                <details className="owner-reply-details">
+                  <summary className="owner-reply-toggle">
+                    <span className="owner-toggle-label">💬 Tanggapan Owner</span>
+                    <span className="owner-toggle-icon">+</span>
+                  </summary>
+                  <div className="owner-reply-box">
+                    <div className="owner-reply-header">
+                      <span className="owner-badge">👑 {RATING_REPLIES[r.id].author || 'R_HMT'}</span>
+                      {RATING_REPLIES[r.id].date && <small>{RATING_REPLIES[r.id].date}</small>}
+                    </div>
+                    <p>{RATING_REPLIES[r.id].reply}</p>
                   </div>
-                  <p>{RATING_REPLIES[r.id].reply}</p>
-                </div>
+                </details>
               )}
             </article>)}</div></div>}
   </div></section>;
