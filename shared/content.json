@@ -795,6 +795,27 @@
       "banner": ""
     },
     {
+      "id": "tugasku-lite",
+      "name": "TugasKu Lite",
+      "category": "Productivity",
+      "url": "https://tugasku3-lite.netlify.app/",
+      "description": "Pengelola tugas sekolah dengan deadline, prioritas, filter status, jadwal pelajaran mingguan, catatan, dan pilihan tema. Data tersimpan di browser melalui localStorage.",
+      "problem": "Aplikasi pelacak tugas sering kali lamban dan memakan memori berlebih saat dibuka pada jaringan lambat atau terminal smartphone.",
+      "exploration": "Optimasi berat runtime browser sekecil mungkin dan penyimpanan tumpukan status lokal yang tangguh terhadap fluktuasi sinyal internet.",
+      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "ecosystem": [
+        "JavaScript",
+        "localStorage",
+        "Chart.js"
+      ],
+      "summary": "Tugas sekolah, jadwal pelajaran, dan catatan dengan penyimpanan lokal.",
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative",
+      "icon": "https://tugasku3-lite.netlify.app/my-icon.png",
+      "banner": ""
+    },
+    {
       "id": "tugasku-pro",
       "name": "TugasKu Pro",
       "category": "Productivity",
@@ -815,27 +836,6 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "",
-      "banner": ""
-    },
-    {
-      "id": "tugasku-lite",
-      "name": "TugasKu Lite",
-      "category": "Productivity",
-      "url": "https://tugasku3-lite.netlify.app/",
-      "description": "Pengelola tugas sekolah dengan deadline, prioritas, filter status, jadwal pelajaran mingguan, catatan, dan pilihan tema. Data tersimpan di browser melalui localStorage.",
-      "problem": "Aplikasi pelacak tugas sering kali lamban dan memakan memori berlebih saat dibuka pada jaringan lambat atau terminal smartphone.",
-      "exploration": "Optimasi berat runtime browser sekecil mungkin dan penyimpanan tumpukan status lokal yang tangguh terhadap fluktuasi sinyal internet.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
-      "ecosystem": [
-        "JavaScript",
-        "localStorage",
-        "Chart.js"
-      ],
-      "summary": "Tugas sekolah, jadwal pelajaran, dan catatan dengan penyimpanan lokal.",
-      "status": "ONLINE_UNVERIFIED",
-      "type": "work",
-      "visualType": "illustrative",
-      "icon": "https://tugasku3-lite.netlify.app/my-icon.png",
       "banner": ""
     },
     {
