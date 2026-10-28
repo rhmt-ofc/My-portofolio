@@ -6,7 +6,7 @@ const targets = [
   ['.technology-stack', 'stack'], ['.anime-gallery', 'gallery'],
   ['.video-banner', 'video'], ['.royal-scene', 'royal'],
   ['.lab-layout', 'relay'], ['.people-roster', 'people'],
-  ['.communities', 'community'], ['#ethos', 'ethos'],
+  ['.community-showcase-section', 'community'], ['#ethos', 'ethos'],
   ['.rating-layout', 'rating'], ['#contact', 'footer']
 ];
 const properties = ['--scene-progress','--scene-balance','--scene-spread','--scene-lift','--scene-drift','--scene-turn','--scene-yaw','--scene-fan','--scene-gap'];

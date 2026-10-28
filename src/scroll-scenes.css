@@ -51,9 +51,29 @@
 [data-scroll-scene=people] .person-row{--row-direction:1;transform:translateX(calc(var(--scene-drift) * var(--row-direction)));transition:transform .08s linear,background .25s}
 [data-scroll-scene=people] .person-row:nth-child(2n){--row-direction:-1}
 [data-scroll-scene=community]{perspective:1200px}
-[data-scroll-scene=community] .community{--community-depth:.25;transform:translateY(calc(var(--scene-lift) * var(--community-depth))) rotateX(calc(var(--scene-turn) * -.35));transform-origin:top;transition:transform .08s linear}
-[data-scroll-scene=community] .community:nth-child(2n){--community-depth:-.2}
-[data-scroll-scene=community] .community[open]{transform:none}
+[data-scroll-scene=community] .community-showcase-heading{transform:translateY(calc(var(--scene-lift) * -.22));transition:transform .08s linear}
+[data-scroll-scene=community] .community-flagship-card{--hover-lift:0px;transform:perspective(1200px) translateY(calc(var(--scene-lift) * .4 + var(--hover-lift))) rotateX(calc(var(--scene-turn) * -.42)) scale(calc(.985 + var(--scene-spread) * .018));transform-origin:center top;transition:transform .08s linear,border-color .3s,box-shadow .35s;will-change:transform}
+[data-scroll-scene=community] .community-flagship-card:hover{--hover-lift:-4px}
+[data-scroll-scene=community] .community-flagship-card::before{opacity:calc(.12 + var(--scene-spread) * .16);transform:scale(calc(.94 + var(--scene-spread) * .12));transition:transform .1s linear,opacity .1s linear}
+[data-scroll-scene=community] .flagship-avatar-wrap{transform:translate3d(0,calc(var(--scene-lift) * -.15),18px);transition:transform .08s linear}
+[data-scroll-scene=community] .community-sub-card{--hover-lift:0px;--sub-lift:.32;--sub-drift:1;--sub-turn:1;transform:perspective(1000px) translateY(calc(var(--scene-lift) * var(--sub-lift) + var(--hover-lift))) translateX(calc(var(--scene-drift) * var(--sub-drift) * .35)) rotateY(calc(var(--scene-turn) * var(--sub-drift) * .45)) rotateX(calc(var(--scene-turn) * -.2));transform-origin:center center;transition:transform .08s linear,border-color .3s,background-color .3s,box-shadow .35s;will-change:transform}
+[data-scroll-scene=community] .community-sub-card:hover{--hover-lift:-5px}
+[data-scroll-scene=community] .community-sub-card-featured{--sub-lift:.2;--sub-drift:0;transform:perspective(1000px) translateY(calc(var(--scene-lift) * var(--sub-lift) + var(--hover-lift))) scale(calc(.99 + var(--scene-spread) * .012))}
+[data-scroll-scene=community] .community-sub-card:nth-child(2n){--sub-lift:.42;--sub-drift:-1}
+[data-scroll-scene=community] .community-sub-card:nth-child(3n){--sub-lift:.28;--sub-drift:.8}
+[data-scroll-scene=community] .community-sub-card:nth-child(4n){--sub-lift:.46;--sub-drift:-.8}
+[data-scroll-scene=community] .sub-card-join svg:last-child{transform:translate(calc(var(--scene-spread) * 2px),calc(var(--scene-spread) * -2px));transition:transform .12s linear}
+@media(max-width:768px){
+  [data-scroll-scene=community]{perspective:850px}
+  [data-scroll-scene=community] .community-showcase-heading{transform:translateY(calc(var(--scene-lift) * -.3))}
+  [data-scroll-scene=community] .community-flagship-card{transform:perspective(850px) translateY(calc(var(--scene-lift) * 1.1 + var(--hover-lift))) rotateX(calc(var(--scene-turn) * -.85)) scale(calc(.985 + var(--scene-spread) * .02))}
+  [data-scroll-scene=community] .flagship-avatar-wrap{transform:translateY(calc(var(--scene-lift) * -.2))}
+  [data-scroll-scene=community] .community-sub-card{transform:perspective(850px) translateY(calc(var(--scene-lift) * var(--sub-lift) * 2.2 + var(--hover-lift))) rotateX(calc(var(--scene-turn) * var(--sub-turn) * .6)) scale(calc(.99 + var(--scene-spread) * .012))}
+  [data-scroll-scene=community] .community-sub-card-featured{--sub-lift:.55;--sub-turn:-.4;transform:perspective(850px) translateY(calc(var(--scene-lift) * .85 + var(--hover-lift))) scale(calc(.992 + var(--scene-spread) * .012))}
+  [data-scroll-scene=community] .community-sub-card:nth-child(2n){--sub-lift:.95;--sub-turn:.6}
+  [data-scroll-scene=community] .community-sub-card:nth-child(3n){--sub-lift:1.25;--sub-turn:-.6}
+  [data-scroll-scene=community] .community-sub-card:nth-child(4n){--sub-lift:1.5;--sub-turn:.5}
+}
 
 /* The two ethos lines travel in opposite directions; the closing panels settle into a flat reading pose. */
 .ethos-line{display:block}
@@ -102,6 +122,6 @@
   .work-actions .visit-button{width:100%}.work-modal .modal-content{padding:30px 23px}.work-modal h2{font-size:clamp(24px,6.5vw,32px);line-height:1.2}
 }
 @media(prefers-reduced-motion:reduce){
-  [data-scroll-scene],[data-scroll-scene] .about-grid>div,[data-scroll-scene] .about-copy>p,[data-scroll-scene] .journey-module,[data-scroll-scene] .tech-stage,[data-scroll-scene] .anime-card,[data-scroll-scene] figcaption,[data-scroll-scene] .royal-frame,[data-scroll-scene] .lab-intro,[data-scroll-scene] .chat-panel,[data-scroll-scene] .person-row,[data-scroll-scene] .community,[data-scroll-scene] .ethos-line,[data-scroll-scene] .ethos-bottom,[data-scroll-scene] .rating-intro,[data-scroll-scene] .rating-form,[data-scroll-scene] .footer-heading,[data-scroll-scene] .footer-socials>a,[data-scroll-scene] .contact-circle{transform:none!important}
+  [data-scroll-scene],[data-scroll-scene] .about-grid>div,[data-scroll-scene] .about-copy>p,[data-scroll-scene] .journey-module,[data-scroll-scene] .tech-stage,[data-scroll-scene] .anime-card,[data-scroll-scene] figcaption,[data-scroll-scene] .royal-frame,[data-scroll-scene] .lab-intro,[data-scroll-scene] .chat-panel,[data-scroll-scene] .person-row,[data-scroll-scene] .community-flagship-card,[data-scroll-scene] .community-sub-card,[data-scroll-scene] .community-showcase-heading,[data-scroll-scene] .ethos-line,[data-scroll-scene] .ethos-bottom,[data-scroll-scene] .rating-intro,[data-scroll-scene] .rating-form,[data-scroll-scene] .footer-heading,[data-scroll-scene] .footer-socials>a,[data-scroll-scene] .contact-circle{transform:none!important}
   .intro-panel{transform:translate(-50%,-50%) rotateZ(-5deg)!important}.intro-panel-two{transform:translate(-50%,-50%) translate(9px,-9px) rotateZ(-2deg)!important}.intro-panel-three{transform:translate(-50%,-50%) translate(18px,-18px) rotateZ(1deg)!important}.intro-orbit{transform:translate(-50%,-50%) rotate(-25deg)!important}
 }

@@ -564,17 +564,6 @@ html[data-motion=off] .work-visual-button{transform:none}
 /* ============================================================
    COMMUNITIES SHOWCASE (CLEAN EDITORIAL & LIVELY MOTION)
    ============================================================ */
-@keyframes flagship-aura {
-  0%, 100% {
-    opacity: 0.14;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.28;
-    transform: scale(1.08);
-  }
-}
-
 .community-showcase-section {
   margin-bottom: 50px;
 }
@@ -629,7 +618,9 @@ html[data-motion=off] .work-visual-button{transform:none}
   height: 320px;
   background: radial-gradient(circle, rgba(216, 187, 146, 0.22) 0%, transparent 70%);
   pointer-events: none;
-  animation: flagship-aura 8s ease-in-out infinite;
+  opacity: 0.16;
+  transform: scale(1);
+  will-change: transform, opacity;
 }
 
 .community-flagship-card:hover {
