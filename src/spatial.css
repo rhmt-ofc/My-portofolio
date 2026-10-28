@@ -84,3 +84,37 @@ html[data-motion=off] .hero-inventory>a:hover{transform:none}
     max-height: 42vh !important;
   }
 }
+
+/* Chapter 03 White Accent */
+#journey {
+  --blue: #ffffff;
+  --accent: #ffffff;
+}
+#journey .chapter > span:first-child,
+#journey .ch-trace-beam,
+#journey .ch-trace-node,
+#journey .bp-num,
+#journey .bp-beam,
+#journey .bp-pulse-dot {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: #ffffff !important;
+}
+#journey h2 em {
+  color: #ffffff !important;
+}
+#journey .journey-step[open] .phase-number,
+#journey .journey-step[open]:before {
+  color: #ffffff !important;
+  background: #ffffff !important;
+}
+#journey .phone-screen {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2) !important;
+}
+#journey .phone-terminal strong {
+  color: #ffffff !important;
+}
+#journey .journey-module.module-active {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.25) !important;
+}

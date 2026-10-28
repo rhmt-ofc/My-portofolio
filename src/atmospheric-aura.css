@@ -94,31 +94,31 @@ html[data-chapter="about"] .ambient-orb-2 {
   background: radial-gradient(circle, #64748b 0%, transparent 65%);
 }
 
-/* --- 03. JOURNEY (The Evolution / Retro Royal Blue / Oppo A3s) --- */
+/* --- 03. JOURNEY (The Evolution / Pure White Minimalist / Oppo A3s) --- */
 html[data-chapter="journey"] {
-  --chapter-accent: #2563eb;
-  --chapter-glow: rgba(37, 99, 235, 0.45);
+  --chapter-accent: #ffffff;
+  --chapter-glow: rgba(255, 255, 255, 0.35);
 }
 html[data-chapter="journey"] .ambient-orb-1 {
-  transform: translate(-70%, -20%) scale(1.2);
-  opacity: 0.14;
-  background: radial-gradient(circle, #2563eb 0%, rgba(29, 78, 216, 0.25) 45%, transparent 65%);
+  transform: translate(-70%, -20%) scale(1.15);
+  opacity: 0.10;
+  background: radial-gradient(circle, #ffffff 0%, rgba(226, 232, 240, 0.2) 45%, transparent 65%);
 }
 html[data-chapter="journey"] .ambient-orb-2 {
   transform: translate(-20%, -30%) scale(0.95);
-  opacity: 0.09;
-  background: radial-gradient(circle, #60a5fa 0%, transparent 65%);
+  opacity: 0.06;
+  background: radial-gradient(circle, #f8fafc 0%, transparent 65%);
 }
 html[data-chapter="journey"] .phone-screen {
-  box-shadow: 0 0 25px rgba(37, 99, 235, 0.2), inset 0 0 15px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06);
 }
 html[data-chapter="journey"] .phone-terminal strong {
-  color: #60a5fa;
-  text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 html[data-chapter="journey"] .journey-module.module-active {
-  border-color: #2563eb;
-  box-shadow: 0 0 16px rgba(37, 99, 235, 0.2);
+  border-color: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.2);
 }
 
 /* --- 04. ECOSYSTEM (Stack & Tools / High-Voltage Electric Cyan) --- */

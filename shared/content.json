@@ -665,7 +665,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://pixcraft-studio.vercel.app/favicon.svg",
-      "banner": "https://pixcraft-studio.vercel.app/og.png"
+      "banner": "/images/works/pixcraft-banner.webp"
     },
     {
       "id": "tierlist-maker",
