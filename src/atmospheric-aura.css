@@ -1,7 +1,7 @@
 /* ==========================================================================
    ATMOSPHERIC CHROMATIC WORLDS (Dynamic Chapter Lighting & Aesthetics)
    Transforms each chapter into a distinct visual realm.
-   Zero-reflow, 100% hardware-composited, 60-120 FPS.
+   Ultra lightweight & optimized for high refresh rates (60-120 FPS).
    ========================================================================== */
 
 /* --- Fixed Atmospheric Ambient Canvas --- */
@@ -11,36 +11,36 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  contain: strict;
 }
 
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 1.4s ease,
-              background 1.6s ease;
-  will-change: transform, opacity;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 1s ease;
+  will-change: transform;
 }
 
 .ambient-orb-1 {
-  width: 900px;
-  height: 900px;
+  width: 700px;
+  height: 700px;
   left: 50%;
   top: 35%;
   transform: translate(-50%, -50%) scale(1);
-  opacity: 0.12;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.45) 0%, rgba(212, 175, 55, 0) 70%);
+  opacity: 0.10;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 65%);
 }
 
 .ambient-orb-2 {
-  width: 750px;
-  height: 750px;
-  right: -100px;
+  width: 550px;
+  height: 550px;
+  right: -80px;
   top: 60%;
   transform: scale(0.9);
-  opacity: 0.08;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, rgba(99, 102, 241, 0) 70%);
+  opacity: 0.06;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, transparent 65%);
 }
 
 /* ==========================================================================
@@ -54,12 +54,12 @@ html[data-chapter="home"] {
 }
 html[data-chapter="home"] .ambient-orb-1 {
   transform: translate(-30%, -40%) scale(1.1);
-  opacity: 0.14;
-  background: radial-gradient(circle, #d4af37 0%, transparent 70%);
+  opacity: 0.12;
+  background: radial-gradient(circle, #d4af37 0%, transparent 65%);
 }
 html[data-chapter="home"] .ambient-orb-2 {
-  opacity: 0.06;
-  background: radial-gradient(circle, #e5c158 0%, transparent 70%);
+  opacity: 0.05;
+  background: radial-gradient(circle, #e5c158 0%, transparent 65%);
 }
 
 /* --- 01. ARCHIVE (Selected Works / Cyber Amber & Gold) --- */
@@ -68,14 +68,14 @@ html[data-chapter="archive"] {
   --chapter-glow: rgba(245, 158, 11, 0.4);
 }
 html[data-chapter="archive"] .ambient-orb-1 {
-  transform: translate(-50%, -30%) scale(1.2);
-  opacity: 0.15;
-  background: radial-gradient(circle, #f59e0b 0%, rgba(217, 119, 6, 0.2) 40%, transparent 70%);
+  transform: translate(-50%, -30%) scale(1.15);
+  opacity: 0.12;
+  background: radial-gradient(circle, #f59e0b 0%, rgba(217, 119, 6, 0.2) 40%, transparent 65%);
 }
 html[data-chapter="archive"] .ambient-orb-2 {
   transform: translate(10%, -20%) scale(0.9);
-  opacity: 0.09;
-  background: radial-gradient(circle, #fbbf24 0%, transparent 70%);
+  opacity: 0.07;
+  background: radial-gradient(circle, #fbbf24 0%, transparent 65%);
 }
 
 /* --- 02. ABOUT (Beyond the Code / Moonstone Titanium) --- */
@@ -85,41 +85,40 @@ html[data-chapter="about"] {
 }
 html[data-chapter="about"] .ambient-orb-1 {
   transform: translate(-65%, -45%) scale(1);
-  opacity: 0.12;
-  background: radial-gradient(circle, #cbd5e1 0%, rgba(148, 163, 184, 0.2) 45%, transparent 70%);
+  opacity: 0.10;
+  background: radial-gradient(circle, #cbd5e1 0%, rgba(148, 163, 184, 0.2) 45%, transparent 65%);
 }
 html[data-chapter="about"] .ambient-orb-2 {
-  transform: translate(-10%, 10%) scale(1.1);
-  opacity: 0.08;
-  background: radial-gradient(circle, #64748b 0%, transparent 70%);
+  transform: translate(-10%, 10%) scale(1.05);
+  opacity: 0.06;
+  background: radial-gradient(circle, #64748b 0%, transparent 65%);
 }
 
-/* --- 03. JOURNEY (The Evolution / Retro Matrix Emerald / Oppo A3s) --- */
+/* --- 03. JOURNEY (The Evolution / Retro Royal Blue / Oppo A3s) --- */
 html[data-chapter="journey"] {
   --chapter-accent: #2563eb;
   --chapter-glow: rgba(37, 99, 235, 0.45);
 }
 html[data-chapter="journey"] .ambient-orb-1 {
-  transform: translate(-70%, -20%) scale(1.3);
-  opacity: 0.18;
-  background: radial-gradient(circle, #2563eb 0%, rgba(29, 78, 216, 0.25) 45%, transparent 70%);
+  transform: translate(-70%, -20%) scale(1.2);
+  opacity: 0.14;
+  background: radial-gradient(circle, #2563eb 0%, rgba(29, 78, 216, 0.25) 45%, transparent 65%);
 }
 html[data-chapter="journey"] .ambient-orb-2 {
-  transform: translate(-20%, -30%) scale(1);
-  opacity: 0.12;
-  background: radial-gradient(circle, #60a5fa 0%, transparent 70%);
+  transform: translate(-20%, -30%) scale(0.95);
+  opacity: 0.09;
+  background: radial-gradient(circle, #60a5fa 0%, transparent 65%);
 }
-/* Oppo A3s phone terminal turns Emerald CRT */
 html[data-chapter="journey"] .phone-screen {
-  box-shadow: 0 0 35px rgba(37, 99, 235, 0.22), inset 0 0 20px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 25px rgba(37, 99, 235, 0.2), inset 0 0 15px rgba(37, 99, 235, 0.08);
 }
 html[data-chapter="journey"] .phone-terminal strong {
   color: #60a5fa;
-  text-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.4);
 }
 html[data-chapter="journey"] .journey-module.module-active {
   border-color: #2563eb;
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.2);
 }
 
 /* --- 04. ECOSYSTEM (Stack & Tools / High-Voltage Electric Cyan) --- */
@@ -128,17 +127,17 @@ html[data-chapter="ecosystem"] {
   --chapter-glow: rgba(6, 182, 212, 0.45);
 }
 html[data-chapter="ecosystem"] .ambient-orb-1 {
-  transform: translate(-30%, -40%) scale(1.25);
-  opacity: 0.17;
-  background: radial-gradient(circle, #06b6d4 0%, rgba(2, 132, 199, 0.25) 45%, transparent 70%);
+  transform: translate(-30%, -40%) scale(1.2);
+  opacity: 0.13;
+  background: radial-gradient(circle, #06b6d4 0%, rgba(2, 132, 199, 0.25) 45%, transparent 65%);
 }
 html[data-chapter="ecosystem"] .ambient-orb-2 {
-  transform: translate(-5%, -10%) scale(1.1);
-  opacity: 0.12;
-  background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+  transform: translate(-5%, -10%) scale(1.05);
+  opacity: 0.09;
+  background: radial-gradient(circle, #38bdf8 0%, transparent 65%);
 }
 html[data-chapter="ecosystem"] .tech-hub a {
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.25), inset 1px 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2), inset 1px 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* --- 05. UNIVERSE (My Waifu / Royal Amethyst & Cherry Blossom Rose) --- */
@@ -147,25 +146,24 @@ html[data-chapter="universe"] {
   --chapter-glow: rgba(192, 132, 252, 0.45);
 }
 html[data-chapter="universe"] .ambient-orb-1 {
-  transform: translate(-45%, -35%) scale(1.35);
-  opacity: 0.22;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.9) 0%, rgba(244, 63, 94, 0.3) 45%, transparent 70%);
+  transform: translate(-45%, -35%) scale(1.25);
+  opacity: 0.16;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, rgba(244, 63, 94, 0.25) 45%, transparent 65%);
 }
 html[data-chapter="universe"] .ambient-orb-2 {
-  transform: translate(-10%, -20%) scale(1.2);
-  opacity: 0.16;
-  background: radial-gradient(circle, rgba(236, 72, 153, 0.8) 0%, transparent 70%);
+  transform: translate(-10%, -20%) scale(1.1);
+  opacity: 0.12;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.7) 0%, transparent 65%);
 }
-/* Anime waifu cards get royal glow */
 html[data-chapter="universe"] .anime-card {
-  box-shadow: 0 12px 36px rgba(168, 85, 247, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 html[data-chapter="universe"] .anime-card:hover {
-  box-shadow: 0 16px 48px rgba(168, 85, 247, 0.32), 0 0 0 1px rgba(192, 132, 252, 0.5);
+  box-shadow: 0 14px 40px rgba(168, 85, 247, 0.25), 0 0 0 1px rgba(192, 132, 252, 0.5);
 }
 html[data-chapter="universe"] .royal-scene {
-  box-shadow: 0 20px 60px rgba(168, 85, 247, 0.16);
+  box-shadow: 0 15px 45px rgba(168, 85, 247, 0.14);
 }
 
 /* --- 06. LAB (AI Relay / Superconductor Teal) --- */
@@ -174,14 +172,14 @@ html[data-chapter="lab"] {
   --chapter-glow: rgba(20, 184, 166, 0.45);
 }
 html[data-chapter="lab"] .ambient-orb-1 {
-  transform: translate(-50%, -40%) scale(1.2);
-  opacity: 0.16;
-  background: radial-gradient(circle, #14b8a6 0%, rgba(13, 148, 136, 0.2) 45%, transparent 70%);
+  transform: translate(-50%, -40%) scale(1.15);
+  opacity: 0.12;
+  background: radial-gradient(circle, #14b8a6 0%, rgba(13, 148, 136, 0.2) 45%, transparent 65%);
 }
 html[data-chapter="lab"] .ambient-orb-2 {
-  transform: translate(-15%, -15%) scale(1);
-  opacity: 0.10;
-  background: radial-gradient(circle, #2dd4bf 0%, transparent 70%);
+  transform: translate(-15%, -15%) scale(0.95);
+  opacity: 0.08;
+  background: radial-gradient(circle, #2dd4bf 0%, transparent 65%);
 }
 
 /* --- 08. ETHOS (The Ethos / Twilight Amber & Gold Flare) --- */
@@ -190,9 +188,9 @@ html[data-chapter="ethos"] {
   --chapter-glow: rgba(251, 191, 36, 0.45);
 }
 html[data-chapter="ethos"] .ambient-orb-1 {
-  transform: translate(-50%, -40%) scale(1.3);
-  opacity: 0.18;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.8) 0%, rgba(239, 68, 68, 0.2) 50%, transparent 70%);
+  transform: translate(-50%, -40%) scale(1.2);
+  opacity: 0.14;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.7) 0%, rgba(239, 68, 68, 0.18) 50%, transparent 65%);
 }
 
 /* ==========================================================================
@@ -213,13 +211,20 @@ html[data-chapter="ethos"] .ambient-orb-1 {
   inset: 0;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 50%);
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
 .work-card:hover::after,
 .anime-card:hover::after {
   opacity: 1;
+}
+
+/* --- Offscreen Performance Optimization --- */
+main > section:not(:first-child),
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }
 
 /* --- Accessibility (prefers-reduced-motion) --- */
