@@ -7,18 +7,20 @@ import { useWorkShelf } from '../hooks/useWorkShelf';
 
 const categories = [{ id: 'all', name: 'Semua' }, { id: 'AI Tools', name: 'AI & eksplorasi' }, { id: 'Utilities', name: 'Tools' }, { id: 'Productivity', name: 'Produktivitas' }, { id: 'Archive Experiments', name: 'Eksperimen' }];
 
-export function WorkCover({ work, isModal = false }: { work: Project; isModal?: boolean }) {
+export function WorkCover({ work, isModal = false, onExpand }: { work: Project; isModal?: boolean; onExpand?: () => void }) {
   const [imgError, setImgError] = useState(false);
   const defaultSvg = `/components/works/${work.id}.svg`;
   const bannerSrc = (!imgError && work.banner) ? work.banner : defaultSvg;
   return (
     <div
-      className={`work-cover cover-${work.id} ${isModal ? 'work-modal-cover' : ''}`}
+      className={`work-cover cover-${work.id} ${isModal ? 'work-modal-cover work-expandable' : ''}`}
       data-spatial={isModal ? undefined : "project"}
       data-project={work.id}
       data-image={bannerSrc}
       role="img"
       aria-label={`Demo banner ${work.name}`}
+      onClick={isModal ? onExpand : undefined}
+      title={isModal ? "Klik/ketuk gambar untuk melihat ukuran penuh" : undefined}
     >
       <img
         className="spatial-fallback"
@@ -30,6 +32,7 @@ export function WorkCover({ work, isModal = false }: { work: Project; isModal?: 
           if (work.banner) setImgError(true);
         }}
       />
+      {isModal && <span className="image-expand-hint" aria-hidden="true">Ketuk untuk lihat penuh</span>}
     </div>
   );
 }
@@ -52,7 +55,7 @@ export function WorkFavicon({ url, icon, title }: { url?: string; icon?: string;
 export default function Archive() {
   const [filter, setFilter] = useState('all'); const [query, setQuery] = useState('');
   const { shelf, position, visiblePosition, move, moveBy, handlers } = useWorkShelf(`${filter}\u0000${query}`);
-  const [active, setActive] = useState<Project | null>(null);
+  const [active, setActive] = useState<Project | null>(null); const [fullImage, setFullImage] = useState<string | null>(null);
 
   useEffect(() => { const sync = () => { if (location.hash.startsWith('#work-')) setActive(PROJECTS.find(p => `#work-${p.id}` === location.hash) || null); else setActive(null); }; sync(); window.addEventListener('hashchange', sync); return () => window.removeEventListener('hashchange', sync); }, []);
 
@@ -89,7 +92,20 @@ export default function Archive() {
       {!selection.length && <div className="empty-state"><Search size={30}/><h3>Belum ketemu.</h3><p>Coba nama karya, teknologi, atau kata yang berbeda.</p><button className="text-link" onClick={() => setQuery('')}>Bersihkan pencarian</button></div>}
       {selection.length > 1 && <div className="shelf-track"><input type="range" min="0" max={selection.length - 1} value={cursor} aria-label="Pilih posisi pada rak karya" aria-valuetext={`Karya ${cursor + 1} dari ${selection.length}`} onChange={e => move(Number(e.target.value))}/></div>}
       <div className="archive-bottom"><span>Semua {PROJECTS.length} proyek tetap di arsip.</span><span className="micro-note">BUKA COVER / DESKRIPSI & STACK</span></div>
-      {active && <Modal label={active.name} onClose={close} className="work-modal"><WorkCover work={active} isModal={true}/><h2><WorkFavicon url={active.url} icon={active.icon} title={active.name}/><span>{active.name}</span></h2><p className="modal-summary">{active.description}</p><div className="work-stack"><strong>Stack:</strong><div className="tag-list">{active.ecosystem.map(t => <span key={t}>{t}</span>)}</div></div>{active.url && <div className="work-actions"><VisitButton href={active.url}/></div>}<p className="work-status">Status: {statusLabels[active.status]}</p></Modal>}
+      {active && <Modal label={active.name} onClose={close} className="work-modal">
+        <WorkCover work={active} isModal={true} onExpand={() => setFullImage(active.banner || `/components/works/${active.id}.svg`)}/>
+        <h2><WorkFavicon url={active.url} icon={active.icon} title={active.name}/><span>{active.name}</span></h2>
+        <p className="modal-summary">{active.description}</p>
+        <div className="work-stack"><strong>Stack:</strong><div className="tag-list">{active.ecosystem.map(t => <span key={t}>{t}</span>)}</div></div>
+        {active.url && <div className="work-actions"><VisitButton href={active.url}/></div>}
+        <p className="work-status">Status: {statusLabels[active.status]}</p>
+      </Modal>}
+      {fullImage && <dialog className="image-lightbox" open onClick={() => setFullImage(null)} aria-label="Tampilan penuh banner">
+        <div className="lightbox-wrap">
+          <img src={fullImage} alt="" />
+          <button type="button" className="icon-button lightbox-close" onClick={() => setFullImage(null)} aria-label="Tutup tampilan penuh"><X size={24}/></button>
+        </div>
+      </dialog>}
     </div>
   </section>;
 }

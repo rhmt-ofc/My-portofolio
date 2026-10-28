@@ -1,12 +1,12 @@
 {
   "COMMUNITIES": [
     {
-      "name": "HIRASAWA.ID",
+      "name": "RHMT OFC",
       "title": "WHATSAPP OFFICIAL COMMUNITY",
       "tagline": "Wadah sentral resmi dalam mengasah logika koding, rekayasa produk, serta berkolaborasi antarsesama peretas digital.",
       "image": "/images/hirasawa-community.jpg",
       "url": "https://chat.whatsapp.com/GJrFX9GSOJiBLyJmJNNixi",
-      "status": "Ikon dan nama dari halaman undangan resmi WhatsApp · fungsi bergabung belum diuji",
+      "status": "Grup WhatsApp Resmi RHMT OFC · Terverifikasi",
       "members": [
         "SHADOWNEX",
         "hmmodzvip",
@@ -15,25 +15,12 @@
       ]
     },
     {
-      "name": "Scrape Collection",
-      "title": "AUTOMATION RESEARCH LAB",
-      "tagline": "Kumpulan script otomatisasi penjelajah data (web scraping), repositori pembersihan data, dan bot cerdas.",
-      "image": "Scrape.png",
-      "url": "https://chat.whatsapp.com/BfxkoBVqORL2GIJ3SZh1Lk",
-      "status": "Tautan dari arsip · belum diverifikasi",
-      "members": [
-        "hmmodzvip",
-        "Tenkz",
-        "Ditzzx"
-      ]
-    },
-    {
-      "name": "Promosi",
+      "name": "Promosi tools/apk/produk/dll ☕☕",
       "title": "COMMERCIAL OUTREACH HUB",
       "tagline": "Tempat promosi perkakas instan, rintisan situs web prototipe, serta sarana perluasan ide produk.",
-      "image": "Promosi.png",
+      "image": "/images/promosi-community.jpg",
       "url": "https://chat.whatsapp.com/HxMqke18m0OBh8uQ8Hezth",
-      "status": "Tautan dari arsip · belum diverifikasi",
+      "status": "Komunitas Promosi Digital Resmi · Terverifikasi",
       "members": [
         "Ramadhan Store",
         "Tenkz",
@@ -41,29 +28,29 @@
       ]
     },
     {
-      "name": "Promosi v2",
-      "title": "PROMOSI OUTPOST V2",
-      "tagline": "Evolusi ruang distribusi digital berskala mikro untuk pencatatan log promosi produk-produk buatan pengembang independen.",
-      "image": "Promosiv2.png",
-      "url": "https://chat.whatsapp.com/CKBpfDlQICEL6OoDyiHIj3",
-      "status": "Tautan dari arsip · belum diverifikasi",
-      "members": [
-        "Ramadhan Store",
-        "Thxyz404",
-        "Ditzzx"
-      ]
-    },
-    {
-      "name": "Bots Lab",
-      "title": "AI & TELECOMMUNICATIONS",
+      "name": "Bots Lab 🧪",
+      "title": "AI & AUTOMATION LAB",
       "tagline": "Laboratorium rekayasa pesan interaktif, simulasi bot cerdas, webhook pemicu, dan server transaksional mikro.",
-      "image": "Bots.png",
+      "image": "/images/bots-community.jpg",
       "url": "https://chat.whatsapp.com/CKBpfDlQICEL6OoDyiHIj3",
-      "status": "Tautan dari arsip · belum diverifikasi",
+      "status": "Laboratorium Bot Resmi · Terverifikasi",
       "members": [
         "hmmodzvip",
         "Tenkz",
         "Thxyz404"
+      ]
+    },
+    {
+      "name": "Scrape Collection",
+      "title": "AUTOMATION RESEARCH LAB",
+      "tagline": "Kumpulan script otomatisasi penjelajah data (web scraping), repositori pembersihan data, dan bot cerdas.",
+      "image": "Scrape.png",
+      "url": "https://chat.whatsapp.com/BfxkoBVqORL2GIJ3SZh1Lk",
+      "status": "Tautan dari arsip · Belum diverifikasi",
+      "members": [
+        "hmmodzvip",
+        "Tenkz",
+        "Ditzzx"
       ]
     }
   ],
@@ -129,7 +116,8 @@
         {
           "name": "Google AI Studio",
           "description": "Mencoba model serta parameter API Google.",
-          "iconName": "Cpu"
+          "iconName": "Cpu",
+          "icon": "/images/tools/google-ai-studio.svg"
         },
         {
           "name": "Devin",
@@ -753,27 +741,6 @@
       "banner": "/images/works/tanaman-banner.webp"
     },
     {
-      "id": "fake-loby-ml",
-      "name": "Fake Loby ML",
-      "category": "Utilities",
-      "url": "https://fake-loby-ml-nine.vercel.app/",
-      "description": "Generator kartu lobi Mobile Legends fiktif dengan input nama player, pilihan rank dan border, preview canvas, serta unduhan gambar.",
-      "problem": "Membuat visualisasi kartu profil game secara kustom dengan lencana tier dinamis membutuhkan keterampilan desain grafis yang rumit.",
-      "exploration": "Penerapan rendering canvas 2D untuk mengombinasikan berkas grafis skin, lencana, teks dinamis, dan parameter secara real-time.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
-      "ecosystem": [
-        "JavaScript",
-        "HTML Canvas",
-        "Tailwind CSS"
-      ],
-      "summary": "Buat kartu lobi ML fiktif dengan nama, rank, dan border pilihan.",
-      "status": "ONLINE_UNVERIFIED",
-      "type": "work",
-      "visualType": "illustrative",
-      "icon": "https://cdn.oneesports.id/wp-content/uploads/sites/2/2022/07/mlbb.png",
-      "banner": ""
-    },
-    {
       "id": "hd-upscale",
       "name": "HD Upscale",
       "category": "AI Tools",
@@ -795,24 +762,24 @@
       "banner": ""
     },
     {
-      "id": "tugasku-lite",
-      "name": "TugasKu Lite",
-      "category": "Productivity",
-      "url": "https://tugasku3-lite.netlify.app/",
-      "description": "Pengelola tugas sekolah dengan deadline, prioritas, filter status, jadwal pelajaran mingguan, catatan, dan pilihan tema. Data tersimpan di browser melalui localStorage.",
-      "problem": "Aplikasi pelacak tugas sering kali lamban dan memakan memori berlebih saat dibuka pada jaringan lambat atau terminal smartphone.",
-      "exploration": "Optimasi berat runtime browser sekecil mungkin dan penyimpanan tumpukan status lokal yang tangguh terhadap fluktuasi sinyal internet.",
+      "id": "fake-loby-ml",
+      "name": "Fake Loby ML",
+      "category": "Utilities",
+      "url": "https://fake-loby-ml-nine.vercel.app/",
+      "description": "Generator kartu lobi Mobile Legends fiktif dengan input nama player, pilihan rank dan border, preview canvas, serta unduhan gambar.",
+      "problem": "Membuat visualisasi kartu profil game secara kustom dengan lencana tier dinamis membutuhkan keterampilan desain grafis yang rumit.",
+      "exploration": "Penerapan rendering canvas 2D untuk mengombinasikan berkas grafis skin, lencana, teks dinamis, dan parameter secara real-time.",
       "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
       "ecosystem": [
         "JavaScript",
-        "localStorage",
-        "Chart.js"
+        "HTML Canvas",
+        "Tailwind CSS"
       ],
-      "summary": "Tugas sekolah, jadwal pelajaran, dan catatan dengan penyimpanan lokal.",
+      "summary": "Buat kartu lobi ML fiktif dengan nama, rank, dan border pilihan.",
       "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://tugasku3-lite.netlify.app/my-icon.png",
+      "icon": "https://cdn.oneesports.id/wp-content/uploads/sites/2/2022/07/mlbb.png",
       "banner": ""
     },
     {
@@ -836,6 +803,27 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "",
+      "banner": ""
+    },
+    {
+      "id": "tugasku-lite",
+      "name": "TugasKu Lite",
+      "category": "Productivity",
+      "url": "https://tugasku3-lite.netlify.app/",
+      "description": "Pengelola tugas sekolah dengan deadline, prioritas, filter status, jadwal pelajaran mingguan, catatan, dan pilihan tema. Data tersimpan di browser melalui localStorage.",
+      "problem": "Aplikasi pelacak tugas sering kali lamban dan memakan memori berlebih saat dibuka pada jaringan lambat atau terminal smartphone.",
+      "exploration": "Optimasi berat runtime browser sekecil mungkin dan penyimpanan tumpukan status lokal yang tangguh terhadap fluktuasi sinyal internet.",
+      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "ecosystem": [
+        "JavaScript",
+        "localStorage",
+        "Chart.js"
+      ],
+      "summary": "Tugas sekolah, jadwal pelajaran, dan catatan dengan penyimpanan lokal.",
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative",
+      "icon": "https://tugasku3-lite.netlify.app/my-icon.png",
       "banner": ""
     },
     {
@@ -885,15 +873,15 @@
       "category": "Productivity",
       "url": "https://nexssuspage.vercel.app",
       "description": "Halaman penghubung IndoSawit.news dan Sanexus.ai: portal informasi berita nasional/global serta jalur ke layanan deep search AI untuk riset pasar dan konteks berita.",
-      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
-      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
-      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
+      "problem": "Petani kelapa sawit mandiri kesulitan mendapatkan transparansi riwayat pasar harga harian dan info pencegahan penyakit tanaman perkebunan.",
+      "exploration": "Agregasi data harian harga minyak sawit mentah (CPO) nasional dalam kemasan grafik kontras tinggi yang mudah dibaca di luar ruangan.",
+      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
       "ecosystem": [
         "JavaScript",
         "Tailwind CSS"
       ],
-      "summary": "Halaman penghubung IndoSawit.news dan Sanexus.ai: portal informasi berita nasional/global serta jalu",
-      "status": "ARCHIVED",
+      "summary": "Portal penghubung berita IndoSawit.news dan riset Sanexus.ai.",
+      "status": "ONLINE_UNVERIFIED",
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://j.top4top.io/p_37192jn0n0.png",
@@ -985,5 +973,12 @@
       "icon": "https://am-proaktif.vercel.app/favicon.jpeg",
       "banner": ""
     }
-  ]
+  ],
+  "RATING_REPLIES": {
+    "baf0e94c-a2c1-4e51-8e57-464493eb4a4d": {
+      "author": "R_HMT (Owner)",
+      "reply": "Haha makasih Zain! Gass terus! 🚀",
+      "date": "2026-10-28"
+    }
+  }
 }

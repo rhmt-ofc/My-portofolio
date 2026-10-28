@@ -118,3 +118,113 @@ html[data-motion=off] .hero-inventory>a:hover{transform:none}
   border-color: #ffffff !important;
   box-shadow: 0 0 16px rgba(255, 255, 255, 0.25) !important;
 }
+
+/* Lightbox Full Image Viewer on Tap */
+.work-modal-cover.work-expandable {
+  cursor: zoom-in !important;
+  position: relative !important;
+}
+
+.image-expand-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  color: #f8fafc;
+  font: 500 10px Space, sans-serif;
+  letter-spacing: 0.8px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.work-modal-cover:hover .image-expand-hint {
+  opacity: 1;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(8, 12, 20, 0.94);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: zoom-out;
+}
+
+.lightbox-wrap {
+  position: relative;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-wrap img {
+  max-width: 95vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 50% !important;
+}
+
+/* Owner Rating Reply Styling */
+.owner-reply {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: rgba(33, 102, 255, 0.07);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.owner-reply-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.owner-badge {
+  font: 600 10px Space, sans-serif;
+  letter-spacing: 0.8px;
+  color: var(--blue);
+  text-transform: uppercase;
+}
+
+.owner-reply-header small {
+  font-size: 8px;
+  color: #7a96ba;
+}
+
+.owner-reply p {
+  font-size: 11px !important;
+  color: #1e3a5f !important;
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}

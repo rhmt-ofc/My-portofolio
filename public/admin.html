@@ -941,7 +941,23 @@
       </div>
     </section>
 
-  </main>
+  
+      <!-- RATING REPLIES SECTION -->
+      <section class="card" style="margin-top: 24px;">
+        <h2>💬 Tanggapi Rating Pengunjung</h2>
+        <p style="font-size: 13px; color: var(--muted); margin-bottom: 16px;">
+          Berikan balasan langsung dari Owner untuk ulasan atau rating yang masuk di portofolio.
+        </p>
+
+        <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+          <button id="load-ratings-btn" class="btn btn-secondary">Muat Daftar Ulasan Terbaru</button>
+        </div>
+
+        <div id="ratings-list-container" style="display: flex; flex-direction: column; gap: 12px; max-height: 480px; overflow-y: auto; padding-right: 6px;">
+          <p style="font-size: 12px; color: var(--muted); font-style: italic;">Klik tombol di atas untuk melihat ulasan pengunjung...</p>
+        </div>
+      </section>
+    </main>
 
   <!-- TOAST NOTIFICATION -->
   <div id="toast">Notifikasi</div>
@@ -1586,5 +1602,85 @@
     // Start
     checkAuthAndLoad();
   </script>
+
+<script>
+  const loadRatingsBtn = document.getElementById('load-ratings-btn');
+  const ratingsContainer = document.getElementById('ratings-list-container');
+
+  if (loadRatingsBtn && ratingsContainer) {
+    loadRatingsBtn.addEventListener('click', async () => {
+      loadRatingsBtn.disabled = true;
+      loadRatingsBtn.textContent = 'Memuat ulasan...';
+      try {
+        const res = await fetch('/api/ratings?client=c5e5b3b1-7a6b-4f51-b883-9b24bb6b0df4');
+        const data = await res.json();
+        
+        // Also fetch current replies from content.json
+        const contentRes = await fetch('/shared/content.json');
+        const contentData = await contentRes.json();
+        const replies = contentData.RATING_REPLIES || {};
+
+        if (!data.reviews || data.reviews.length === 0) {
+          ratingsContainer.innerHTML = '<p style="font-size: 13px; color: var(--muted);">Belum ada ulasan yang masuk.</p>';
+          return;
+        }
+
+        ratingsContainer.innerHTML = data.reviews.map(r => {
+          const currentReply = replies[r.id] ? replies[r.id].reply : '';
+          return `
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: left;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong>${r.name}</strong>
+                <span style="color: #f59e0b; font-size: 12px;">${'★'.repeat(r.stars)}</span>
+              </div>
+              <p style="font-size: 12px; margin-bottom: 8px; color: var(--ink);">${r.comment || '<i style="color:var(--muted);">(Tanpa komentar)</i>'}</p>
+              
+              <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <input type="text" id="reply-input-${r.id}" placeholder="Tulis balasan owner..." value="${currentReply}" style="flex: 1; padding: 8px 12px; font-size: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface);" />
+                <button onclick="sendReply('${r.id}')" class="btn btn-primary" style="padding: 6px 14px; font-size: 12px;">Balas</button>
+              </div>
+              ${currentReply ? `<small style="color: #10b981; font-size: 10px; display: block; margin-top: 6px;">✓ Sudah dibalas: "${currentReply}"</small>` : ''}
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        ratingsContainer.innerHTML = `<p style="color: #ef4444; font-size: 12px;">Gagal memuat ulasan: ${err.message}</p>`;
+      } finally {
+        loadRatingsBtn.disabled = false;
+        loadRatingsBtn.textContent = 'Segarkan Daftar Ulasan';
+      }
+    });
+  }
+
+  async function sendReply(ratingId) {
+    const input = document.getElementById(`reply-input-${ratingId}`);
+    if (!input || !input.value.trim()) return alert('Isi teks balasan terlebih dahulu.');
+
+    const secretKey = localStorage.getItem('rhmt_admin_key') || prompt('Masukkan PIN / Secret Key Admin:');
+    if (!secretKey) return;
+
+    try {
+      const res = await fetch('/api/admin', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          secretKey,
+          action: 'reply_rating',
+          ratingId,
+          replyText: input.value.trim(),
+          author: 'R_HMT (Owner)'
+        })
+      });
+
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Gagal mengirim balasan');
+
+      alert('Berhasil! Balasan Tuan telah tersimpan dan terbit ke GitHub & website.');
+      if (loadRatingsBtn) loadRatingsBtn.click();
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  }
+</script>
 </body>
 </html>

@@ -436,6 +436,35 @@ export default async function handler(req, res) {
         }
       }
 
+      if (action === 'reply_rating') {
+        const { ratingId, replyText, author } = req.body;
+        if (!ratingId || !replyText || !replyText.trim()) {
+          return res.status(400).json({ error: 'ratingId dan replyText wajib diisi.' });
+        }
+
+        const { json: currentContent } = await fetchFromGitHub('shared/content.json');
+        if (!currentContent.RATING_REPLIES) currentContent.RATING_REPLIES = {};
+
+        currentContent.RATING_REPLIES[ratingId] = {
+          author: author && author.trim() ? author.trim() : 'R_HMT (Owner)',
+          reply: replyText.trim(),
+          date: new Date().toISOString().split('T')[0]
+        };
+
+        const commitResult = await commitToGitHub(
+          'shared/content.json',
+          currentContent,
+          `feat(ratings): add owner reply to review ${ratingId}`
+        );
+
+        return res.status(200).json({
+          success: true,
+          message: 'Tanggapan berhasil disimpan!',
+          replies: currentContent.RATING_REPLIES,
+          commit: commitResult.commit?.html_url || commitResult.commit?.sha
+        });
+      }
+
       if (action === 'update_profile') {
         if (!profileUpdate || typeof profileUpdate !== 'object') {
           return res.status(400).json({ error: 'Data profil tidak valid.' });

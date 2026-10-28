@@ -8,3 +8,4 @@ export const COMMUNITIES = data.COMMUNITIES as Community[];
 export { default as PROFILE } from '../shared/profile.json';
 export const asset = (name: string) => name ? `/images/${name.replace(/\.[^.]+$/, '')}.webp` : '';
 export const statusLabels: Record<string, string> = { LIVE_VERIFIED: 'Demo terverifikasi', ONLINE_UNVERIFIED: 'Tautan belum diverifikasi', ARCHIVED: 'Arsip', CONCEPT: 'Konsep', RECOVERED: 'Ditemukan kembali' };
+export const RATING_REPLIES = (data as Record<string, any>).RATING_REPLIES || {};
