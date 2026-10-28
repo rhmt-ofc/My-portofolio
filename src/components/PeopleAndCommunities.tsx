@@ -73,15 +73,15 @@ export default function PeopleAndCommunities() {
 
           {/* Sub Communities Grid */}
           <div className="community-grid">
-            {others.map(c => (
-              <div key={c.name} className="community-sub-card">
+            {others.map((c, idx) => (
+              <div key={c.name} className={`community-sub-card ${idx === 0 ? 'community-sub-card-featured' : ''}`}>
                 <div className="sub-card-header">
                   <div className="sub-card-avatar-wrap">
                     <SafeImage
                       src={c.image.startsWith('/') ? c.image : asset(c.image)}
                       alt={c.name}
-                      width={48}
-                      height={48}
+                      width={idx === 0 ? 54 : 48}
+                      height={idx === 0 ? 54 : 48}
                       className="sub-card-avatar"
                     />
                     <img className="community-wa-mark-small" src="/images/tools/whatsapp.svg" alt="WhatsApp" width="16" height="16" />
