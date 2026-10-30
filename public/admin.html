@@ -1636,8 +1636,9 @@
               <p style="font-size: 12px; margin-bottom: 8px; color: var(--ink);">${r.comment || '<i style="color:var(--muted);">(Tanpa komentar)</i>'}</p>
               
               <div style="display: flex; gap: 8px; margin-top: 10px;">
-                <input type="text" id="reply-input-${r.id}" placeholder="Tulis balasan owner..." value="${currentReply}" style="flex: 1; padding: 8px 12px; font-size: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface);" />
+                <input type="text" id="reply-input-${r.id}" placeholder="Tulis balasan owner..." value="${currentReply.replace(/"/g, '&quot;')}" style="flex: 1; padding: 8px 12px; font-size: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface);" />
                 <button onclick="sendReply('${r.id}')" class="btn btn-primary" style="padding: 6px 14px; font-size: 12px;">Balas</button>
+                <button onclick="deleteRating('${r.id}', '${r.name.replace(/'/g, "\\'")}')" class="btn btn-danger" style="padding: 6px 12px; font-size: 12px;">Hapus</button>
               </div>
               ${currentReply ? `<small style="color: #10b981; font-size: 10px; display: block; margin-top: 6px;">✓ Sudah dibalas: "${currentReply}"</small>` : ''}
             </div>
@@ -1656,15 +1657,10 @@
     const input = document.getElementById(`reply-input-${ratingId}`);
     if (!input || !input.value.trim()) return alert('Isi teks balasan terlebih dahulu.');
 
-    const secretKey = localStorage.getItem('rhmt_admin_key') || prompt('Masukkan PIN / Secret Key Admin:');
-    if (!secretKey) return;
-
     try {
-      const res = await fetch('/api/admin', {
+      await apiRequest('/api/admin', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          secretKey,
           action: 'reply_rating',
           ratingId,
           replyText: input.value.trim(),
@@ -1672,10 +1668,26 @@
         })
       });
 
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || 'Gagal mengirim balasan');
-
       alert('Berhasil! Balasan Tuan telah tersimpan dan terbit ke GitHub & website.');
+      if (loadRatingsBtn) loadRatingsBtn.click();
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
+  }
+
+  async function deleteRating(ratingId, name) {
+    if (!confirm(`Hapus komentar dari "${name}" secara permanen?`)) return;
+
+    try {
+      await apiRequest('/api/admin', {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'delete_rating',
+          ratingId
+        })
+      });
+
+      alert('Berhasil! Komentar telah dihapus.');
       if (loadRatingsBtn) loadRatingsBtn.click();
     } catch (err) {
       alert('Error: ' + err.message);

@@ -925,3 +925,337 @@ html[data-motion=off] .work-visual-button{transform:none}
     padding: 20px;
   }
 }
+
+/* ==========================================================================
+   ADMIN COMMENT ACTIONS (BALAS, EDIT, HAPUS LANGSUNG DARI CARD)
+   ========================================================================== */
+
+.visitor-note {
+  position: relative !important;
+}
+
+.review-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 9px Space, sans-serif;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  background: rgba(33, 102, 255, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(33, 102, 255, 0.3);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.admin-logout-btn {
+  background: none;
+  border: none;
+  color: var(--quiet);
+  cursor: pointer;
+  padding: 0;
+  font-size: 9px;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.admin-logout-btn:hover {
+  color: #ef4444;
+}
+
+.admin-login-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font: 500 9px Space, sans-serif;
+  letter-spacing: 0.6px;
+  color: var(--quiet);
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-login-trigger:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+  background: rgba(33, 102, 255, 0.05);
+}
+
+/* Card Admin Actions Bar */
+.vnote-admin-actions {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 10;
+}
+
+.vnote-admin-btn {
+  font: 600 9.5px Space, sans-serif;
+  letter-spacing: 0.4px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid rgba(33, 102, 255, 0.3);
+  background: rgba(33, 102, 255, 0.08);
+  color: var(--accent);
+  transition: all 0.18s ease;
+  line-height: 1.4;
+}
+
+.vnote-admin-btn:hover {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.vnote-admin-btn.delete {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+}
+
+.vnote-admin-btn.delete:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.vnote-admin-btn.active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* Inline Reply & Edit Box */
+.vnote-admin-box {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px dashed rgba(33, 102, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeIn 0.2s ease;
+}
+
+[data-theme="dark"] .vnote-admin-box {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: rgba(147, 197, 253, 0.3);
+}
+
+.vnote-box-title {
+  font: 600 10px Space, sans-serif;
+  letter-spacing: 0.6px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.vnote-textarea {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 11.5px;
+  padding: 8px 10px;
+  resize: vertical;
+  line-height: 1.5;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.vnote-textarea:focus {
+  border-color: var(--accent);
+}
+
+.vnote-input {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 11.5px;
+  padding: 6px 10px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.vnote-input:focus {
+  border-color: var(--accent);
+}
+
+.vnote-stars-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--quiet);
+}
+
+.vnote-stars-select select {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.vnote-box-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.vnote-btn-action {
+  font: 600 10px Space, sans-serif;
+  letter-spacing: 0.4px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vnote-btn-action.submit {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+}
+
+.vnote-btn-action.submit:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.vnote-btn-action.cancel {
+  background: transparent;
+  color: var(--quiet);
+  border: 1px solid var(--line);
+}
+
+.vnote-btn-action.cancel:hover {
+  color: var(--ink);
+}
+
+.vnote-btn-action:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Admin Login Modal */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 12, 20, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.admin-modal-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-modal-card h3 {
+  font-size: 18px;
+  margin: 0;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+
+.admin-modal-card p {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.admin-modal-error {
+  font-size: 11px;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.admin-modal-input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  padding: 10px 14px;
+  font-size: 13px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.admin-modal-input:focus {
+  border-color: var(--accent);
+}
+
+.admin-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+/* Toast message */
+.ratings-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: rgba(15, 23, 42, 0.95);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 18px;
+  border-radius: 8px;
+  font: 500 12px Space, sans-serif;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

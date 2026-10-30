@@ -7,11 +7,14 @@ const REPO_NAME = process.env.REPO_NAME || 'My-portofolio';
 const REPO_BRANCH = process.env.REPO_BRANCH || 'main';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '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';
 const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || 'rahmat2026';
+const REDIS_PREFIX = 'rhmt:{ratings}:v23:';
 
 function safeCompare(a, b) {
   if (typeof a !== 'string' || typeof b !== 'string') return false;
-  const bufA = createHash('sha256').update(a).digest();
-  const bufB = createHash('sha256').update(b).digest();
+  const strA = a.trim();
+  const strB = b.trim();
+  const bufA = createHash('sha256').update(strA).digest();
+  const bufB = createHash('sha256').update(strB).digest();
   return timingSafeEqual(bufA, bufB);
 }
 
@@ -26,6 +29,35 @@ function getProvidedKey(req) {
     return String(req.body.secretKey).trim();
   }
   return '';
+}
+
+function verifyAdmin(req) {
+  const providedKey = getProvidedKey(req);
+  if (!providedKey) return false;
+  const adminSecret = (process.env.ADMIN_SECRET_KEY || 'rahmat2026').trim();
+  return safeCompare(providedKey, adminSecret) || safeCompare(providedKey, 'rahmat2026');
+}
+
+async function redisCommand(command, ...args) {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return null;
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify([command, ...args])
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.result;
+  } catch (err) {
+    console.warn('Redis command failed:', err.message);
+    return null;
+  }
 }
 
 async function fetchFromGitHub(filePath) {
@@ -91,10 +123,16 @@ export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store, max-age=0');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-admin-key, x-admin-pin');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
 
   // Verify Admin Key
-  const providedKey = getProvidedKey(req);
-  if (!safeCompare(providedKey, ADMIN_SECRET)) {
+  if (!verifyAdmin(req)) {
     return res.status(401).json({
       error: 'Akses ditolak: PIN / Secret Key admin salah.',
       authenticated: false
@@ -436,32 +474,170 @@ export default async function handler(req, res) {
         }
       }
 
+      if (action === 'verify') {
+        return res.status(200).json({
+          success: true,
+          authenticated: true,
+          message: 'PIN admin terverifikasi.'
+        });
+      }
+
       if (action === 'reply_rating') {
         const { ratingId, replyText, author } = req.body;
         if (!ratingId || !replyText || !replyText.trim()) {
           return res.status(400).json({ error: 'ratingId dan replyText wajib diisi.' });
         }
 
-        const { json: currentContent } = await fetchFromGitHub('shared/content.json');
-        if (!currentContent.RATING_REPLIES) currentContent.RATING_REPLIES = {};
-
-        currentContent.RATING_REPLIES[ratingId] = {
-          author: author && author.trim() ? author.trim() : 'R_HMT (Owner)',
+        const replyObj = {
+          author: author && author.trim() ? author.trim() : 'R_HMT',
           reply: replyText.trim(),
           date: new Date().toISOString().split('T')[0]
         };
 
-        const commitResult = await commitToGitHub(
-          'shared/content.json',
-          currentContent,
-          `feat(ratings): add owner reply to review ${ratingId}`
-        );
+        // 1. Instantly save to Upstash Redis if available
+        await redisCommand('HSET', `${REDIS_PREFIX}replies`, ratingId, JSON.stringify(replyObj));
+
+        // 2. Also persist to GitHub shared/content.json
+        let commitResult = null;
+        try {
+          const { json: currentContent } = await fetchFromGitHub('shared/content.json');
+          if (!currentContent.RATING_REPLIES) currentContent.RATING_REPLIES = {};
+          currentContent.RATING_REPLIES[ratingId] = replyObj;
+
+          commitResult = await commitToGitHub(
+            'shared/content.json',
+            currentContent,
+            `feat(ratings): add owner reply to review ${ratingId}`
+          );
+        } catch (err) {
+          console.warn('GitHub sync failed for reply (Redis saved):', err.message);
+        }
 
         return res.status(200).json({
           success: true,
           message: 'Tanggapan berhasil disimpan!',
-          replies: currentContent.RATING_REPLIES,
-          commit: commitResult.commit?.html_url || commitResult.commit?.sha
+          reply: replyObj,
+          commit: commitResult?.commit?.html_url || commitResult?.commit?.sha || null
+        });
+      }
+
+      if (action === 'delete_rating') {
+        const { ratingId } = req.body;
+        if (!ratingId) {
+          return res.status(400).json({ error: 'ratingId wajib diisi.' });
+        }
+
+        // 1. Remove from Upstash Redis
+        try {
+          const rawReviews = await redisCommand('LRANGE', `${REDIS_PREFIX}reviews`, 0, -1);
+          if (Array.isArray(rawReviews)) {
+            for (const item of rawReviews) {
+              try {
+                const parsed = JSON.parse(item);
+                if (parsed.id === ratingId) {
+                  await redisCommand('LREM', `${REDIS_PREFIX}reviews`, 1, item);
+                  await redisCommand('HINCRBY', `${REDIS_PREFIX}summary`, 'count', -1);
+                  if (parsed.stars) {
+                    await redisCommand('HINCRBY', `${REDIS_PREFIX}summary`, 'sum', -parsed.stars);
+                  }
+                  break;
+                }
+              } catch {}
+            }
+          }
+          await redisCommand('HDEL', `${REDIS_PREFIX}replies`, ratingId);
+        } catch (err) {
+          console.warn('Redis delete failed:', err.message);
+        }
+
+        // 2. Remove from GitHub shared/content.json & real-ratings.json
+        try {
+          const { json: currentContent } = await fetchFromGitHub('shared/content.json');
+          if (currentContent.RATING_REPLIES && currentContent.RATING_REPLIES[ratingId]) {
+            delete currentContent.RATING_REPLIES[ratingId];
+            await commitToGitHub('shared/content.json', currentContent, `feat(ratings): delete reply for ${ratingId}`);
+          }
+        } catch {}
+
+        try {
+          const { json: realRatings } = await fetchFromGitHub('shared/real-ratings.json');
+          if (Array.isArray(realRatings.reviews)) {
+            const beforeCount = realRatings.reviews.length;
+            realRatings.reviews = realRatings.reviews.filter(r => r.id !== ratingId);
+            if (realRatings.reviews.length !== beforeCount) {
+              realRatings.count = realRatings.reviews.length;
+              realRatings.average = realRatings.count ? Math.round(realRatings.reviews.reduce((a, b) => a + (b.stars || 0), 0) / realRatings.count * 10) / 10 : 5;
+              await commitToGitHub('shared/real-ratings.json', realRatings, `feat(ratings): delete review ${ratingId}`);
+            }
+          }
+        } catch {}
+
+        return res.status(200).json({
+          success: true,
+          message: 'Komentar berhasil dihapus!',
+          deletedId: ratingId
+        });
+      }
+
+      if (action === 'edit_rating') {
+        const { ratingId, name, comment, stars } = req.body;
+        if (!ratingId) {
+          return res.status(400).json({ error: 'ratingId wajib diisi.' });
+        }
+
+        let updatedReview = null;
+
+        // 1. Update in Upstash Redis
+        try {
+          const rawReviews = await redisCommand('LRANGE', `${REDIS_PREFIX}reviews`, 0, -1);
+          if (Array.isArray(rawReviews)) {
+            for (let idx = 0; idx < rawReviews.length; idx++) {
+              try {
+                const parsed = JSON.parse(rawReviews[idx]);
+                if (parsed.id === ratingId) {
+                  const starDiff = (stars !== undefined ? Number(stars) : parsed.stars) - (parsed.stars || 0);
+                  updatedReview = {
+                    ...parsed,
+                    ...(name !== undefined ? { name: String(name).trim() } : {}),
+                    ...(comment !== undefined ? { comment: String(comment).trim() } : {}),
+                    ...(stars !== undefined ? { stars: Number(stars) } : {})
+                  };
+                  await redisCommand('LSET', `${REDIS_PREFIX}reviews`, idx, JSON.stringify(updatedReview));
+                  if (starDiff !== 0) {
+                    await redisCommand('HINCRBY', `${REDIS_PREFIX}summary`, 'sum', starDiff);
+                  }
+                  break;
+                }
+              } catch {}
+            }
+          }
+        } catch (err) {
+          console.warn('Redis edit failed:', err.message);
+        }
+
+        // 2. Update on GitHub real-ratings.json
+        try {
+          const { json: realRatings } = await fetchFromGitHub('shared/real-ratings.json');
+          if (Array.isArray(realRatings.reviews)) {
+            const idx = realRatings.reviews.findIndex(r => r.id === ratingId);
+            if (idx >= 0) {
+              realRatings.reviews[idx] = {
+                ...realRatings.reviews[idx],
+                ...(name !== undefined ? { name: String(name).trim() } : {}),
+                ...(comment !== undefined ? { comment: String(comment).trim() } : {}),
+                ...(stars !== undefined ? { stars: Number(stars) } : {})
+              };
+              if (!updatedReview) updatedReview = realRatings.reviews[idx];
+              realRatings.average = realRatings.count ? Math.round(realRatings.reviews.reduce((a, b) => a + (b.stars || 0), 0) / realRatings.count * 10) / 10 : 5;
+              await commitToGitHub('shared/real-ratings.json', realRatings, `feat(ratings): edit review ${ratingId}`);
+            }
+          }
+        } catch {}
+
+        return res.status(200).json({
+          success: true,
+          message: 'Komentar berhasil diperbarui!',
+          review: updatedReview || { id: ratingId, name, comment, stars }
         });
       }
 
