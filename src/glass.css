@@ -341,8 +341,8 @@ html[data-motion=off] .work-visual-button{transform:none}
 @keyframes tech-data{to{stroke-dashoffset:0}}@keyframes tech-breathe{0%,100%{opacity:.6}50%{opacity:1}}@keyframes tech-float{0%,100%{transform:translate(-50%,-50%) translateZ(28px)}50%{transform:translate(-50%,-54%) translateZ(35px)}}@keyframes tech-phase{0%,28%,100%{color:var(--ink)}34%,94%{color:var(--quiet)}}
 /* Reviews never become a vertical grid. Native touch scroll, no duplicate testimonials. */
 .review-carousel{margin-top:35px}.review-navigation{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.review-navigation>span{font:500 8px Space,sans-serif;letter-spacing:1px;color:var(--quiet)}.review-navigation>div{display:flex;gap:7px}.review-navigation button{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
-.visitor-notes{display:flex;flex-wrap:nowrap;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--quiet) transparent;padding:4px 0 16px;margin-top:0;align-items:stretch}
-.visitor-note{flex:0 0 340px;max-width:85%;min-height:145px}.visitor-note p{max-height:240px;overflow-y:auto}.visitor-note>div:first-child{flex-wrap:wrap}.visitor-stars{flex-shrink:0}
+.visitor-notes{display:flex;flex-wrap:nowrap;gap:18px;overflow-x:auto;overscroll-behavior-x:contain;scroll-behavior:auto;scrollbar-width:thin;scrollbar-color:var(--quiet) transparent;padding:4px 0 16px;margin-top:0;align-items:flex-start}
+.visitor-note{flex:0 0 340px;max-width:85%;min-height:unset;height:fit-content;align-self:flex-start;box-sizing:border-box}.visitor-note p{max-height:240px;overflow-y:auto;word-break:break-word;overflow-wrap:anywhere}.visitor-note>div:first-child{flex-wrap:wrap}.visitor-stars{flex-shrink:0}
 [data-paused=true] .tech-assembly *,[data-motion=off] .tech-assembly *{animation-play-state:paused!important}
 @media(max-width:600px){.tech-tile{padding:7px;gap:4px;border-radius:8px}.tech-tile>span{font-size:8px}.tech-tile>small{font-size:4px}.tech-hub strong{font-size:10px}.tech-hub a>span{font-size:4px;letter-spacing:.5px}.tech-pipeline>span{font-size:6px;letter-spacing:.5px}.tech-stack-footer>span{font-size:6px}.tech-description{min-height:104px}.review-navigation>span{font-size:6px;letter-spacing:.5px;max-width:45%}.visitor-notes{gap:14px}.visitor-note{flex-basis:85%;max-width:85%}.photo-choices button{min-height:40px;font-size:7px;padding-inline:6px}.portrait-caption strong{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.opening-sequence>.hero{position:relative!important;top:auto!important}.hero-grid{transform:none!important}.hero:before{opacity:0!important}.tech-assembly{transform:none!important}.tech-trace-signal{stroke-dasharray:none;opacity:.3}.tech-tile{animation:none!important}}
@@ -932,16 +932,20 @@ html[data-motion=off] .work-visual-button{transform:none}
   display: flex !important;
   flex-direction: column !important;
   justify-content: flex-start !important;
+  height: fit-content !important;
+  align-self: flex-start !important;
+  min-height: unset !important;
 }
 
 /* Bottom Text Actions on Comment Cards */
 .vnote-bottom-actions {
-  margin-top: auto;
-  padding-top: 10px;
+  margin-top: 10px;
+  padding-top: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 10.5px;
+  border-top: 1px dashed var(--line);
 }
 
 .vnote-text-action {

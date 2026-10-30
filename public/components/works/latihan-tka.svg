@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 500">
+  <defs>
+    <linearGradient id="tka-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080c14"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,230,0,0.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="820" height="500" fill="url(#tka-bg)"/>
+  <rect width="820" height="500" fill="url(#grid)"/>
+  
+  <!-- Cyber-brutalist cards -->
+  <g transform="translate(180, 70)">
+    <!-- Shadow -->
+    <rect x="8" y="8" width="460" height="280" fill="#000" stroke="#000" stroke-width="3"/>
+    <!-- Main Window -->
+    <rect x="0" y="0" width="460" height="280" fill="#0c111d" stroke="#ffe600" stroke-width="3"/>
+    <!-- Header bar -->
+    <rect x="0" y="0" width="460" height="42" fill="#ffe600"/>
+    <text x="18" y="27" fill="#000" font-family="'Courier New', monospace" font-size="14" font-weight="900" letter-spacing="1">CBT_SIMULATION // ANTI-CHEAT ACTIVE</text>
+    <circle cx="430" cy="21" r="6" fill="#ff0055"/>
+    <circle cx="410" cy="21" r="6" fill="#000"/>
+    
+    <!-- Code / Exam stimulus mockup -->
+    <rect x="24" y="66" width="412" height="60" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+    <rect x="40" y="82" width="220" height="10" fill="#00ffcc"/>
+    <rect x="40" y="100" width="340" height="8" fill="rgba(255,255,255,0.4)"/>
+    
+    <!-- Options buttons -->
+    <rect x="24" y="146" width="196" height="42" fill="#141c2e" stroke="#2563eb" stroke-width="2"/>
+    <text x="40" y="172" fill="#fff" font-family="monospace" font-size="12" font-weight="bold">[A] Pilihan Logika 1</text>
+    
+    <rect x="240" y="146" width="196" height="42" fill="#ffe600" stroke="#000" stroke-width="2"/>
+    <text x="256" y="172" fill="#000" font-family="monospace" font-size="12" font-weight="bold">[B] Jawaban Terverifikasi ✓</text>
+    
+    <rect x="24" y="202" width="196" height="42" fill="#141c2e" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+    <text x="40" y="228" fill="#94a3b8" font-family="monospace" font-size="12">[C] Wacana Analitis</text>
+    
+    <rect x="240" y="202" width="196" height="42" fill="#141c2e" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+    <text x="256" y="228" fill="#94a3b8" font-family="monospace" font-size="12">[D] Kalkulasi Numerik</text>
+  </g>
+  
+  <!-- Floating brutal badge -->
+  <g transform="translate(620, 240)">
+    <rect x="6" y="6" width="140" height="90" fill="#000"/>
+    <rect x="0" y="0" width="140" height="90" fill="#ff0055" stroke="#fff" stroke-width="3"/>
+    <text x="18" y="36" fill="#fff" font-family="sans-serif" font-size="11" font-weight="900" letter-spacing="1">14 MODUL</text>
+    <text x="18" y="58" fill="#fff" font-family="sans-serif" font-size="16" font-weight="900">PDF ASLI</text>
+    <text x="18" y="76" fill="#ffe600" font-family="monospace" font-size="9" font-weight="bold">REF 2025</text>
+  </g>
+  
+  <!-- Bottom info -->
+  <text x="35" y="44" fill="#00ffcc" font-family="'Courier New', monospace" font-size="13" font-weight="bold" letter-spacing="2">R_HMT OFC &times; HMMODZ</text>
+  <text x="35" y="445" fill="#ffffff" font-family="sans-serif" font-size="32" font-weight="900" letter-spacing="-0.5">Latihan TKA SMA</text>
+  <text x="35" y="475" fill="#ffe600" font-family="'Courier New', monospace" font-size="12" font-weight="bold" letter-spacing="1.5">SIMULASI CBT // FORMULA LAB // BANK SOAL TKA</text>
+</svg>
