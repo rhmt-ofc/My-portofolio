@@ -439,9 +439,8 @@ html[data-motion=off] .work-visual-button{transform:none}
    OWNER RATING REPLY (ANIMATED & CRISP)
    ============================================================ */
 .owner-reply-wrapper {
-  margin-top: 10px;
-  border-top: 1px solid var(--line);
-  padding-top: 8px;
+  margin-top: 8px;
+  padding-top: 4px;
 }
 
 .owner-reply-toggle {
@@ -510,14 +509,13 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 .owner-reply-box {
-  padding: 9px 13px;
-  background: var(--surface-2);
-  border-left: 2px solid var(--accent);
-  border-radius: 4px;
+  padding: 8px 10px;
+  background: rgba(33, 102, 255, 0.04);
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -927,143 +925,69 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 /* ==========================================================================
-   ADMIN COMMENT ACTIONS (BALAS, EDIT, HAPUS LANGSUNG DARI CARD)
+   MINIMALIST OWNER RATING ACTIONS (NON-INTRUSIVE & TEXT-ONLY)
    ========================================================================== */
 
 .visitor-note {
-  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
 }
 
-.review-nav-left {
+/* Bottom Text Actions on Comment Cards */
+.vnote-bottom-actions {
+  margin-top: auto;
+  padding-top: 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 10.5px;
 }
 
-.admin-mode-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font: 600 9px Space, sans-serif;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  background: rgba(33, 102, 255, 0.12);
-  color: var(--accent);
-  border: 1px solid rgba(33, 102, 255, 0.3);
-  padding: 3px 8px;
-  border-radius: 999px;
-}
-
-.admin-logout-btn {
+.vnote-text-action {
   background: none;
   border: none;
-  color: var(--quiet);
-  cursor: pointer;
   padding: 0;
-  font-size: 9px;
-  text-decoration: underline;
-  transition: color 0.2s ease;
-}
-
-.admin-logout-btn:hover {
-  color: #ef4444;
-}
-
-.admin-login-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font: 500 9px Space, sans-serif;
-  letter-spacing: 0.6px;
-  color: var(--quiet);
-  background: transparent;
-  border: 1px solid var(--line);
-  padding: 3px 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.admin-login-trigger:hover {
-  color: var(--ink);
-  border-color: var(--accent);
-  background: rgba(33, 102, 255, 0.05);
-}
-
-/* Card Admin Actions Bar */
-.vnote-admin-actions {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  z-index: 10;
-}
-
-.vnote-admin-btn {
-  font: 600 9.5px Space, sans-serif;
+  font: 500 10px Space, sans-serif;
   letter-spacing: 0.4px;
-  padding: 2px 7px;
-  border-radius: 4px;
+  color: var(--quiet);
   cursor: pointer;
-  border: 1px solid rgba(33, 102, 255, 0.3);
-  background: rgba(33, 102, 255, 0.08);
-  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(148, 163, 184, 0.35);
   transition: all 0.18s ease;
-  line-height: 1.4;
 }
 
-.vnote-admin-btn:hover {
-  background: var(--accent);
-  color: #ffffff;
-  border-color: var(--accent);
+.vnote-text-action:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
 }
 
-.vnote-admin-btn.delete {
-  border-color: rgba(239, 68, 68, 0.3);
-  background: rgba(239, 68, 68, 0.08);
+.vnote-text-action.danger {
+  color: #94a3b8;
+}
+
+.vnote-text-action.danger:hover {
   color: #ef4444;
+  text-decoration-color: #ef4444;
 }
 
-.vnote-admin-btn.delete:hover {
-  background: #ef4444;
-  color: #ffffff;
-  border-color: #ef4444;
+.vnote-sep {
+  font-size: 9px;
+  color: var(--line);
+  user-select: none;
 }
 
-.vnote-admin-btn.active {
-  background: var(--accent);
-  color: #ffffff;
-}
-
-/* Inline Reply & Edit Box */
-.vnote-admin-box {
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: rgba(15, 23, 42, 0.04);
-  border: 1px dashed rgba(33, 102, 255, 0.35);
+/* Minimalist Inline Reply Field */
+.vnote-inline-reply {
+  margin-top: 8px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   animation: fadeIn 0.2s ease;
 }
 
-[data-theme="dark"] .vnote-admin-box {
-  background: rgba(30, 41, 59, 0.5);
-  border-color: rgba(147, 197, 253, 0.3);
-}
-
-.vnote-box-title {
-  font: 600 10px Space, sans-serif;
-  letter-spacing: 0.6px;
-  color: var(--accent);
-  text-transform: uppercase;
-}
-
-.vnote-textarea {
+.vnote-reply-textarea {
   width: 100%;
   border-radius: 6px;
   border: 1px solid var(--line);
@@ -1071,98 +995,88 @@ html[data-motion=off] .work-visual-button{transform:none}
   color: var(--ink);
   font: inherit;
   font-size: 11.5px;
-  padding: 8px 10px;
+  padding: 7px 10px;
   resize: vertical;
   line-height: 1.5;
   outline: none;
   box-sizing: border-box;
 }
 
-.vnote-textarea:focus {
+.vnote-reply-textarea:focus {
   border-color: var(--accent);
 }
 
-.vnote-input {
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--ink);
-  font: inherit;
-  font-size: 11.5px;
-  padding: 6px 10px;
-  outline: none;
-  box-sizing: border-box;
-}
-
-.vnote-input:focus {
-  border-color: var(--accent);
-}
-
-.vnote-stars-select {
+.vnote-reply-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: var(--quiet);
-}
-
-.vnote-stars-select select {
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  color: var(--ink);
-}
-
-.vnote-box-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  gap: 12px;
   justify-content: flex-end;
-  margin-top: 4px;
+  font-size: 10px;
 }
 
-.vnote-btn-action {
-  font: 600 10px Space, sans-serif;
-  letter-spacing: 0.4px;
-  padding: 5px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+/* Bottom Footer Owner Auth (Discreet & Non-Intrusive) */
+.rating-footer-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-.vnote-btn-action.submit {
-  background: var(--accent);
-  color: #fff;
-  border: 1px solid var(--accent);
+.rating-footer-note .rating-public-note {
+  margin: 0;
 }
 
-.vnote-btn-action.submit:hover:not(:disabled) {
-  filter: brightness(1.1);
-}
-
-.vnote-btn-action.cancel {
-  background: transparent;
+.owner-auth-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: 500 10px Space, sans-serif;
+  letter-spacing: 0.5px;
   color: var(--quiet);
-  border: 1px solid var(--line);
+  opacity: 0.4;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease, color 0.2s ease;
 }
 
-.vnote-btn-action.cancel:hover {
-  color: var(--ink);
+.owner-auth-link:hover {
+  opacity: 1;
+  color: var(--accent);
 }
 
-.vnote-btn-action:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.owner-auth-status {
+  font: 500 10px Space, sans-serif;
+  letter-spacing: 0.4px;
+  color: var(--quiet);
+  opacity: 0.7;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Admin Login Modal */
+.owner-auth-logout {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 10px;
+  color: var(--quiet);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.owner-auth-logout:hover {
+  color: #ef4444;
+}
+
+/* Admin Login Modal (Minimalist) */
 .admin-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(8, 12, 20, 0.7);
+  background: rgba(8, 12, 20, 0.75);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -1174,29 +1088,29 @@ html[data-motion=off] .work-visual-button{transform:none}
 
 .admin-modal-card {
   width: 100%;
-  max-width: 380px;
+  max-width: 340px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 24px;
+  padding: 22px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .admin-modal-card h3 {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
   color: var(--ink);
   letter-spacing: -0.3px;
 }
 
 .admin-modal-card p {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--muted);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .admin-modal-error {
@@ -1214,8 +1128,8 @@ html[data-motion=off] .work-visual-button{transform:none}
   border: 1px solid var(--line);
   background: var(--bg);
   color: var(--ink);
-  padding: 10px 14px;
-  font-size: 13px;
+  padding: 9px 12px;
+  font-size: 12.5px;
   box-sizing: border-box;
   outline: none;
 }
@@ -1228,7 +1142,7 @@ html[data-motion=off] .work-visual-button{transform:none}
   display: flex;
   gap: 10px;
   justify-content: flex-end;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 /* Toast message */

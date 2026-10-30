@@ -579,6 +579,35 @@ export default async function handler(req, res) {
         });
       }
 
+      if (action === 'delete_reply') {
+        const { ratingId } = req.body;
+        if (!ratingId) {
+          return res.status(400).json({ error: 'ratingId wajib diisi.' });
+        }
+
+        // 1. Remove from Upstash Redis
+        try {
+          await redisCommand('HDEL', `${REDIS_PREFIX}replies`, ratingId);
+        } catch (err) {
+          console.warn('Redis delete reply failed:', err.message);
+        }
+
+        // 2. Remove from GitHub shared/content.json
+        try {
+          const { json: currentContent } = await fetchFromGitHub('shared/content.json');
+          if (currentContent.RATING_REPLIES && currentContent.RATING_REPLIES[ratingId]) {
+            delete currentContent.RATING_REPLIES[ratingId];
+            await commitToGitHub('shared/content.json', currentContent, `feat(ratings): delete owner reply for ${ratingId}`);
+          }
+        } catch {}
+
+        return res.status(200).json({
+          success: true,
+          message: 'Tanggapan berhasil dihapus!',
+          deletedReplyId: ratingId
+        });
+      }
+
       if (action === 'edit_rating') {
         const { ratingId, name, comment, stars } = req.body;
         if (!ratingId) {

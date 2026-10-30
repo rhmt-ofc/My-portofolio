@@ -247,14 +247,13 @@ html[data-motion=off] .hero-inventory>a:hover{transform:none}
 }
 
 .owner-reply-box {
-  margin-top: 4px;
-  padding: 10px 12px;
-  background: rgba(33, 102, 255, 0.06);
-  border-left: 3px solid var(--blue);
-  border-radius: 0 8px 8px 0;
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: rgba(33, 102, 255, 0.04);
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   animation: fadeInReply 0.2s ease-out;
 }
 
