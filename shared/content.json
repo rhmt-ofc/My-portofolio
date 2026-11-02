@@ -116,6 +116,10 @@
           "name": "Zhipu AI",
           "description": "Eksplorasi model bahasa dan pemrosesan teks.",
           "iconName": "Sparkles"
+        },
+        {
+          "name": "Clawd",
+          "description": "Asisten AI Claude dari Anthropic untuk analisis kode mendalam, arsitektur sistem, dan reasoning tingkat lanjut."
         }
       ]
     },
@@ -152,6 +156,14 @@
           "name": "Devin",
           "description": "Eksplorasi alur kerja agen pemrograman.",
           "iconName": "Binary"
+        },
+        {
+          "name": "Antigravity",
+          "description": "Agen AI otonom dari Google DeepMind untuk kolaborasi rekayasa perangkat lunak dan pemrograman tingkat lanjut."
+        },
+        {
+          "name": "OpenCode",
+          "description": "Agen coding AI open-source berbasis terminal untuk otomatisasi eksekusi kode dan alur kerja."
         }
       ]
     },
@@ -177,6 +189,10 @@
           "name": "Vercel",
           "description": "Deployment website dari repository Git.",
           "iconName": "Vercel"
+        },
+        {
+          "name": "9router",
+          "description": "Universal LLM router dan gateway API berkecepatan tinggi untuk orkestrasi multi-model AI."
         }
       ]
     },

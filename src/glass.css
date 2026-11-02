@@ -109,13 +109,21 @@ button,a,input,textarea,summary{outline-offset:5px}:focus-visible{outline:2px so
 .orbit-experience{min-width:0;max-width:540px;width:100%;margin-inline:auto}
 .tool-universe{position:relative;width:calc(100% - 18px);margin-inline:auto;aspect-ratio:1;touch-action:pan-y;user-select:none;cursor:grab;isolation:isolate}
 .orbit-dragging{cursor:grabbing}.orbit-rails{position:absolute;inset:0;width:100%;height:100%;color:var(--accent);overflow:visible;pointer-events:none}
-.orbit-rail{fill:none;stroke-width:1.6}.orbit-rail-shadow{fill:none;stroke:var(--line);stroke-width:6}.orbit-runner{stroke:var(--accent);stroke-width:2}
+.orbit-rail{fill:none;stroke-width:1.6;filter:drop-shadow(0 0 2px rgba(0,240,255,0.25))}
+.orbit-rail-shadow{fill:none;stroke:var(--line);stroke-width:6}
+.orbit-rail-laser{fill:none;stroke-width:2.2;stroke-dasharray:180 820;animation:laserOrbitLoop 10s linear infinite;filter:drop-shadow(0 0 6px #00f0ff)}
+@keyframes laserOrbitLoop{from{stroke-dashoffset:1000}to{stroke-dashoffset:0}}
+.orbit-runner{stroke:#00f0ff;stroke-width:2;filter:drop-shadow(0 0 6px #00f0ff)}
+.orbit-runner-aura{pointer-events:none;filter:drop-shadow(0 0 10px rgba(0,240,255,0.6));animation:pulseAura 3s ease-in-out infinite alternate}
+@keyframes pulseAura{0%{opacity:0.6}100%{opacity:0.95}}
+.orbit-core-nebula{position:absolute;inset:-18px;border-radius:50%;background:radial-gradient(circle,rgba(0,240,255,0.22) 0%,rgba(59,130,246,0.12) 45%,transparent 70%);pointer-events:none;animation:nebulaBreath 4s ease-in-out infinite alternate}
+@keyframes nebulaBreath{0%{transform:scale(0.95);opacity:0.5}100%{transform:scale(1.08);opacity:0.9}}
 .orbit-core{position:absolute;left:50%;top:50%;width:27%;aspect-ratio:1;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:4;border-radius:50%;background:var(--tile);box-shadow:0 10px 32px var(--shadow),inset 0 0 0 1px var(--line-strong);pointer-events:none}
 .orbit-core .identity-mark{width:calc(100% - 16px);height:calc(100% - 16px);border:2px solid var(--accent);box-shadow:0 0 0 3px var(--surface),0 0 0 4px var(--line-strong)}
 .orbit-core-rim{position:absolute;inset:-10px;border-radius:50%;border:1px solid var(--line-strong);border-top-color:var(--accent);transform:rotate(-40deg)}
 .orbit-core>span{position:absolute;top:calc(100% + 18px);font:600 10px Space,sans-serif;letter-spacing:2px;white-space:nowrap;background:var(--bg);padding:2px 7px}
 .orbit-core>small{display:none}
-.orbit-node{position:absolute;display:grid;place-items:center;width:11.5%;aspect-ratio:1;min-height:0;padding:8px;border:1px solid var(--line-strong);border-radius:7px;background:var(--tile);box-shadow:inset 1px 1px 0 #fff3,3px 6px 12px var(--shadow);transform:translate(-50%,-50%) scale(var(--node-scale,.94));touch-action:pan-y}
+.orbit-node{position:absolute;display:grid;place-items:center;width:11%;aspect-ratio:1;min-height:0;padding:7px;border:1px solid var(--line-strong);border-radius:7px;background:var(--tile);box-shadow:inset 1px 1px 0 #fff3,0 0 8px rgba(0,240,255,0.12),3px 6px 12px var(--shadow);transform:translate(-50%,-50%) scale(var(--node-scale,.94));touch-action:pan-y;transition:border-color .2s,box-shadow .2s}
 .orbit-node:after{content:'';position:absolute;inset:3px;border:1px solid var(--line);border-radius:4px;pointer-events:none}
 .tool-universe[data-moving=true] .orbit-node,.orbit-dragging .orbit-node{will-change:transform}
 .brand-tool-icon{width:28px;height:28px;object-fit:contain}
@@ -299,7 +307,7 @@ html[data-motion=off] .work-visual-button{transform:none}
 .portrait-backplate .portrait-window{height:calc(100% - 41px)}.portrait-backplate>.glass-corner{display:none}
 .portrait-original img{position:absolute;width:282%;height:auto;max-width:none;left:-176%;top:-28%;object-fit:initial}
 .portrait-art img{position:absolute;inset:0;width:100%;height:100%;max-width:100%;object-fit:cover;object-position:center}
-.portrait-art img[src$=".svg"]{object-fit:contain;background:#edf2f7}
+.portrait-art img[src$=".svg"]{object-fit:cover;background:#080d1a}
 .portrait-backplate img{opacity:.38}.stack-open .portrait-backplate img{opacity:.88}
 .portrait-sheet[data-slot="0"] .portrait-window{animation:stack-arrive .55s cubic-bezier(.2,.8,.2,1)}
 .stack-controls{flex-direction:column;align-items:center;gap:7px;bottom:-9px;z-index:10}
