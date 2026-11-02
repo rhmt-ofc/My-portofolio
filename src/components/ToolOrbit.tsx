@@ -17,12 +17,13 @@ export default function ToolOrbit({paused=false,compact=false,selected=null,onSe
     const buttons=Array.from(el.querySelectorAll<HTMLElement>('.orbit-node'));
     buttons.forEach(button=>{button.style.left='50%';button.style.top='50%';});
     const runners=Array.from(el.querySelectorAll<SVGCircleElement>('.orbit-runner'));
+    const auras=Array.from(el.querySelectorAll<SVGCircleElement>('.orbit-runner-aura'));
     let visible=false,last=0,drawAt=0;
     const media=matchMedia('(prefers-reduced-motion: reduce)');
     const draw=()=>{
       const points=orbitLayout(time.current,rotation.current),width=el.clientWidth,height=el.clientHeight;
       points.forEach((point,i)=>{const button=buttons[i];if(!button)return;button.style.transform=`translate3d(${(point.x-.5)*width}px,${(point.y-.5)*height}px,0) translate(-50%,-50%) scale(${.91+point.z*.07})`;button.style.zIndex=String(5+Math.round((point.z+1)*2));});
-      ORBIT_LANES.forEach((lane,i)=>{const point=orbitPoint(lane,time.current*lane.speed+rotation.current+lane.phase+(lane.count?Math.PI/lane.count:.7));if(runners[i]){runners[i].setAttribute('cx',String(point.x*1000));runners[i].setAttribute('cy',String(point.y*1000));}});
+      ORBIT_LANES.forEach((lane,i)=>{const point=orbitPoint(lane,time.current*lane.speed+rotation.current+lane.phase+(lane.count?Math.PI/lane.count:.7));if(runners[i]){runners[i].setAttribute('cx',String(point.x*1000));runners[i].setAttribute('cy',String(point.y*1000));}if(auras[i]){auras[i].setAttribute('cx',String(point.x*1000));auras[i].setAttribute('cy',String(point.y*1000));}});
     };
     const canMove=()=>shouldAnimateOrbit({visible,hidden:document.hidden,paused:paused||localPause||document.documentElement.dataset.motion==='off',reduced:media.matches,selected:!!current,interacting:!!gesture.current,blocked:document.documentElement.hasAttribute('data-intro')||document.documentElement.hasAttribute('data-panel-open')||document.documentElement.dataset.heroCovered==='true'});
     const tick=(now:number)=>{frame.current=0;if(!canMove())return;if(!drawAt||now-drawAt>=32){const dt=last?Math.min(.08,(now-last)/1000):0;last=now;drawAt=now;const next=advanceOrbit({time:time.current,rotation:rotation.current,momentum:momentum.current},dt);time.current=next.time;rotation.current=next.rotation;momentum.current=next.momentum;draw();}frame.current=requestAnimationFrame(tick);};
@@ -43,8 +44,49 @@ export default function ToolOrbit({paused=false,compact=false,selected=null,onSe
       onPointerUp={e=>release(e)} onPointerCancel={e=>release(e,true)} onLostPointerCapture={e=>release(e)}
       onClickCapture={e=>{if(suppress.current&&e.detail>0){e.preventDefault();e.stopPropagation();suppress.current=false;}}}
       onKeyDown={e=>{if(e.key==='Escape'){setFocus(null);if(selected)onSelect?.(selected,nodes.find(n=>n.name===selected)?.category||0);}}}>
-      <svg className="orbit-rails" viewBox="0 0 1000 1000" aria-hidden="true"><defs><linearGradient id={compact?'orbit-silver-hero':'orbit-silver-tools'} x1="0" y1="0" x2="1" y2="1"><stop stopColor="currentColor" stopOpacity=".12"/><stop offset=".45" stopColor="currentColor" stopOpacity=".8"/><stop offset=".7" stopColor="currentColor" stopOpacity=".25"/><stop offset="1" stopColor="currentColor" stopOpacity=".65"/></linearGradient><radialGradient id={compact?'orbit-ball-hero':'orbit-ball-tools'} cx=".3" cy=".25" r=".8"><stop stopColor="#fff"/><stop offset=".25" stopColor="#d8e2f1"/><stop offset=".55" stopColor="#7185a1"/><stop offset=".85" stopColor="#202c40"/><stop offset="1" stopColor="#c8d1e2"/></radialGradient></defs>{ORBIT_LANES.map((lane,i)=><g key={i}><path d={orbitPath(lane)} className="orbit-rail-shadow"/><path d={orbitPath(lane)} stroke={`url(#${compact?'orbit-silver-hero':'orbit-silver-tools'})`} className="orbit-rail"/><circle className="orbit-runner" fill={`url(#${compact?'orbit-ball-hero':'orbit-ball-tools'})`} cx="500" cy="500" r={i===1?13:9}/></g>)}</svg>
-      <div className="orbit-core"><div className="orbit-core-rim"/><Mark/><span>R_HMT</span><small>19 TOOLS / STILL EXPLORING</small></div>
+      <svg className="orbit-rails" viewBox="0 0 1000 1000" aria-hidden="true">
+        <defs>
+          <linearGradient id={compact?'orbit-silver-hero':'orbit-silver-tools'} x1="0" y1="0" x2="1" y2="1">
+            <stop stopColor="currentColor" stopOpacity=".12"/>
+            <stop offset=".45" stopColor="currentColor" stopOpacity=".8"/>
+            <stop offset=".7" stopColor="currentColor" stopOpacity=".25"/>
+            <stop offset="1" stopColor="currentColor" stopOpacity=".65"/>
+          </linearGradient>
+          <linearGradient id="orbit-laser-stream" x1="0" y1="0" x2="1" y2="1">
+            <stop stopColor="#00f0ff" stopOpacity=".95"/>
+            <stop offset=".4" stopColor="#3b82f6" stopOpacity=".7"/>
+            <stop offset=".8" stopColor="#8b5cf6" stopOpacity=".2"/>
+            <stop offset="1" stopColor="#000" stopOpacity="0"/>
+          </linearGradient>
+          <radialGradient id="runner-glow" cx=".5" cy=".5" r=".5">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity=".95"/>
+            <stop offset="30%" stopColor="#00f0ff" stopOpacity=".8"/>
+            <stop offset="70%" stopColor="#3b82f6" stopOpacity=".25"/>
+            <stop offset="100%" stopColor="#000" stopOpacity="0"/>
+          </radialGradient>
+          <radialGradient id="runner-electron" cx=".38" cy=".32" r=".7">
+            <stop offset="0%" stopColor="#ffffff"/>
+            <stop offset="40%" stopColor="#a5f3fc"/>
+            <stop offset="80%" stopColor="#00f0ff"/>
+            <stop offset="100%" stopColor="#0284c7"/>
+          </radialGradient>
+          <radialGradient id={compact?'orbit-ball-hero':'orbit-ball-tools'} cx=".3" cy=".25" r=".8">
+            <stop stopColor="#fff"/>
+            <stop offset=".25" stopColor="#d8e2f1"/>
+            <stop offset=".55" stopColor="#7185a1"/>
+            <stop offset=".85" stopColor="#202c40"/>
+            <stop offset="1" stopColor="#c8d1e2"/>
+          </radialGradient>
+        </defs>
+        {ORBIT_LANES.map((lane,i)=><g key={i}>
+          <path d={orbitPath(lane)} className="orbit-rail-shadow"/>
+          <path d={orbitPath(lane)} stroke={`url(#${compact?'orbit-silver-hero':'orbit-silver-tools'})`} className="orbit-rail"/>
+          {i===2 && <path d={orbitPath(lane)} stroke="url(#orbit-laser-stream)" className="orbit-rail-laser"/>}
+          <circle className="orbit-runner-aura" fill="url(#runner-glow)" cx="500" cy="500" r={i===2?28:0} opacity={i===2?0.85:0}/>
+          <circle className="orbit-runner" fill={i===2?'url(#runner-electron)':`url(#${compact?'orbit-ball-hero':'orbit-ball-tools'})`} cx="500" cy="500" r={i===2?9:(i===1?11:7)}/>
+        </g>)}
+      </svg>
+      <div className="orbit-core"><div className="orbit-core-nebula" aria-hidden="true"/><div className="orbit-core-rim"/><Mark/><span>R_HMT</span><small>{nodes.length} TOOLS / STILL EXPLORING</small></div>
       {nodes.map((node,i)=><button className={`orbit-node ${current===node.name?'orbit-node-selected':''}`} style={{left:`${initial[i].x*100}%`,top:`${initial[i].y*100}%`}} key={node.name} aria-label={`Jelajahi ${node.name}`} aria-pressed={current===node.name}
         onClick={()=>{momentum.current=0;if(onSelect)onSelect(node.name,node.category);else setFocus(value=>value===node.name?null:node.name);}}><ToolIcon name={node.name}/><span className="orbit-tooltip">{node.name}</span></button>)}
     </div>
