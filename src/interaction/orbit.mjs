@@ -1,8 +1,9 @@
-/** Two well-spaced moving lanes plus one empty silver accent rail. */
+/** Two well-spaced moving lanes plus two symmetrical crossed silver accent rails (Dual Cross Atom). */
 export const ORBIT_LANES = [
   { count: 9, rx: .275, ry: .26, speed: .09, phase: .2, tilt: -.2 },
   { count: 14, rx: .495, ry: .475, speed: -.042, phase: .7, tilt: .18 },
   { count: 0, rx: .415, ry: .235, speed: .067, phase: .35, tilt: -.38 },
+  { count: 0, rx: .415, ry: .235, speed: -.067, phase: .85, tilt: .38 },
 ];
 export function orbitPoint(lane, angle) {
   const x = Math.cos(angle) * lane.rx, y = Math.sin(angle) * lane.ry;

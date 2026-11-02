@@ -48,27 +48,21 @@ export default function ToolOrbit({paused=false,compact=false,selected=null,onSe
         <defs>
           <linearGradient id={compact?'orbit-silver-hero':'orbit-silver-tools'} x1="0" y1="0" x2="1" y2="1">
             <stop stopColor="currentColor" stopOpacity=".12"/>
-            <stop offset=".45" stopColor="currentColor" stopOpacity=".8"/>
+            <stop offset=".45" stopColor="currentColor" stopOpacity=".85"/>
             <stop offset=".7" stopColor="currentColor" stopOpacity=".25"/>
-            <stop offset="1" stopColor="currentColor" stopOpacity=".65"/>
+            <stop offset="1" stopColor="currentColor" stopOpacity=".7"/>
           </linearGradient>
-          <linearGradient id="orbit-laser-stream" x1="0" y1="0" x2="1" y2="1">
-            <stop stopColor="#00f0ff" stopOpacity=".95"/>
-            <stop offset=".4" stopColor="#3b82f6" stopOpacity=".7"/>
-            <stop offset=".8" stopColor="#8b5cf6" stopOpacity=".2"/>
-            <stop offset="1" stopColor="#000" stopOpacity="0"/>
-          </linearGradient>
-          <radialGradient id="runner-glow" cx=".5" cy=".5" r=".5">
+          <radialGradient id="runner-glow-silver" cx=".5" cy=".5" r=".5">
             <stop offset="0%" stopColor="#ffffff" stopOpacity=".95"/>
-            <stop offset="30%" stopColor="#00f0ff" stopOpacity=".8"/>
-            <stop offset="70%" stopColor="#3b82f6" stopOpacity=".25"/>
+            <stop offset="35%" stopColor="#e2e8f0" stopOpacity=".6"/>
+            <stop offset="70%" stopColor="#94a3b8" stopOpacity=".2"/>
             <stop offset="100%" stopColor="#000" stopOpacity="0"/>
           </radialGradient>
-          <radialGradient id="runner-electron" cx=".38" cy=".32" r=".7">
+          <radialGradient id="runner-electron-silver" cx=".38" cy=".32" r=".7">
             <stop offset="0%" stopColor="#ffffff"/>
-            <stop offset="40%" stopColor="#a5f3fc"/>
-            <stop offset="80%" stopColor="#00f0ff"/>
-            <stop offset="100%" stopColor="#0284c7"/>
+            <stop offset="45%" stopColor="#f8fafc"/>
+            <stop offset="85%" stopColor="#cbd5e1"/>
+            <stop offset="100%" stopColor="#64748b"/>
           </radialGradient>
           <radialGradient id={compact?'orbit-ball-hero':'orbit-ball-tools'} cx=".3" cy=".25" r=".8">
             <stop stopColor="#fff"/>
@@ -81,12 +75,11 @@ export default function ToolOrbit({paused=false,compact=false,selected=null,onSe
         {ORBIT_LANES.map((lane,i)=><g key={i}>
           <path d={orbitPath(lane)} className="orbit-rail-shadow"/>
           <path d={orbitPath(lane)} stroke={`url(#${compact?'orbit-silver-hero':'orbit-silver-tools'})`} className="orbit-rail"/>
-          {i===2 && <path d={orbitPath(lane)} stroke="url(#orbit-laser-stream)" className="orbit-rail-laser"/>}
-          <circle className="orbit-runner-aura" fill="url(#runner-glow)" cx="500" cy="500" r={i===2?28:0} opacity={i===2?0.85:0}/>
-          <circle className="orbit-runner" fill={i===2?'url(#runner-electron)':`url(#${compact?'orbit-ball-hero':'orbit-ball-tools'})`} cx="500" cy="500" r={i===2?9:(i===1?11:7)}/>
+          <circle className="orbit-runner-aura" fill="url(#runner-glow-silver)" cx="500" cy="500" r={i>=2?22:0} opacity={i>=2?0.75:0}/>
+          <circle className="orbit-runner" fill={i>=2?'url(#runner-electron-silver)':`url(#${compact?'orbit-ball-hero':'orbit-ball-tools'})`} cx="500" cy="500" r={i>=2?9:(i===1?11:8)}/>
         </g>)}
       </svg>
-      <div className="orbit-core"><div className="orbit-core-nebula" aria-hidden="true"/><div className="orbit-core-rim"/><Mark/><span>R_HMT</span><small>{nodes.length} TOOLS / STILL EXPLORING</small></div>
+      <div className="orbit-core"><div className="orbit-core-rim"/><Mark/><span>R_HMT</span><small>{nodes.length} TOOLS / STILL EXPLORING</small></div>
       {nodes.map((node,i)=><button className={`orbit-node ${current===node.name?'orbit-node-selected':''}`} style={{left:`${initial[i].x*100}%`,top:`${initial[i].y*100}%`}} key={node.name} aria-label={`Jelajahi ${node.name}`} aria-pressed={current===node.name}
         onClick={()=>{momentum.current=0;if(onSelect)onSelect(node.name,node.category);else setFocus(value=>value===node.name?null:node.name);}}><ToolIcon name={node.name}/><span className="orbit-tooltip">{node.name}</span></button>)}
     </div>
