@@ -5,6 +5,24 @@ import ToolIcon from './ToolIcon';
 import { Mark } from './Primitives';
 import { ORBIT_LANES, orbitLayout, orbitPath, orbitPoint, advanceOrbit, shouldAnimateOrbit } from '../interaction/orbit.mjs';
 const nodes = ECOSYSTEM.flatMap((group, category) => group.items.map(tool => ({...tool,category})));
+const STARS = [
+  { x: 130, y: 220, r: 1.2, o: 0.35 },
+  { x: 260, y: 140, r: 1.0, o: 0.25 },
+  { x: 770, y: 160, r: 1.4, o: 0.4 },
+  { x: 880, y: 280, r: 0.9, o: 0.3 },
+  { x: 920, y: 490, r: 1.3, o: 0.35 },
+  { x: 850, y: 720, r: 1.1, o: 0.25 },
+  { x: 750, y: 880, r: 1.5, o: 0.4 },
+  { x: 500, y: 940, r: 1.0, o: 0.3 },
+  { x: 240, y: 860, r: 1.3, o: 0.35 },
+  { x: 100, y: 740, r: 0.9, o: 0.25 },
+  { x: 80, y: 480, r: 1.2, o: 0.3 },
+  { x: 170, y: 340, r: 1.0, o: 0.25 },
+  { x: 670, y: 230, r: 0.8, o: 0.2 },
+  { x: 340, y: 770, r: 1.1, o: 0.3 },
+  { x: 640, y: 820, r: 0.9, o: 0.25 },
+  { x: 430, y: 110, r: 1.2, o: 0.35 },
+];
 type Props = { paused?: boolean; compact?: boolean; selected?: string | null; onSelect?: (name:string,group:number)=>void };
 type Gesture = { id:number; x:number; y:number; rotation:number; moved:boolean; at:number };
 export default function ToolOrbit({paused=false,compact=false,selected=null,onSelect}:Props) {
@@ -18,12 +36,27 @@ export default function ToolOrbit({paused=false,compact=false,selected=null,onSe
     buttons.forEach(button=>{button.style.left='50%';button.style.top='50%';});
     const runners=Array.from(el.querySelectorAll<SVGCircleElement>('.orbit-runner'));
     const auras=Array.from(el.querySelectorAll<SVGCircleElement>('.orbit-runner-aura'));
+    const trails=Array.from(el.querySelectorAll<SVGCircleElement>('.orbit-trail'));
     let visible=false,last=0,drawAt=0;
     const media=matchMedia('(prefers-reduced-motion: reduce)');
     const draw=()=>{
       const points=orbitLayout(time.current,rotation.current),width=el.clientWidth,height=el.clientHeight;
       points.forEach((point,i)=>{const button=buttons[i];if(!button)return;button.style.transform=`translate3d(${(point.x-.5)*width}px,${(point.y-.5)*height}px,0) translate(-50%,-50%) scale(${.91+point.z*.07})`;button.style.zIndex=String(5+Math.round((point.z+1)*2));});
-      ORBIT_LANES.forEach((lane,i)=>{const point=orbitPoint(lane,time.current*lane.speed+rotation.current+lane.phase+(lane.count?Math.PI/lane.count:.7));if(runners[i]){runners[i].setAttribute('cx',String(point.x*1000));runners[i].setAttribute('cy',String(point.y*1000));}if(auras[i]){auras[i].setAttribute('cx',String(point.x*1000));auras[i].setAttribute('cy',String(point.y*1000));}});
+      ORBIT_LANES.forEach((lane,i)=>{
+        const baseAngle=time.current*lane.speed+rotation.current+lane.phase+(lane.count?Math.PI/lane.count:.7);
+        const point=orbitPoint(lane,baseAngle);
+        if(runners[i]){runners[i].setAttribute('cx',String(point.x*1000));runners[i].setAttribute('cy',String(point.y*1000));}
+        if(auras[i]){auras[i].setAttribute('cx',String(point.x*1000));auras[i].setAttribute('cy',String(point.y*1000));}
+        if(i>=2){
+          const offset=(i-2)*3;
+          [1,2,3].forEach((t,idx)=>{
+            const trailAngle=baseAngle-t*0.09*Math.sign(lane.speed||1);
+            const tp=orbitPoint(lane,trailAngle);
+            const tr=trails[offset+idx];
+            if(tr){tr.setAttribute('cx',String(tp.x*1000));tr.setAttribute('cy',String(tp.y*1000));}
+          });
+        }
+      });
     };
     const canMove=()=>shouldAnimateOrbit({visible,hidden:document.hidden,paused:paused||localPause||document.documentElement.dataset.motion==='off',reduced:media.matches,selected:!!current,interacting:!!gesture.current,blocked:document.documentElement.hasAttribute('data-intro')||document.documentElement.hasAttribute('data-panel-open')||document.documentElement.dataset.heroCovered==='true'});
     const tick=(now:number)=>{frame.current=0;if(!canMove())return;if(!drawAt||now-drawAt>=32){const dt=last?Math.min(.08,(now-last)/1000):0;last=now;drawAt=now;const next=advanceOrbit({time:time.current,rotation:rotation.current,momentum:momentum.current},dt);time.current=next.time;rotation.current=next.rotation;momentum.current=next.momentum;draw();}frame.current=requestAnimationFrame(tick);};
@@ -72,14 +105,18 @@ export default function ToolOrbit({paused=false,compact=false,selected=null,onSe
             <stop offset="1" stopColor="#c8d1e2"/>
           </radialGradient>
         </defs>
+        <g className="orbit-stars">
+          {STARS.map((s,idx)=><circle key={idx} cx={s.x} cy={s.y} r={s.r} fill="#e2e8f0" opacity={s.o} className="orbit-star"/>)}
+        </g>
         {ORBIT_LANES.map((lane,i)=><g key={i}>
           <path d={orbitPath(lane)} className="orbit-rail-shadow"/>
-          <path d={orbitPath(lane)} stroke={`url(#${compact?'orbit-silver-hero':'orbit-silver-tools'})`} className="orbit-rail"/>
-          <circle className="orbit-runner-aura" fill="url(#runner-glow-silver)" cx="500" cy="500" r={i>=2?22:0} opacity={i>=2?0.75:0}/>
+          <path d={orbitPath(lane)} stroke={`url(#${compact?'orbit-silver-hero':'orbit-silver-tools'})`} className={`orbit-rail ${i>=2?'orbit-rail-accent':''}`}/>
+          <circle className="orbit-runner-aura" fill="url(#runner-glow-silver)" cx="500" cy="500" r={i>=2?24:0} opacity={i>=2?0.8:0}/>
+          {i>=2 && [1,2,3].map(t=><circle key={t} className="orbit-trail" fill="url(#runner-glow-silver)" cx="500" cy="500" r={8-t*1.8} opacity={0.65-t*0.18}/>)}
           <circle className="orbit-runner" fill={i>=2?'url(#runner-electron-silver)':`url(#${compact?'orbit-ball-hero':'orbit-ball-tools'})`} cx="500" cy="500" r={i>=2?9:(i===1?11:8)}/>
         </g>)}
       </svg>
-      <div className="orbit-core"><div className="orbit-core-rim"/><Mark/><span>R_HMT</span><small>{nodes.length} TOOLS / STILL EXPLORING</small></div>
+      <div className="orbit-core"><div className="orbit-core-glow"/><div className="orbit-core-rim"/><Mark/><span>R_HMT</span><small>{nodes.length} TOOLS / STILL EXPLORING</small></div>
       {nodes.map((node,i)=><button className={`orbit-node ${current===node.name?'orbit-node-selected':''}`} style={{left:`${initial[i].x*100}%`,top:`${initial[i].y*100}%`}} key={node.name} aria-label={`Jelajahi ${node.name}`} aria-pressed={current===node.name}
         onClick={()=>{momentum.current=0;if(onSelect)onSelect(node.name,node.category);else setFocus(value=>value===node.name?null:node.name);}}><ToolIcon name={node.name}/><span className="orbit-tooltip">{node.name}</span></button>)}
     </div>
