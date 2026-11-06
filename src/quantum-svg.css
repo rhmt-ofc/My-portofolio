@@ -1,0 +1,680 @@
+/* ==========================================================================
+   QUANTUM ATOM (@alterebro / abZzNRo) & GLASS SVG GEOMETRIC ACCENTS
+   Luminous, hardware-accelerated atomic orbitals & counter-rotating rhombus
+   wings with automatic Dark / Light theme adaptation.
+   ========================================================================== */
+
+:root {
+  /* Default Dark Mode Luminous Palette */
+  --qa-cyan-hex: #22d3ee;
+  --qa-cyan-rgb: 34, 211, 238;
+  --qa-cyan-electron: #cffafe;
+  --qa-cyan-glow: rgba(34, 211, 238, 0.72);
+
+  --qa-gold-hex: #fbbf24;
+  --qa-gold-rgb: 251, 191, 36;
+  --qa-gold-electron: #fef3c7;
+  --qa-gold-glow: rgba(251, 191, 36, 0.72);
+
+  --qa-amethyst-hex: #c084fc;
+  --qa-amethyst-rgb: 192, 132, 252;
+  --qa-amethyst-electron: #f3e8ff;
+  --qa-amethyst-glow: rgba(192, 132, 252, 0.72);
+
+  --qa-emerald-hex: #2dd4bf;
+  --qa-emerald-rgb: 45, 212, 191;
+  --qa-emerald-electron: #ccfbf1;
+  --qa-emerald-glow: rgba(45, 212, 191, 0.72);
+
+  --qa-wing-bg: rgba(10, 14, 23, 0.72);
+  --qa-wing-border: rgba(255, 255, 255, 0.16);
+  --qa-shadow-color: rgba(0, 0, 0, 0.55);
+}
+
+/* Automatic High-Contrast Luminous Adaptation for Light Mode */
+html[data-theme="light"] {
+  --qa-cyan-hex: #0284c7;
+  --qa-cyan-rgb: 2, 132, 199;
+  --qa-cyan-electron: #0ea5e9;
+  --qa-cyan-glow: rgba(2, 132, 199, 0.52);
+
+  --qa-gold-hex: #d97706;
+  --qa-gold-rgb: 217, 119, 6;
+  --qa-gold-electron: #f59e0b;
+  --qa-gold-glow: rgba(217, 119, 6, 0.52);
+
+  --qa-amethyst-hex: #7c3aed;
+  --qa-amethyst-rgb: 124, 58, 237;
+  --qa-amethyst-electron: #8b5cf6;
+  --qa-amethyst-glow: rgba(124, 58, 237, 0.5);
+
+  --qa-emerald-hex: #0d9488;
+  --qa-emerald-rgb: 13, 148, 136;
+  --qa-emerald-electron: #14b8a6;
+  --qa-emerald-glow: rgba(13, 148, 136, 0.5);
+
+  --qa-wing-bg: rgba(255, 255, 255, 0.82);
+  --qa-wing-border: rgba(15, 23, 42, 0.16);
+  --qa-shadow-color: rgba(15, 23, 42, 0.22);
+}
+
+/* Variant Bindings */
+.quantum-atom-cyan,
+.rhombus-cyan,
+.mini-atom-cyan,
+.quantum-cluster-cyan {
+  --atom-color-hex: var(--qa-cyan-hex);
+  --atom-color-rgb: var(--qa-cyan-rgb);
+  --electron-color-hex: var(--qa-cyan-electron);
+  --atom-glow: var(--qa-cyan-glow);
+}
+
+.quantum-atom-gold,
+.rhombus-gold,
+.mini-atom-gold,
+.quantum-cluster-gold {
+  --atom-color-hex: var(--qa-gold-hex);
+  --atom-color-rgb: var(--qa-gold-rgb);
+  --electron-color-hex: var(--qa-gold-electron);
+  --atom-glow: var(--qa-gold-glow);
+}
+
+.quantum-atom-amethyst,
+.rhombus-amethyst,
+.mini-atom-amethyst,
+.quantum-cluster-amethyst {
+  --atom-color-hex: var(--qa-amethyst-hex);
+  --atom-color-rgb: var(--qa-amethyst-rgb);
+  --electron-color-hex: var(--qa-amethyst-electron);
+  --atom-glow: var(--qa-amethyst-glow);
+}
+
+.quantum-atom-emerald,
+.rhombus-emerald,
+.mini-atom-emerald,
+.quantum-cluster-emerald {
+  --atom-color-hex: var(--qa-emerald-hex);
+  --atom-color-rgb: var(--qa-emerald-rgb);
+  --electron-color-hex: var(--qa-emerald-electron);
+  --atom-glow: var(--qa-emerald-glow);
+}
+
+/* ==========================================================================
+   1. @alterebro (abZzNRo) LUMINOUS 3D ATOMIC ORBITAL
+   ========================================================================== */
+
+.quantum-atom-stage {
+  --atom-size: 64px;
+  --nucleus-size: calc(var(--atom-size) / 4.8);
+  --electron-size: calc(var(--atom-size) / 14);
+  --electron-orbit-size: calc(var(--atom-size) / 2.35);
+  --electron-speed: 1.35s;
+  --electron-speed-alpha: 1.08s;
+  --electron-speed-omega: 0.88s;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: calc(var(--atom-size) * 1.28);
+  height: calc(var(--atom-size) * 1.28);
+  pointer-events: none;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.quantum-atom-xs { --atom-size: 36px; }
+.quantum-atom-sm { --atom-size: 50px; }
+.quantum-atom-md { --atom-size: 68px; }
+.quantum-atom-lg { --atom-size: 92px; }
+
+/* Outer SVG Compass Halo around Atom */
+.quantum-atom-halo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: rhombus-spin-cw 22s linear infinite;
+}
+
+.qa-compass-ring {
+  stroke: var(--atom-color-hex);
+  stroke-width: 1;
+  stroke-dasharray: 5 4;
+  opacity: 0.48;
+}
+
+.qa-compass-inner {
+  stroke: var(--atom-color-hex);
+  stroke-width: 0.8;
+  opacity: 0.24;
+}
+
+.qa-compass-tick {
+  stroke: var(--atom-color-hex);
+  stroke-width: 1.4;
+  opacity: 0.75;
+}
+
+.qa-compass-diamond {
+  fill: var(--electron-color-hex);
+  stroke: var(--atom-color-hex);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 4px var(--atom-glow));
+}
+
+/* Core @alterebro Atom Container */
+.alterebro-atom {
+  position: relative;
+  width: var(--atom-size);
+  height: var(--atom-size);
+  animation: 8s alterebro-atom-spin infinite cubic-bezier(1, 0.25, 0, 0.75);
+  filter: drop-shadow(0 0 8px var(--atom-glow));
+}
+
+@keyframes alterebro-atom-spin {
+  0%    { transform: rotate(0deg) scale(1); }
+  12.5% { transform: rotate(-45deg) scale(0.91); }
+  25%   { transform: rotate(-90deg) scale(1); }
+  37.5% { transform: rotate(-135deg) scale(0.91); }
+  50%   { transform: rotate(-180deg) scale(1); }
+  62.5% { transform: rotate(-225deg) scale(0.91); }
+  75%   { transform: rotate(-270deg) scale(1); }
+  87.5% { transform: rotate(-315deg) scale(0.91); }
+  100%  { transform: rotate(-360deg) scale(1); }
+}
+
+/* Luminous Central Nucleus */
+.alterebro-atom::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--nucleus-size);
+  height: var(--nucleus-size);
+  margin-top: calc(var(--nucleus-size) / -2);
+  margin-left: calc(var(--nucleus-size) / -2);
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--electron-color-hex) 55%, var(--atom-color-hex) 100%);
+  border-radius: 100%;
+  box-shadow: 0 0 10px 2px var(--atom-color-hex), 0 0 20px 4px var(--atom-glow);
+  animation: 2s alterebro-nucleus-pulse infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes alterebro-nucleus-pulse {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(0.88); }
+  50%  { transform: scale(1.06); }
+  75%  { transform: scale(0.84); }
+  100% { transform: scale(1); }
+}
+
+/* 3 Intersecting Elliptical Electron Orbits */
+.alterebro-atom > [class^="electron"] {
+  border-top: solid rgba(var(--atom-color-rgb), 0.75) 1.2px;
+  border-right: solid rgba(var(--atom-color-rgb), 0.5) 2px;
+  border-bottom: solid rgba(var(--atom-color-rgb), 0.28) 3.2px;
+  border-left: solid rgba(var(--atom-color-rgb), 0.05) 2px;
+  border-radius: 100%;
+  width: 100%;
+  height: var(--electron-orbit-size);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: calc(var(--electron-orbit-size) / -2);
+  box-sizing: border-box;
+  animation: var(--electron-speed) alterebro-electron-orbit infinite linear;
+}
+
+.alterebro-atom > .electron-alpha {
+  transform: rotate(60deg);
+  animation: var(--electron-speed-alpha) alterebro-electron-orbit infinite linear;
+}
+
+.alterebro-atom > .electron-omega {
+  transform: rotate(-60deg);
+  animation: var(--electron-speed-omega) alterebro-electron-orbit infinite linear;
+}
+
+@keyframes alterebro-electron-orbit {
+  0% {
+    border-top-color: rgba(var(--atom-color-rgb), 0.78);
+    border-right-color: rgba(var(--atom-color-rgb), 0.52);
+    border-bottom-color: rgba(var(--atom-color-rgb), 0.26);
+    border-left-color: rgba(var(--atom-color-rgb), 0.04);
+  }
+  25% {
+    border-top-color: rgba(var(--atom-color-rgb), 0.52);
+    border-right-color: rgba(var(--atom-color-rgb), 0.26);
+    border-bottom-color: rgba(var(--atom-color-rgb), 0.04);
+    border-left-color: rgba(var(--atom-color-rgb), 0.78);
+  }
+  50% {
+    border-top-color: rgba(var(--atom-color-rgb), 0.26);
+    border-right-color: rgba(var(--atom-color-rgb), 0.04);
+    border-bottom-color: rgba(var(--atom-color-rgb), 0.78);
+    border-left-color: rgba(var(--atom-color-rgb), 0.52);
+  }
+  75% {
+    border-top-color: rgba(var(--atom-color-rgb), 0.04);
+    border-right-color: rgba(var(--atom-color-rgb), 0.78);
+    border-bottom-color: rgba(var(--atom-color-rgb), 0.52);
+    border-left-color: rgba(var(--atom-color-rgb), 0.26);
+  }
+  100% {
+    border-top-color: rgba(var(--atom-color-rgb), 0.78);
+    border-right-color: rgba(var(--atom-color-rgb), 0.52);
+    border-bottom-color: rgba(var(--atom-color-rgb), 0.26);
+    border-left-color: rgba(var(--atom-color-rgb), 0.04);
+  }
+}
+
+/* Glowing Electron Spheres Traveling Along Orbits */
+.alterebro-atom [class^="electron"]::after {
+  content: '';
+  display: block;
+  width: var(--electron-size);
+  height: var(--electron-size);
+  background: #ffffff;
+  box-shadow: 0 0 6px 1.5px var(--electron-color-hex), 0 0 12px 3px var(--atom-color-hex);
+  border-radius: 50%;
+  margin-top: calc(var(--electron-size) / -2);
+  position: absolute;
+  top: 50%;
+  left: calc(var(--electron-size) / -1);
+  transform: scale(1);
+  animation: calc(var(--electron-speed) * 2) alterebro-electron-travel infinite ease-in-out;
+}
+
+.alterebro-atom .electron-alpha::after {
+  animation: calc(var(--electron-speed-alpha) * 2) alterebro-electron-travel infinite ease-in-out;
+}
+
+.alterebro-atom .electron-omega::after {
+  animation: calc(var(--electron-speed-omega) * 2) alterebro-electron-travel infinite ease-in-out;
+}
+
+@keyframes alterebro-electron-travel {
+  0%    { left: calc(var(--electron-size) / -1); transform: scale(1); }
+  12.5% { top: 100%; transform: scale(1.45); }
+  25%   { left: 100%; transform: scale(1); }
+  37.5% { top: 0%; transform: scale(0.32); }
+  50%   { left: calc(var(--electron-size) / -1); transform: scale(1); }
+  62.5% { top: 100%; transform: scale(1.45); }
+  75%   { left: 100%; transform: scale(1); }
+  87.5% { top: 0%; transform: scale(0.32); }
+  100%  { left: calc(var(--electron-size) / -1); transform: scale(1); }
+}
+
+/* Floating Ground Shadow under Atom */
+.alterebro-atom-shadow {
+  position: absolute;
+  bottom: -6px;
+  left: 14%;
+  width: 72%;
+  height: calc(var(--nucleus-size) * 0.7);
+  background: radial-gradient(closest-side, var(--atom-glow), transparent);
+  border-radius: 100%;
+  opacity: 0.65;
+  animation: 8s alterebro-shadow-bounce infinite cubic-bezier(1, 0.25, 0, 0.75);
+}
+
+@keyframes alterebro-shadow-bounce {
+  0%, 25%, 50%, 75%, 100% { transform: scale(1, 0.75) translateY(0); opacity: 0.65; }
+  12.5%, 37.5%, 62.5%, 87.5% { transform: scale(0.68, 0.65) translateY(-4px); opacity: 0.35; }
+}
+
+/* ==========================================================================
+   2. DUAL COUNTER-ROTATING RHOMBUS (BELAH KETUPAT) GLASS WINGS ON CARDS
+   ========================================================================== */
+
+.rhombus-wings-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.rhombus-wing {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--qa-wing-bg);
+  border: 1px solid var(--qa-wing-border);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 14px -2px var(--atom-glow), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.rhombus-wing-left {
+  left: 4px;
+}
+
+.rhombus-wing-right {
+  right: 4px;
+}
+
+.rhombus-wing-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.rw-conduit {
+  stroke: var(--atom-color-hex);
+  stroke-width: 1.1;
+  stroke-dasharray: 3 2;
+  opacity: 0.65;
+}
+
+.rw-tick {
+  stroke: var(--atom-color-hex);
+  stroke-width: 1.2;
+  opacity: 0.85;
+}
+
+.rw-rhombus-outer {
+  stroke: var(--atom-color-hex);
+  stroke-width: 1.5;
+  fill: rgba(var(--atom-color-rgb), 0.12);
+  filter: drop-shadow(0 0 5px var(--atom-glow));
+}
+
+.rw-rhombus-inner {
+  stroke: var(--electron-color-hex);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 2;
+  fill: rgba(var(--atom-color-rgb), 0.2);
+}
+
+.rw-core-dot {
+  fill: #ffffff;
+  stroke: var(--atom-color-hex);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 6px var(--atom-color-hex));
+  animation: 2s alterebro-nucleus-pulse infinite ease-in-out;
+}
+
+.rw-diamond-cw {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: rhombus-spin-cw 8s linear infinite;
+}
+
+.rw-diamond-ccw {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: rhombus-spin-ccw 5.5s linear infinite;
+}
+
+@keyframes rhombus-spin-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes rhombus-spin-ccw {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+/* Accelerate & Brighten Rhombus Wings on Card Hover / Touch / Active */
+.work-card:hover .rhombus-wing,
+.work-card.shelf-current .rhombus-wing,
+.anime-card:hover .rhombus-wing,
+.journey-workspace:hover .rhombus-wing {
+  border-color: var(--atom-color-hex);
+  box-shadow: 0 0 18px 1px var(--atom-glow), inset 0 0 8px rgba(var(--atom-color-rgb), 0.25);
+}
+
+.work-card:hover .rw-diamond-cw,
+.anime-card:hover .rw-diamond-cw {
+  animation-duration: 3.2s;
+}
+
+.work-card:hover .rw-diamond-ccw,
+.anime-card:hover .rw-diamond-ccw {
+  animation-duration: 2.2s;
+}
+
+/* 4 Glass Corner HUD Brackets */
+.rhombus-corner-svg {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  opacity: 0.78;
+  filter: drop-shadow(0 0 4px var(--atom-glow));
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.rc-tl { top: 5px; left: 5px; }
+.rc-tr { top: 5px; right: 5px; }
+.rc-bl { bottom: 5px; left: 5px; }
+.rc-br { bottom: 5px; right: 5px; }
+
+.rc-bracket {
+  stroke: var(--atom-color-hex);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.rc-dot {
+  fill: var(--electron-color-hex);
+}
+
+.work-card:hover .rhombus-corner-svg,
+.anime-card:hover .rhombus-corner-svg {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.rhombus-hud-code {
+  position: absolute;
+  bottom: 7px;
+  right: 22px;
+  font: 600 7px/1 Space, monospace;
+  letter-spacing: 1.2px;
+  color: var(--atom-color-hex);
+  opacity: 0.75;
+  text-shadow: 0 0 6px var(--atom-glow);
+}
+
+/* ==========================================================================
+   3. MINI ATOMIC GYROSCOPE IN CHAPTER HEADERS & BLUEPRINT DIVIDERS
+   ========================================================================== */
+
+.mini-atom-gyro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 5px var(--atom-glow));
+}
+
+.mini-atom-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mag-orbit {
+  stroke: var(--atom-color-hex);
+  stroke-width: 1.15;
+  stroke-dasharray: 28 8;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.mag-orbit-1 { animation: rhombus-spin-cw 6s linear infinite; }
+.mag-orbit-2 { animation: rhombus-spin-ccw 4.8s linear infinite; }
+.mag-orbit-3 { animation: rhombus-spin-cw 7.5s linear infinite; opacity: 0.75; }
+
+.mag-nucleus {
+  fill: #ffffff;
+  stroke: var(--atom-color-hex);
+  stroke-width: 1.2;
+}
+
+/* Blueprint Divider Center Floating Atom Wrapper */
+.bp-atom-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  background: var(--qa-wing-bg);
+  border: 1px solid var(--qa-wing-border);
+  border-radius: 50%;
+  padding: 2px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 0 14px var(--atom-glow);
+}
+
+/* ==========================================================================
+   4. QUANTUM CLUSTER BADGE (SECTION HEADER SHOWCASE)
+   ========================================================================== */
+
+.quantum-cluster-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 14px 8px 10px;
+  margin-top: 14px;
+  border-radius: 12px;
+  background: var(--qa-wing-bg);
+  border: 1px solid var(--qa-wing-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 6px 24px -6px var(--atom-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.qcb-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qcb-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qcb-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--atom-color-hex);
+  box-shadow: 0 0 8px var(--atom-color-hex);
+  animation: 1.8s alterebro-nucleus-pulse infinite ease-in-out;
+}
+
+.qcb-coords {
+  font: 600 7.5px/1.2 Space, monospace;
+  letter-spacing: 1.3px;
+  color: var(--atom-color-hex);
+}
+
+.qcb-title {
+  font: 700 10.5px/1.3 Space, sans-serif;
+  letter-spacing: 0.8px;
+  color: var(--ink);
+}
+
+.qcb-sub {
+  font: 500 8.5px/1.2 Manrope, sans-serif;
+  color: var(--muted);
+}
+
+.qcb-rhombus-pair {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.qcb-rhombus-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Hero Floating Quantum Atom Badge */
+.hero-quantum-orbit-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: var(--qa-wing-bg);
+  border: 1px solid var(--qa-wing-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 18px -4px var(--qa-cyan-glow);
+}
+
+.hqo-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hqo-eyebrow {
+  font: 600 7.5px/1.2 Space, monospace;
+  letter-spacing: 1.4px;
+  color: var(--qa-cyan-hex);
+}
+
+.hqo-title {
+  font: 600 10px/1.3 Space, sans-serif;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Mobile Tuning */
+@media (max-width: 768px) {
+  .rhombus-wing {
+    width: 24px;
+    height: 68px;
+  }
+  .rhombus-wing-left {
+    left: 3px;
+  }
+  .rhombus-wing-right {
+    right: 3px;
+  }
+  .quantum-cluster-badge {
+    width: 100%;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .alterebro-atom,
+  .alterebro-atom::before,
+  .alterebro-atom > [class^="electron"],
+  .alterebro-atom [class^="electron"]::after,
+  .alterebro-atom-shadow,
+  .quantum-atom-halo,
+  .rw-diamond-cw,
+  .rw-diamond-ccw,
+  .mag-orbit-1,
+  .mag-orbit-2,
+  .mag-orbit-3 {
+    animation: none !important;
+  }
+}

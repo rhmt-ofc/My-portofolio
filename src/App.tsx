@@ -14,6 +14,7 @@ import AiSandbox from './components/AiSandbox';
 import PeopleAndCommunities from './components/PeopleAndCommunities';
 import Personal from './components/Personal';
 import { BlueprintDivider } from './components/BlueprintDivider';
+import { QuantumAtom, QuantumClusterBadge } from './components/QuantumSvgAccents';
 import { useMotion } from './hooks/useMotion';
 import { useExperience } from './hooks/useExperience';
 import { useScrollScenes } from './hooks/useScrollScenes';
@@ -37,14 +38,14 @@ export default function App() {
       <section className="hero" id="home" aria-labelledby="hero-title">
         <div className="hero-room" aria-hidden="true"><span className="hero-light-streak"/><span className="hero-light-streak streak-second"/></div>
         <div className="wrap hero-grid"><div className="hero-copy"><p className="hero-eyebrow"><span className="tiny-square" aria-hidden="true"/>A PERSONAL DIGITAL ARCHIVE</p><h1 id="hero-title">Learning<br/><em>in Progress.</em></h1><p className="hero-description">Aku R_HMT. Belajar web development lewat proyek, eksperimen, dan kolaborasi bersama AI. Masih mencari pendekatan yang paling masuk akal, tapi selalu ingin berkembang.</p><div className="hero-cta"><a className="button button-gold" href="#archive">Jelajahi karya<ArrowRight size={16}/></a><a href="#journey" className="text-link">Baca perjalanan<ArrowRight size={16}/></a></div><div className="hero-inventory" aria-label="Isi portofolio"><a href="#archive"><strong>{PROJECTS.length}</strong><span>Karya & eksperimen</span></a><a href="#ecosystem"><strong>{ECOSYSTEM.reduce((n,g)=>n+g.items.length,0)}</strong><span>Tools yang dicoba</span></a><a href="#journey"><strong aria-hidden="true">∞</strong><span>Masih belajar<span className="sr-only">, perjalanan yang terus berlanjut</span></span></a></div><div className="hero-identity"><span className="identity-line"/><div><strong>SELF-TAUGHT. ALWAYS CURIOUS.</strong><span>Rohmatulloh / R_HMT OFC · Pelajar MA · Indonesia</span></div></div></div>
-          <div className="hero-object"><Scene paused={still}/></div><div className="hero-universe"><ToolOrbit compact paused={still}/><p className="hero-universe-note">Different tools.<br/>Same curiosity.</p></div>
+          <div className="hero-object"><Scene paused={still}/></div><div className="hero-universe"><div className="hero-quantum-orbit-header" aria-hidden="true"><div className="hqo-copy"><span className="hqo-eyebrow">ATOMIC CORE // ORBITAL TELEMETRY</span><strong className="hqo-title">Quantum Technology Universe</strong></div><QuantumAtom variant="cyan" size="sm"/></div><ToolOrbit compact paused={still}/><p className="hero-universe-note">Different tools.<br/>Same curiosity.</p></div>
           <a className="scroll-note" href="#archive"><ArrowDown size={14}/><span>EXPLORE AT YOUR OWN PACE</span></a><span className="hero-corner">STILL A STUDENT. ALWAYS CURIOUS.</span>
         </div>
       </section>
       <Archive/>
       </div>
       <BlueprintDivider from="01" to="02" fromLabel="DIGITAL ARCHIVE" toLabel="BEYOND THE CODE" coordinates="SYS.01 // WORKS_TO_ORIGIN"/>
-      <section className="about section-pad" id="about" aria-labelledby="about-title"><div className="wrap about-grid"><div><Chapter number="02">BEYOND THE CODE</Chapter><h2 id="about-title">How it started.<br/><em>Sedikit konteks.</em></h2><span className="about-signature">R_hmt.</span><div className="about-values"><span><Smartphone size={18}/>Mobile beginnings</span><span><Braces size={18}/>Learning by building</span><span><RelayMark/>Human × AI</span></div></div><div className="about-copy"><p className="lead">{PROFILE.about}</p><p>{PROFILE.motivation}</p><p>{PROFILE.approach}</p></div></div></section>
+      <section className="about section-pad" id="about" aria-labelledby="about-title"><div className="wrap about-grid"><div><Chapter number="02">BEYOND THE CODE</Chapter><h2 id="about-title">How it started.<br/><em>Sedikit konteks.</em></h2><span className="about-signature">R_hmt.</span><div className="about-values"><span><Smartphone size={18}/>Mobile beginnings</span><span><Braces size={18}/>Learning by building</span><span><RelayMark/>Human × AI</span></div><QuantumClusterBadge variant="cyan" title="SELF-TAUGHT QUANTUM LOOP" subtitle="Learn · Build · Iterate · Repeat" coords="SYS.02 // ATOMIC_CORE"/></div><div className="about-copy"><p className="lead">{PROFILE.about}</p><p>{PROFILE.motivation}</p><p>{PROFILE.approach}</p></div></div></section>
       <BlueprintDivider from="02" to="03" fromLabel="BEYOND THE CODE" toLabel="THE EVOLUTION" coordinates="SYS.02 // OPPO_A3S_STUDY"/>
       <Journey/>
       <BlueprintDivider from="03" to="04" fromLabel="THE EVOLUTION" toLabel="STACK & TOOLS" coordinates="SYS.03 // HARDWARE_TO_TECH"/>

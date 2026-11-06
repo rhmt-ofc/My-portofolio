@@ -9,9 +9,9 @@
 /* Archive (Section 01): inertia horizontal stagger, alternating micro-tilt, and optical cover parallax. */
 [data-scroll-scene=archive] .archive-toolbar{transform:translate3d(0,calc(var(--scene-lift) * -.1),0);transition:transform .1s linear}
 [data-scroll-scene=archive] .works-shelf{perspective:1200px}
-[data-scroll-scene=archive] .work-card{--card-stagger:.36;--card-tilt:.24;transform:translate3d(0,calc(var(--scene-lift) * var(--card-stagger) + var(--scroll-impulse,0px) * var(--card-stagger)),0) rotateX(calc(var(--scene-turn) * -.22)) rotateY(calc(var(--scene-turn) * var(--card-tilt)));transition:transform .14s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .3s}
-[data-scroll-scene=archive] .work-card:nth-child(even){--card-stagger:-.32;--card-tilt:-.24}
-[data-scroll-scene=archive] .work-card:nth-child(3n){--card-stagger:.48;--card-tilt:.16}
+[data-scroll-scene=archive] .work-card{--card-stagger:.56;--card-tilt:.42;transform:translate3d(0,calc(var(--scene-lift) * var(--card-stagger) + var(--scroll-impulse,0px) * var(--card-stagger)),0) rotateX(calc(var(--scene-turn) * -.35)) rotateY(calc(var(--scene-turn) * var(--card-tilt)));transition:transform .14s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .3s}
+[data-scroll-scene=archive] .work-card:nth-child(even){--card-stagger:-.5;--card-tilt:-.42}
+[data-scroll-scene=archive] .work-card:nth-child(3n){--card-stagger:.68;--card-tilt:.28}
 [data-scroll-scene=archive] .work-card:hover,[data-scroll-scene=archive] .work-card:focus-within{transform:translate3d(0,-6px,12px) rotateX(0deg) rotateY(0deg)}
 [data-scroll-scene=archive] .work-card .work-cover img{transform:scale(calc(1.045 - var(--scene-spread) * .045)) translate3d(0,calc(var(--scene-lift) * -.12),0);transition:transform .18s cubic-bezier(.16,1,.3,1)}
 

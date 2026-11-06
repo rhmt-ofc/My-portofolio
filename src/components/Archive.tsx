@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Search, X } from 'lucide-react';
 import { PROJECTS, statusLabels } from '../data';
 import type { Project } from '../types';
 import { Chapter, Modal, VisitButton } from './Primitives';
+import { RhombusWings, QuantumClusterBadge } from './QuantumSvgAccents';
 import { useWorkShelf } from '../hooks/useWorkShelf';
 
 const categories = [{ id: 'all', name: 'Semua' }, { id: 'AI Tools', name: 'AI & eksplorasi' }, { id: 'Utilities', name: 'Tools' }, { id: 'Productivity', name: 'Produktivitas' }, { id: 'Archive Experiments', name: 'Eksperimen' }];
@@ -74,12 +75,13 @@ export default function Archive() {
   return <section className="archive section-pad" id="archive" aria-labelledby="archive-title">
     <div className="wrap">
       <Chapter number="01">THE DIGITAL ARCHIVE</Chapter>
-      <div className="section-heading"><h2 id="archive-title">Selected Works.<br/><em>Build. Learn. Repeat.</em></h2><div><p>Kumpulan project dan eksperimen yang pernah aku buat. Beberapa masih berjalan, beberapa sudah archived tapi tetap dicatat sebagai bagian dari learning journey.</p><p className="micro-note">KLIK COVER / JUDUL UNTUK DETAIL</p></div></div>
+      <div className="section-heading"><h2 id="archive-title">Selected Works.<br/><em>Build. Learn. Repeat.</em></h2><div><p>Kumpulan project dan eksperimen yang pernah aku buat. Beberapa masih berjalan, beberapa sudah archived tapi tetap dicatat sebagai bagian dari learning journey.</p><p className="micro-note">KLIK COVER / JUDUL UNTUK DETAIL</p><QuantumClusterBadge variant="gold" title="19 INTERACTIVE EXPERIMENTS" subtitle="Dual-Rhombus Glass Telemetry Active" coords="SYS.01 // ARCHIVE_ATOM"/></div></div>
       <div className="archive-toolbar"><div className="filter-list" aria-label="Filter karya">{categories.map(c => <button key={c.id} onClick={() => { setFilter(c.id); }} aria-pressed={filter === c.id} className={filter === c.id ? 'active' : ''}>{c.name}</button>)}</div><div className="search-box"><Search size={18}/><input type="text" placeholder="Cari karya..." value={query} onChange={e => setQuery(e.target.value)} aria-label="Cari proyek berdasarkan nama atau teknologi"/><button hidden={!query} onClick={() => setQuery('')} aria-label="Bersihkan pencarian"><X size={18}/></button></div></div>
       <p className="sr-only" role="status">{selection.length} karya ditemukan</p>
       <div className="shelf-navigation"><span>DRAG / SWIPE TO EXPLORE</span><div><span aria-live="polite">{selection.length ? String(cursor + 1).padStart(2, '0') : '00'} <small>/ {String(selection.length).padStart(2, '0')}</small></span><div className="nav-buttons"><button className="icon-button" onClick={() => moveBy(-1)} disabled={cursor <= 0} aria-label="Karya sebelumnya"><ArrowLeft size={18}/></button><button className="icon-button" onClick={() => moveBy(1)} disabled={cursor >= selection.length - 1} aria-label="Karya berikutnya"><ArrowRight size={18}/></button></div></div></div>
       <div ref={shelf} className="works-shelf" {...handlers} tabIndex={0} role="region" aria-label={`Rak ${selection.length} proyek; geser atau gunakan tombol panah`}>
       {selection.map((work, i) => <article className={`work-card ${visiblePosition === i ? 'shelf-current' : ''}`} key={work.id}>
+        <RhombusWings variant={i % 2 === 0 ? 'gold' : 'cyan'} index={i + 1} />
         <button className="work-visual-button" onClick={() => open(work)} aria-label={`Baca cerita ${work.name}`}><WorkCover work={work}/><span className="work-open"><ArrowUpRight size={22}/></span></button>
         <div className="work-meta"><span>{String(i + 1).padStart(2, '0')} / {work.category}</span><span>{statusLabels[work.status]}</span></div>
         <button className="work-title" onClick={() => open(work)}><h3><WorkFavicon url={work.url} icon={work.icon} title={work.name}/><span>{work.name}</span></h3><ArrowUpRight size={18}/></button>

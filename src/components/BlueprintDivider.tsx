@@ -1,4 +1,5 @@
 import React from 'react';
+import { QuantumAtom, type QuantumVariant } from './QuantumSvgAccents';
 
 interface BlueprintDividerProps {
   from: string;
@@ -9,6 +10,18 @@ interface BlueprintDividerProps {
   className?: string;
 }
 
+const dividerVariants: Record<string, QuantumVariant> = {
+  '02': 'cyan',
+  '03': 'cyan',
+  '04': 'cyan',
+  '05': 'amethyst',
+  '06': 'emerald',
+  '07': 'emerald',
+  '08': 'gold',
+  '09': 'gold',
+  '10': 'cyan'
+};
+
 export function BlueprintDivider({
   from,
   to,
@@ -17,6 +30,7 @@ export function BlueprintDivider({
   coordinates = 'SYS.TRACE // ARCHIVE_COORD',
   className = ''
 }: BlueprintDividerProps) {
+  const atomVariant = dividerVariants[to] || 'cyan';
   return (
     <div className={`blueprint-divider ${className}`} aria-hidden="true" data-from={from} data-to={to}>
       <div className="blueprint-meta">
@@ -64,6 +78,9 @@ export function BlueprintDivider({
           <path d="M 50 16 L 70 16 M 60 6 L 60 26" className="bp-cross" />
           <path d="M 1130 16 L 1150 16 M 1140 6 L 1140 26" className="bp-cross" />
         </svg>
+        <div className="bp-atom-center">
+          <QuantumAtom variant={atomVariant} size="xs" />
+        </div>
       </div>
       <div className="blueprint-reticles">
         <span className="bp-corner bp-tl">+</span>

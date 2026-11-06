@@ -5,6 +5,7 @@ import './glass.css';
 import './scroll-scenes.css';
 import './blueprint-trace.css';
 import './atmospheric-aura.css';
+import './quantum-svg.css';
 const root = document.getElementById('root')!;
 const app = <React.StrictMode><App/></React.StrictMode>;
 if (root.children.length > 0) hydrateRoot(root, app); else createRoot(root).render(app);
