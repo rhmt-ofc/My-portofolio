@@ -8,6 +8,7 @@ interface QuantumAtomProps {
   size?: QuantumSize;
   className?: string;
   label?: string;
+  noHalo?: boolean;
 }
 
 /**
@@ -19,25 +20,28 @@ export function QuantumAtom({
   variant = 'cyan',
   size = 'md',
   className = '',
-  label
+  label,
+  noHalo = false
 }: QuantumAtomProps) {
   return (
     <div
       className={`quantum-atom-stage quantum-atom-${size} quantum-atom-${variant} ${className}`}
       aria-hidden="true"
     >
-      <svg className="quantum-atom-halo" viewBox="0 0 120 120" fill="none">
-        <circle cx="60" cy="60" r="54" className="qa-compass-ring" />
-        <circle cx="60" cy="60" r="44" className="qa-compass-inner" />
-        <line x1="60" y1="0" x2="60" y2="10" className="qa-compass-tick" />
-        <line x1="60" y1="110" x2="60" y2="120" className="qa-compass-tick" />
-        <line x1="0" y1="60" x2="10" y2="60" className="qa-compass-tick" />
-        <line x1="110" y1="60" x2="120" y2="60" className="qa-compass-tick" />
-        <polygon points="60,3 63.5,6.5 60,10 56.5,6.5" className="qa-compass-diamond" />
-        <polygon points="60,110 63.5,113.5 60,117 56.5,113.5" className="qa-compass-diamond" />
-        <polygon points="3,60 6.5,56.5 10,60 6.5,63.5" className="qa-compass-diamond" />
-        <polygon points="110,60 113.5,56.5 117,60 113.5,63.5" className="qa-compass-diamond" />
-      </svg>
+      {!noHalo && (
+        <svg className="quantum-atom-halo" viewBox="0 0 120 120" fill="none">
+          <circle cx="60" cy="60" r="54" className="qa-compass-ring" />
+          <circle cx="60" cy="60" r="44" className="qa-compass-inner" />
+          <line x1="60" y1="0" x2="60" y2="10" className="qa-compass-tick" />
+          <line x1="60" y1="110" x2="60" y2="120" className="qa-compass-tick" />
+          <line x1="0" y1="60" x2="10" y2="60" className="qa-compass-tick" />
+          <line x1="110" y1="60" x2="120" y2="60" className="qa-compass-tick" />
+          <polygon points="60,3 63.5,6.5 60,10 56.5,6.5" className="qa-compass-diamond" />
+          <polygon points="60,110 63.5,113.5 60,117 56.5,113.5" className="qa-compass-diamond" />
+          <polygon points="3,60 6.5,56.5 10,60 6.5,63.5" className="qa-compass-diamond" />
+          <polygon points="110,60 113.5,56.5 117,60 113.5,63.5" className="qa-compass-diamond" />
+        </svg>
+      )}
       <div className="alterebro-atom">
         <div className="electron" />
         <div className="electron-alpha" />

@@ -36,26 +36,26 @@ html[data-theme="light"] {
   --qa-cyan-hex: #0284c7;
   --qa-cyan-rgb: 2, 132, 199;
   --qa-cyan-electron: #0ea5e9;
-  --qa-cyan-glow: rgba(2, 132, 199, 0.2);
+  --qa-cyan-glow: rgba(2, 132, 199, 0.08);
 
-  --qa-gold-hex: #d97706;
-  --qa-gold-rgb: 217, 119, 6;
-  --qa-gold-electron: #f59e0b;
-  --qa-gold-glow: rgba(217, 119, 6, 0.2);
+  --qa-gold-hex: #b45309;
+  --qa-gold-rgb: 180, 83, 9;
+  --qa-gold-electron: #d97706;
+  --qa-gold-glow: rgba(180, 83, 9, 0.08);
 
-  --qa-amethyst-hex: #7c3aed;
-  --qa-amethyst-rgb: 124, 58, 237;
-  --qa-amethyst-electron: #8b5cf6;
-  --qa-amethyst-glow: rgba(124, 58, 237, 0.2);
+  --qa-amethyst-hex: #6d28d9;
+  --qa-amethyst-rgb: 109, 40, 217;
+  --qa-amethyst-electron: #7c3aed;
+  --qa-amethyst-glow: rgba(109, 40, 217, 0.08);
 
-  --qa-emerald-hex: #0d9488;
-  --qa-emerald-rgb: 13, 148, 136;
-  --qa-emerald-electron: #14b8a6;
-  --qa-emerald-glow: rgba(13, 148, 136, 0.2);
+  --qa-emerald-hex: #0f766e;
+  --qa-emerald-rgb: 15, 118, 110;
+  --qa-emerald-electron: #0d9488;
+  --qa-emerald-glow: rgba(15, 118, 110, 0.08);
 
   --qa-wing-bg: rgba(255, 255, 255, 0.75);
   --qa-wing-border: rgba(15, 23, 42, 0.1);
-  --qa-shadow-color: rgba(15, 23, 42, 0.12);
+  --qa-shadow-color: rgba(15, 23, 42, 0.06);
 }
 
 /* Variant Bindings */
@@ -210,10 +210,10 @@ html[data-theme="light"] {
 
 /* 3 Intersecting Elliptical Electron Orbits */
 .alterebro-atom > [class^="electron"] {
-  border-top: solid rgba(var(--atom-color-rgb), 0.75) 1.2px;
-  border-right: solid rgba(var(--atom-color-rgb), 0.5) 2px;
-  border-bottom: solid rgba(var(--atom-color-rgb), 0.28) 3.2px;
-  border-left: solid rgba(var(--atom-color-rgb), 0.05) 2px;
+  border-top: solid rgba(var(--atom-color-rgb), 0.65) 1px;
+  border-right: solid rgba(var(--atom-color-rgb), 0.4) 1.2px;
+  border-bottom: solid rgba(var(--atom-color-rgb), 0.18) 1.5px;
+  border-left: solid rgba(var(--atom-color-rgb), 0.04) 1px;
   border-radius: 100%;
   width: 100%;
   height: var(--electron-orbit-size);
@@ -274,8 +274,8 @@ html[data-theme="light"] {
   display: block;
   width: var(--electron-size);
   height: var(--electron-size);
-  background: #ffffff;
-  box-shadow: 0 0 6px 1.5px var(--electron-color-hex), 0 0 12px 3px var(--atom-color-hex);
+  background: var(--electron-color-hex);
+  box-shadow: 0 0 3px 0.5px var(--atom-color-hex);
   border-radius: 50%;
   margin-top: calc(var(--electron-size) / -2);
   position: absolute;
@@ -528,17 +528,25 @@ html[data-theme="light"] {
 .bp-atom-center {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 16px;
   transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 2;
   pointer-events: none;
   background: var(--qa-wing-bg);
   border: 1px solid var(--qa-wing-border);
   border-radius: 50%;
-  padding: 1px;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 0 6px var(--atom-glow);
+  box-shadow: 0 0 4px var(--atom-glow);
+}
+
+.bp-atom-center .quantum-atom-stage {
+  --atom-size: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 /* ==========================================================================
