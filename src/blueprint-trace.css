@@ -53,11 +53,26 @@
   stroke-width: 1.5;
   stroke-linecap: round;
   opacity: 0.6;
+  stroke-dasharray: 52;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.14s linear, opacity 0.2s ease;
 }
 
 .ch-trace-node {
   fill: var(--accent);
   opacity: 0.9;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-scroll-scene] .ch-trace-beam {
+  stroke-dashoffset: calc((1 - var(--scene-spread, 1)) * 42);
+  opacity: calc(0.35 + var(--scene-spread, 1) * 0.65);
+}
+
+[data-scroll-scene] .ch-trace-node {
+  transform: scale(calc(0.75 + var(--scene-spread, 1) * 0.45));
 }
 
 .chapter-sys-tag {
@@ -133,6 +148,7 @@
   border-radius: 50%;
   background: var(--accent);
   opacity: 0.8;
+  transition: transform 0.16s linear, opacity 0.16s linear;
 }
 
 .blueprint-line-wrap {
@@ -159,6 +175,9 @@
   stroke: var(--accent);
   stroke-width: 1.5;
   opacity: 0.35;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.12s linear, opacity 0.16s linear;
 }
 
 .bp-tick {
@@ -181,12 +200,37 @@
   fill: var(--surface);
   stroke: var(--accent);
   stroke-width: 1.2;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .bp-cross {
   stroke: var(--accent);
   stroke-width: 1;
   opacity: 0.7;
+}
+
+[data-scroll-scene=divider] .bp-beam {
+  stroke-dashoffset: calc((1 - var(--scene-progress, 0.5)) * 760);
+  opacity: calc(0.18 + var(--scene-spread, 0.5) * 0.78);
+}
+
+[data-scroll-scene=divider] .bp-reticle {
+  transform: rotate(calc((1 - var(--scene-spread, 1)) * 90deg)) scale(calc(0.84 + var(--scene-spread, 1) * 0.24));
+}
+
+[data-scroll-scene=divider] .bp-pulse-dot {
+  transform: scale(calc(0.8 + var(--scene-spread, 0.5) * 0.55));
+  opacity: calc(0.45 + var(--scene-spread, 0.5) * 0.55);
+}
+
+[data-scroll-scene=divider] .blueprint-origin {
+  transform: translate3d(calc(var(--scene-drift, 0px) * -0.35), 0, 0);
+}
+
+[data-scroll-scene=divider] .blueprint-target {
+  transform: translate3d(calc(var(--scene-drift, 0px) * 0.35), 0, 0);
 }
 
 .blueprint-reticles {

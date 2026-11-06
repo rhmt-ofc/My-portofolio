@@ -2,12 +2,23 @@ import { useEffect } from 'react';
 import { scrollScenePose } from '../interaction/scroll-scenes.mjs';
 
 const targets = [
-  ['#about', 'about'], ['.journey-workspace', 'journey'],
-  ['.technology-stack', 'stack'], ['.anime-gallery', 'gallery'],
-  ['.video-banner', 'video'], ['.royal-scene', 'royal'],
-  ['.lab-layout', 'relay'], ['.people-roster', 'people'],
-  ['.community-showcase-section', 'community'], ['#ethos', 'ethos'],
-  ['.rating-layout', 'rating'], ['#contact', 'footer']
+  ['#archive', 'archive'],
+  ['.blueprint-divider', 'divider'],
+  ['#about', 'about'],
+  ['#journey', 'journey-section'],
+  ['.journey-workspace', 'journey'],
+  ['#ecosystem', 'ecosystem'],
+  ['.technology-stack', 'stack'],
+  ['#universe', 'universe'],
+  ['.anime-gallery', 'gallery'],
+  ['.video-banner', 'video'],
+  ['.royal-scene', 'royal'],
+  ['.lab-layout', 'relay'],
+  ['.people-roster', 'people'],
+  ['.community-showcase-section', 'community'],
+  ['#ethos', 'ethos'],
+  ['.rating-layout', 'rating'],
+  ['#contact', 'footer']
 ];
 const properties = ['--scene-progress','--scene-balance','--scene-spread','--scene-lift','--scene-drift','--scene-turn','--scene-yaw','--scene-fan','--scene-gap'];
 /** Static flow geometry ignores our own transforms and the Journey sticky position. */
@@ -21,10 +32,11 @@ export function useScrollScenes(enabled:boolean) {
   useEffect(()=>{
     if(!enabled)return;
     const root=document.documentElement;
-    const scenes=targets.flatMap(([selector,name])=>{
-      const element=document.querySelector<HTMLElement>(selector);
-      return element?[{element,name,top:0,height:1,visible:false}]:[];
-    });
+    const scenes=targets.flatMap(([selector,name])=>
+      Array.from(document.querySelectorAll<HTMLElement>(selector)).map(element=>({
+        element,name,top:0,height:1,visible:false
+      }))
+    );
     let frame=0,dirty=true,alive=true;
     const blocked=()=>document.hidden||root.hasAttribute('data-intro')||root.hasAttribute('data-panel-open');
     const update=()=>{
