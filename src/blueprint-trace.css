@@ -92,8 +92,8 @@
   position: relative;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 14px 24px;
+  margin: 32px auto 44px;
+  padding: 18px 24px 28px;
   pointer-events: none;
   user-select: none;
   box-sizing: border-box;
@@ -252,7 +252,8 @@
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
   .blueprint-divider {
-    padding: 10px 14px;
+    margin: 28px auto 42px;
+    padding: 14px 14px 26px;
   }
   .blueprint-status {
     display: none;

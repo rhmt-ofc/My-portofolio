@@ -79,7 +79,7 @@ export function BlueprintDivider({
           <path d="M 1130 16 L 1150 16 M 1140 6 L 1140 26" className="bp-cross" />
         </svg>
         <div className="bp-atom-center">
-          <QuantumAtom variant={atomVariant} size="xs" noHalo />
+          <QuantumAtom variant={atomVariant} size="sm" noHalo />
         </div>
       </div>
       <div className="blueprint-reticles">

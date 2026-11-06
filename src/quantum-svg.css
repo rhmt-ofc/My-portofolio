@@ -530,8 +530,8 @@ html[data-theme="light"] {
   left: 50%;
   top: 16px;
   transform: translate(-50%, -50%);
-  width: 22px;
-  height: 22px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -540,13 +540,15 @@ html[data-theme="light"] {
   background: var(--qa-wing-bg);
   border: 1px solid var(--qa-wing-border);
   border-radius: 50%;
-  box-shadow: 0 0 4px var(--atom-glow);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 0 5px var(--atom-glow);
 }
 
 .bp-atom-center .quantum-atom-stage {
-  --atom-size: 18px;
-  width: 18px;
-  height: 18px;
+  --atom-size: 38px;
+  width: 38px;
+  height: 38px;
 }
 
 /* ==========================================================================
