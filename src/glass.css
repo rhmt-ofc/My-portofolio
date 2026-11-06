@@ -109,8 +109,10 @@ button,a,input,textarea,summary{outline-offset:5px}:focus-visible{outline:2px so
 .orbit-experience{min-width:0;max-width:540px;width:100%;margin-inline:auto}
 .tool-universe{position:relative;width:calc(100% - 18px);margin-inline:auto;aspect-ratio:1;touch-action:pan-y;user-select:none;cursor:grab;isolation:isolate}
 .orbit-dragging{cursor:grabbing}.orbit-rails{position:absolute;inset:0;width:100%;height:100%;color:var(--accent);overflow:visible;pointer-events:none}
-.orbit-rail{fill:none;stroke-width:1.5;filter:drop-shadow(0 0 1.5px rgba(255,255,255,0.2))}
-.orbit-rail-accent{stroke-width:1.7;filter:drop-shadow(0 0 3px rgba(255,255,255,0.35))}
+.orbit-rail{fill:none;stroke-width:1.5;stroke-dasharray:14 10;animation:orbitRailFlow 12s linear infinite;filter:drop-shadow(0 0 2px rgba(255,255,255,0.45))}
+.orbit-rail-accent{stroke-width:1.8;stroke-dasharray:18 8 6 8;animation:orbitRailFlowRev 10s linear infinite;filter:drop-shadow(0 0 3.5px rgba(255,255,255,0.6))}
+@keyframes orbitRailFlow{from{stroke-dashoffset:0}to{stroke-dashoffset:480}}
+@keyframes orbitRailFlowRev{from{stroke-dashoffset:0}to{stroke-dashoffset:-480}}
 .orbit-rail-shadow{fill:none;stroke:var(--line);stroke-width:6}
 .orbit-runner{stroke:#ffffff;stroke-width:1.5;filter:drop-shadow(0 0 5px rgba(255,255,255,0.95))}
 .orbit-runner-aura{pointer-events:none;filter:drop-shadow(0 0 10px rgba(255,255,255,0.6));animation:pulseAura 3s ease-in-out infinite alternate}

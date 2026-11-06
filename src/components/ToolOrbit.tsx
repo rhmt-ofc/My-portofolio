@@ -58,7 +58,7 @@ export default function ToolOrbit({paused=false,compact=false,selected=null,onSe
         }
       });
     };
-    const canMove=()=>shouldAnimateOrbit({visible,hidden:document.hidden,paused:paused||localPause||document.documentElement.dataset.motion==='off',reduced:media.matches,selected:!!current,interacting:!!gesture.current,blocked:document.documentElement.hasAttribute('data-intro')||document.documentElement.hasAttribute('data-panel-open')||document.documentElement.dataset.heroCovered==='true'});
+    const canMove=()=>shouldAnimateOrbit({visible,hidden:document.hidden,paused:paused||localPause||document.documentElement.dataset.motion==='off',reduced:media.matches,selected:!!current,interacting:false,blocked:document.documentElement.hasAttribute('data-intro')||document.documentElement.hasAttribute('data-panel-open')||document.documentElement.dataset.heroCovered==='true'});
     const tick=(now:number)=>{frame.current=0;if(!canMove())return;if(!drawAt||now-drawAt>=32){const dt=last?Math.min(.08,(now-last)/1000):0;last=now;drawAt=now;const next=advanceOrbit({time:time.current,rotation:rotation.current,momentum:momentum.current},dt);time.current=next.time;rotation.current=next.rotation;momentum.current=next.momentum;draw();}frame.current=requestAnimationFrame(tick);};
     const wake=()=>{cancelAnimationFrame(frame.current);frame.current=0;last=0;drawAt=0;draw();el.dataset.moving=canMove()?'true':'false';if(canMove())frame.current=requestAnimationFrame(tick);};
     const io=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;wake();},{rootMargin:'40px'});io.observe(el);
