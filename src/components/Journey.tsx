@@ -2,10 +2,12 @@ import { useState, type CSSProperties } from 'react';
 import { ArrowRight, Terminal } from 'lucide-react';
 import { JOURNEY_STEPS } from '../data';
 import { Chapter } from './Primitives';
+import { RhombusWings, QuantumClusterBadge } from './QuantumSvgAccents';
 export default function Journey() {
   const [phase,setPhase]=useState(0);const current=JOURNEY_STEPS[phase];
-  return <section className="journey section-pad" id="journey" aria-labelledby="journey-title"><div className="wrap"><Chapter number="03">THE EVOLUTION / 6 CHAPTERS</Chapter><div className="section-heading"><h2 id="journey-title">Dari tugas sekolah.<br/><em>Lalu keterusan.</em></h2><p>Pilih titik perjalanan untuk membuka konteksnya.<br/>Masih banyak yang perlu dipelajari.</p></div><div className="journey-layout">
+  return <section className="journey section-pad" id="journey" aria-labelledby="journey-title"><div className="wrap"><Chapter number="03">THE EVOLUTION / 6 CHAPTERS</Chapter><div className="section-heading"><h2 id="journey-title">Dari tugas sekolah.<br/><em>Lalu keterusan.</em></h2><div><p>Pilih titik perjalanan untuk membuka konteksnya.<br/>Masih banyak yang perlu dipelajari.</p><QuantumClusterBadge variant="cyan" title="OPPO A3S // ORIGIN TELEMETRY" subtitle="6 Evolution Phases · Active Gyroscope" coords="SYS.03 // EVOLUTION_ATOM"/></div></div><div className="journey-layout">
     <aside className="journey-art"><div className="journey-workspace" data-phase={phase}>
+      <RhombusWings variant="cyan" index={phase + 1} />
       <div className="journey-platform" aria-hidden="true"/>
       <div className="journey-phone"><div className="phone-edge"/><div className="phone-screen"><div className="phone-status"><span>R_HMT</span><span>● ● ▰</span></div><div className="phone-camera"/><div className="phone-terminal" key={phase}><Terminal size={23}/><span className="phone-terminal-label">chapter / 0{phase+1}</span><strong>{current.phase.split('—')[1]?.trim()||current.phase}</strong><div className="phone-code"><span>const curiosity = true;</span><span>while (curiosity) {'{'}</span><b>  learn();</b><b>  build();</b><b>  iterate();</b><span>{'}'}</span></div><small>{current.techKeywords[0]}</small></div><span className="phone-home"/></div></div>
       <div className="journey-modules" aria-label="Modul perjalanan interaktif">{JOURNEY_STEPS.map((j,i)=><button type="button" onClick={()=>setPhase(i)} aria-label={`Buka fase ${i+1}: ${j.title}`} aria-pressed={phase===i} key={j.phase} className={`journey-module ${phase===i?'module-active':''}`} style={{'--module-index':i} as CSSProperties}><span>0{i+1}</span><strong>{j.techKeywords[0]}</strong><i aria-hidden="true"/></button>)}</div>
