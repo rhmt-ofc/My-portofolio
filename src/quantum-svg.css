@@ -5,57 +5,57 @@
    ========================================================================== */
 
 :root {
-  /* Default Dark Mode Luminous Palette */
-  --qa-cyan-hex: #22d3ee;
-  --qa-cyan-rgb: 34, 211, 238;
-  --qa-cyan-electron: #cffafe;
-  --qa-cyan-glow: rgba(34, 211, 238, 0.72);
+  /* Subtle, Refined Dark Mode Luminous Palette */
+  --qa-cyan-hex: #38bdf8;
+  --qa-cyan-rgb: 56, 189, 248;
+  --qa-cyan-electron: #e0f2fe;
+  --qa-cyan-glow: rgba(56, 189, 248, 0.28);
 
-  --qa-gold-hex: #fbbf24;
-  --qa-gold-rgb: 251, 191, 36;
-  --qa-gold-electron: #fef3c7;
-  --qa-gold-glow: rgba(251, 191, 36, 0.72);
+  --qa-gold-hex: #eab308;
+  --qa-gold-rgb: 234, 179, 8;
+  --qa-gold-electron: #fef08a;
+  --qa-gold-glow: rgba(234, 179, 8, 0.28);
 
-  --qa-amethyst-hex: #c084fc;
-  --qa-amethyst-rgb: 192, 132, 252;
+  --qa-amethyst-hex: #a855f7;
+  --qa-amethyst-rgb: 168, 85, 247;
   --qa-amethyst-electron: #f3e8ff;
-  --qa-amethyst-glow: rgba(192, 132, 252, 0.72);
+  --qa-amethyst-glow: rgba(168, 85, 247, 0.28);
 
-  --qa-emerald-hex: #2dd4bf;
-  --qa-emerald-rgb: 45, 212, 191;
+  --qa-emerald-hex: #14b8a6;
+  --qa-emerald-rgb: 20, 184, 166;
   --qa-emerald-electron: #ccfbf1;
-  --qa-emerald-glow: rgba(45, 212, 191, 0.72);
+  --qa-emerald-glow: rgba(20, 184, 166, 0.28);
 
-  --qa-wing-bg: rgba(10, 14, 23, 0.72);
-  --qa-wing-border: rgba(255, 255, 255, 0.16);
-  --qa-shadow-color: rgba(0, 0, 0, 0.55);
+  --qa-wing-bg: rgba(10, 14, 23, 0.6);
+  --qa-wing-border: rgba(255, 255, 255, 0.1);
+  --qa-shadow-color: rgba(0, 0, 0, 0.35);
 }
 
-/* Automatic High-Contrast Luminous Adaptation for Light Mode */
+/* Subtle & Clean Light Mode Adaptation */
 html[data-theme="light"] {
   --qa-cyan-hex: #0284c7;
   --qa-cyan-rgb: 2, 132, 199;
   --qa-cyan-electron: #0ea5e9;
-  --qa-cyan-glow: rgba(2, 132, 199, 0.52);
+  --qa-cyan-glow: rgba(2, 132, 199, 0.2);
 
   --qa-gold-hex: #d97706;
   --qa-gold-rgb: 217, 119, 6;
   --qa-gold-electron: #f59e0b;
-  --qa-gold-glow: rgba(217, 119, 6, 0.52);
+  --qa-gold-glow: rgba(217, 119, 6, 0.2);
 
   --qa-amethyst-hex: #7c3aed;
   --qa-amethyst-rgb: 124, 58, 237;
   --qa-amethyst-electron: #8b5cf6;
-  --qa-amethyst-glow: rgba(124, 58, 237, 0.5);
+  --qa-amethyst-glow: rgba(124, 58, 237, 0.2);
 
   --qa-emerald-hex: #0d9488;
   --qa-emerald-rgb: 13, 148, 136;
   --qa-emerald-electron: #14b8a6;
-  --qa-emerald-glow: rgba(13, 148, 136, 0.5);
+  --qa-emerald-glow: rgba(13, 148, 136, 0.2);
 
-  --qa-wing-bg: rgba(255, 255, 255, 0.82);
-  --qa-wing-border: rgba(15, 23, 42, 0.16);
-  --qa-shadow-color: rgba(15, 23, 42, 0.22);
+  --qa-wing-bg: rgba(255, 255, 255, 0.75);
+  --qa-wing-border: rgba(15, 23, 42, 0.1);
+  --qa-shadow-color: rgba(15, 23, 42, 0.12);
 }
 
 /* Variant Bindings */
@@ -168,7 +168,7 @@ html[data-theme="light"] {
   width: var(--atom-size);
   height: var(--atom-size);
   animation: 8s alterebro-atom-spin infinite cubic-bezier(1, 0.25, 0, 0.75);
-  filter: drop-shadow(0 0 8px var(--atom-glow));
+  filter: drop-shadow(0 0 3px var(--atom-glow));
 }
 
 @keyframes alterebro-atom-spin {
@@ -194,9 +194,9 @@ html[data-theme="light"] {
   height: var(--nucleus-size);
   margin-top: calc(var(--nucleus-size) / -2);
   margin-left: calc(var(--nucleus-size) / -2);
-  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--electron-color-hex) 55%, var(--atom-color-hex) 100%);
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--electron-color-hex) 60%, var(--atom-color-hex) 100%);
   border-radius: 100%;
-  box-shadow: 0 0 10px 2px var(--atom-color-hex), 0 0 20px 4px var(--atom-glow);
+  box-shadow: 0 0 4px 1px var(--atom-color-hex);
   animation: 2s alterebro-nucleus-pulse infinite cubic-bezier(0.65, 0, 0.35, 1);
 }
 
@@ -535,10 +535,10 @@ html[data-theme="light"] {
   background: var(--qa-wing-bg);
   border: 1px solid var(--qa-wing-border);
   border-radius: 50%;
-  padding: 2px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 0 14px var(--atom-glow);
+  padding: 1px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 0 6px var(--atom-glow);
 }
 
 /* ==========================================================================

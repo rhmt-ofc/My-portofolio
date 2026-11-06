@@ -1,28 +1,14 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ArrowUpRight, X } from 'lucide-react';
-import { MiniAtomGyro, type QuantumVariant } from './QuantumSvgAccents';
 
 export function Mark({ className = '' }: { className?: string }) {
   return <img src="/images/pp-dev-icon.webp" width="78" height="78" className={`identity-mark ${className}`} alt="" aria-hidden="true" loading="eager" decoding="async"/>;
 }
 
-const chapterVariants: Record<string, QuantumVariant> = {
-  '01': 'gold',
-  '02': 'cyan',
-  '03': 'cyan',
-  '04': 'cyan',
-  '05': 'amethyst',
-  '06': 'emerald',
-  '07': 'emerald',
-  '08': 'gold'
-};
-
 export function Chapter({ number, children, light = false }: { number: string; children: ReactNode; light?: boolean }) {
-  const variant = chapterVariants[number] || 'gold';
   return (
     <p className={`chapter ${light ? 'chapter-light' : ''}`}>
       <span className="chapter-badge">
-        <MiniAtomGyro variant={variant} />
         <span className="chapter-num">{number}</span>
       </span>
       <span className="chapter-line chapter-trace" aria-hidden="true">
