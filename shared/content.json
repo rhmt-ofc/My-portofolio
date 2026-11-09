@@ -150,7 +150,7 @@
           "name": "Google AI Studio",
           "description": "Mencoba model serta parameter API Google.",
           "iconName": "Cpu",
-          "icon": "/images/tools/google-ai-studio.svg"
+          "icon": "/images/tools/google-ai-studio.png"
         },
         {
           "name": "Devin",
@@ -676,26 +676,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://finorajourney.my.id/art/brand-symbol.webp",
-      "banner": "/images/works/finora-banner.webp",
-      "metrics": [
-        {
-          "label": "Data Persistence",
-          "value": "IndexedDB Local Store"
-        },
-        {
-          "label": "Simulation",
-          "value": "Realtime Scenario Engine"
-        },
-        {
-          "label": "Privacy",
-          "value": "100% Client-Side Privacy"
-        }
-      ],
-      "highlights": [
-        "Manajemen arus kas, pos pengeluaran, dan pelacakan utang-piutang",
-        "Simulasi skenario target keuangan dengan visualisasi progres instan",
-        "Penyimpanan lokal aman tanpa dependensi server pihak ketiga"
-      ]
+      "banner": "/images/works/finora-banner.webp"
     },
     {
       "id": "repo-flow",
@@ -720,26 +701,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://repoflow.web.id/icon.png",
-      "banner": "/images/works/repoflow-banner.webp",
-      "metrics": [
-        {
-          "label": "Commit Engine",
-          "value": "Atomic Git Tree API"
-        },
-        {
-          "label": "Client Security",
-          "value": "AES-256 Web Crypto"
-        },
-        {
-          "label": "Archive Handler",
-          "value": "Zero-Server ZIP Unpack"
-        }
-      ],
-      "highlights": [
-        "Ekstraksi berkas ZIP langsung di memori browser tanpa backend upload",
-        "Commit multi-file atomik via Octokit / GitHub REST API v3",
-        "Akses responsif ramah smartphone untuk developer on-the-go"
-      ]
+      "banner": "/images/works/repoflow-banner.webp"
     },
     {
       "id": "pixcraft",
@@ -763,26 +725,7 @@
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://pixcraft-studio.vercel.app/favicon.svg",
-      "banner": "/images/works/pixcraft-banner.webp",
-      "metrics": [
-        {
-          "label": "Failover Engine",
-          "value": "Sharp Lanczos3 Local"
-        },
-        {
-          "label": "Canvas Pipeline",
-          "value": "Client-Side WebP/JPEG"
-        },
-        {
-          "label": "AI Operations",
-          "value": "Expand / Eraser / Remove"
-        }
-      ],
-      "highlights": [
-        "AI Outpainting kanvas interaktif dengan drag-to-expand presisi",
-        "Zero-downtime auto-failover ke engine lokal Sharp saat cloud limit",
-        "Komposer multi-gambar instan dengan optimasi memori Web Workers"
-      ]
+      "banner": "/images/works/pixcraft-banner.webp"
     },
     {
       "id": "tierlist-maker",
