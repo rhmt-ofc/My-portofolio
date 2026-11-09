@@ -680,25 +680,28 @@
     },
     {
       "id": "repo-flow",
-      "name": "Repo Flow",
+      "name": "RepoFlow",
       "category": "Utilities",
-      "url": "https://auto-reporistory-githb.vercel.app/",
-      "description": "RepoFlow adalah web manager GitHub untuk upload ZIP atau banyak file, membaca struktur repository, memperbarui atau menghapus file, serta memantau aktivitas push. Antarmukanya mendukung penggunaan dari HP maupun desktop.",
-      "problem": "Pengembang membuang waktu mengatur boilerplate, repositori terpencil, dan file workflow CI/CD berulang-kali untuk setiap eksperimen mikro.",
-      "exploration": "Menghubungkan API REST GitHub untuk merancang wizard interaktif pembangun berkas konfigurasi, inisialisasi Git, dan push otomatis.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "url": "https://repoflow.web.id",
+      "description": "RepoFlow adalah web manager GitHub modern untuk upload ZIP, ekstraksi instan di browser, commit atomik, manajemen berkas visual, serta kontrol visibilitas publik/privat sekali klik.",
+      "problem": "Upload manual di web GitHub membatasi jumlah berkas, tidak bisa mengekstrak arsip .zip secara otomatis, dan sering membingungkan jika diakses dari mobile.",
+      "exploration": "Menghubungkan GitHub REST API & Octokit dengan arsitektur Atomic Git Tree, Web Crypto API AES-256 lokal, dan antarmuka responsif ramah mobile.",
+      "outcome": "Aplikasi live aktif digunakan untuk workflow commit repositori cepat langsung dari HP tanpa instalasi Git CLI.",
       "ecosystem": [
         "React",
+        "TypeScript",
+        "Vite",
         "GitHub API",
+        "Octokit",
         "JSZip",
         "IndexedDB"
       ],
-      "summary": "Upload project dan kelola file repository GitHub dari satu antarmuka.",
-      "status": "ONLINE_UNVERIFIED",
+      "summary": "Upload ZIP & kelola repositori GitHub langsung dari browser dengan commit atomik.",
+      "status": "VERIFIED_LIVE",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://auto-reporistory-githb.vercel.app/icon.png",
-      "banner": "https://auto-reporistory-githb.vercel.app/banner.png"
+      "icon": "https://repoflow.web.id/icon.png",
+      "banner": "/images/works/repoflow-banner.webp"
     },
     {
       "id": "pixcraft",
