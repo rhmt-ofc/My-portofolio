@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Search, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2, Cpu, ExternalLink, Layers, Search, Sparkles, X } from 'lucide-react';
 import { PROJECTS, statusLabels } from '../data';
 import type { Project } from '../types';
 import { Chapter, Modal, VisitButton } from './Primitives';
@@ -91,11 +91,75 @@ export default function Archive() {
       <div className="archive-bottom"><span>Semua {PROJECTS.length} proyek tetap di arsip.</span><span className="micro-note">BUKA COVER / DESKRIPSI & STACK</span></div>
       {active && <Modal label={active.name} onClose={close} className="work-modal">
         <WorkCover work={active} isModal={true} />
-        <h2><WorkFavicon url={active.url} icon={active.icon} title={active.name}/><span>{active.name}</span></h2>
+        <div className="work-modal-header">
+          <div>
+            <h2><WorkFavicon url={active.url} icon={active.icon} title={active.name}/><span>{active.name}</span></h2>
+            <div className="work-modal-badge-row">
+              <span className="work-modal-category">{active.category}</span>
+              <span className={`work-modal-status status-${active.status.toLowerCase()}`}>{statusLabels[active.status]}</span>
+            </div>
+          </div>
+          {active.url && (
+            <a
+              href={active.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-visit-direct"
+              aria-label={`Buka ${active.name} di tab baru`}
+            >
+              <span>Buka Demo</span>
+              <ExternalLink size={14} />
+            </a>
+          )}
+        </div>
+
         <p className="modal-summary">{active.description}</p>
-        <div className="work-stack"><strong>Stack:</strong><div className="tag-list">{active.ecosystem.map(t => <span key={t}>{t}</span>)}</div></div>
+
+        {active.metrics && active.metrics.length > 0 && (
+          <div className="modal-tech-specs">
+            <div className="modal-specs-title">
+              <Cpu size={14} />
+              <span>Spesifikasi & Kapabilitas Teknis</span>
+            </div>
+            <div className="modal-specs-grid">
+              {active.metrics.map((m, idx) => (
+                <div key={idx} className="spec-item">
+                  <span className="spec-label">{m.label}</span>
+                  <strong className="spec-val">{m.value}</strong>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {active.highlights && active.highlights.length > 0 && (
+          <div className="modal-highlights">
+            <div className="modal-highlights-title">
+              <Sparkles size={14} />
+              <span>Sorotan Fitur & Solusi</span>
+            </div>
+            <ul className="modal-highlights-list">
+              {active.highlights.map((h, idx) => (
+                <li key={idx}>
+                  <CheckCircle2 size={13} className="highlight-icon" />
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className="work-stack">
+          <div className="work-stack-header">
+            <Layers size={14} />
+            <strong>Tech Stack:</strong>
+          </div>
+          <div className="tag-list">
+            {active.ecosystem.map(t => <span key={t}>{t}</span>)}
+          </div>
+        </div>
+
         {active.url && <div className="work-actions"><VisitButton href={active.url}/></div>}
-        <p className="work-status">Status: {statusLabels[active.status]}</p>
       </Modal>}
     </div>
   </section>;
