@@ -118,7 +118,7 @@ export default function Archive() {
         {active.metrics && active.metrics.length > 0 && (
           <div className="modal-tech-specs">
             <div className="modal-specs-title">
-              <Cpu size={14} />
+              <Cpu size={14} aria-hidden="true" />
               <span>Spesifikasi & Kapabilitas Teknis</span>
             </div>
             <div className="modal-specs-grid">
@@ -135,13 +135,13 @@ export default function Archive() {
         {active.highlights && active.highlights.length > 0 && (
           <div className="modal-highlights">
             <div className="modal-highlights-title">
-              <Sparkles size={14} />
+              <Sparkles size={14} aria-hidden="true" />
               <span>Sorotan Fitur & Solusi</span>
             </div>
             <ul className="modal-highlights-list">
               {active.highlights.map((h, idx) => (
                 <li key={idx}>
-                  <CheckCircle2 size={13} className="highlight-icon" />
+                  <CheckCircle2 size={14} className="highlight-icon" aria-hidden="true" />
                   <span>{h}</span>
                 </li>
               ))}
@@ -151,7 +151,7 @@ export default function Archive() {
 
         <div className="work-stack">
           <div className="work-stack-header">
-            <Layers size={14} />
+            <Layers size={14} aria-hidden="true" />
             <strong>Tech Stack:</strong>
           </div>
           <div className="tag-list">

@@ -1196,3 +1196,259 @@ html[data-motion=off] .work-visual-button{transform:none}
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================================
+   WORK MODAL ENHANCED CRAFT & TECHNICAL SPECIFICATIONS
+   ============================================================ */
+.work-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.work-modal-header h2 {
+  font-size: clamp(24px, 5vw, 34px);
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.work-modal-badge-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.work-modal-category {
+  font: 600 10px/1 Space, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  padding: 5px 9px;
+  border-radius: 4px;
+}
+
+.work-modal-status {
+  font: 600 10px/1 Space, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 5px 9px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+
+.work-modal-status.status-verified_live,
+.work-modal-status.status-live_verified {
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.work-modal-status.status-online_unverified {
+  background: rgba(245, 158, 11, 0.12);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.modal-visit-direct {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font: 600 11.5px Space, sans-serif;
+  letter-spacing: 0.3px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.modal-visit-direct:hover {
+  background: var(--line-strong);
+  border-color: var(--accent);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.modal-summary {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 0 0 22px 0;
+}
+
+/* Technical Specifications Card */
+.modal-tech-specs {
+  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 20px 0;
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.modal-specs-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 11px Space, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--quiet);
+  margin-bottom: 12px;
+}
+
+.modal-specs-title svg {
+  color: var(--accent);
+}
+
+.modal-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  min-width: 0;
+}
+
+.spec-label {
+  font: 600 9.5px Space, sans-serif;
+  color: var(--quiet);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.spec-val {
+  font: 600 12.5px/1.3 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  color: var(--ink);
+  word-break: break-word;
+  display: block;
+}
+
+/* Feature Highlights Card */
+.modal-highlights {
+  background: var(--surface-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 16px var(--shadow);
+}
+
+.modal-highlights-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 11px Space, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--quiet);
+  margin-bottom: 12px;
+}
+
+.modal-highlights-title svg {
+  color: #38bdf8;
+}
+
+.modal-highlights-list,
+.work-modal .modal-highlights-list,
+.modal-content .modal-highlights-list,
+ul.modal-highlights-list {
+  list-style: none !important;
+  list-style-type: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-highlights-list li,
+.work-modal .modal-highlights-list li,
+.modal-content .modal-highlights-list li,
+ul.modal-highlights-list li {
+  list-style: none !important;
+  list-style-type: none !important;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+  padding: 0;
+}
+
+.modal-highlights-list li::before,
+.work-modal .modal-highlights-list li::before,
+.modal-content .modal-highlights-list li::before,
+ul.modal-highlights-list li::before {
+  content: none !important;
+  display: none !important;
+}
+
+.highlight-icon {
+  color: #38bdf8;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.work-stack {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.work-stack-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 10px;
+  font: 600 11.5px Space, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--quiet);
+}
+
+.work-stack-header svg {
+  color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  .work-modal-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .modal-visit-direct {
+    align-self: flex-start;
+  }
+  .modal-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .modal-tech-specs,
+  .modal-highlights {
+    padding: 13px 14px;
+    margin: 16px 0;
+  }
+}
