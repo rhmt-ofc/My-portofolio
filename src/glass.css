@@ -1198,9 +1198,29 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 /* ============================================================
-   BINARY DEVMARK SCATTER-ASSEMBLY (SPLASH SCREEN PP DEV)
+   LIGHTWEIGHT 3D ELECTRIC GOOEY SPINNER (SPLASH SCREEN PP DEV)
+   Hardware Accelerated · Zero Canvas Overhead · Theme Palette
    ============================================================ */
-.binary-devmark-wrap {
+.electric-filter-def {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.electric-spinner-stage {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 400px;
+  contain: layout paint;
+}
+
+.electric-core {
   position: relative;
   width: 78px;
   height: 78px;
@@ -1208,94 +1228,158 @@ html[data-motion=off] .work-visual-button{transform:none}
   display: flex;
   align-items: center;
   justify-content: center;
-  isolation: isolate;
+  z-index: 3;
 }
 
-.binary-devmark-img {
+.electric-avatar {
   width: 78px;
   height: 78px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
   border: 1px solid var(--line-strong);
-  transition: opacity 0.4s ease, border-color 0.4s ease;
+  box-shadow: 0 4px 16px var(--shadow);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.binary-devmark-img.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.binary-devmark-img.visible {
-  opacity: 1;
+.electric-spinner-stage.is-resolved .electric-avatar {
   border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(216, 187, 146, 0.45);
 }
 
-.binary-devmark-canvas {
+.electric-rings-cluster {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 78px;
-  height: 78px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 2;
-  transition: opacity 0.4s ease;
-}
-
-.binary-devmark-canvas.hidden {
-  opacity: 0;
-}
-
-.binary-devmark-canvas.visible {
-  opacity: 1;
-}
-
-.binary-devmark-ring {
-  position: absolute;
-  inset: -6px;
-  border: 1px dashed var(--line-strong);
+  inset: -12px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1;
+  filter: url(#electricGooey);
+  transform-style: preserve-3d;
+  contain: strict;
+  will-change: transform;
+}
+
+.electric-ring-orbit {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  --ring-w: 2.2px;
+  border: var(--ring-w) solid transparent;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  background: conic-gradient(
+    from 0deg,
+    #d8bb92,
+    transparent 20%,
+    #ffffff 40%,
+    #b45309 60%,
+    transparent 75%,
+    #d8bb92 90%,
+    transparent
+  ) border-box;
+  contain: strict;
+  will-change: transform;
+}
+
+.orbit-primary {
+  animation: electric-orbit-a 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.orbit-secondary {
+  inset: 3px;
+  background: conic-gradient(
+    from 180deg,
+    #ffffff,
+    transparent 25%,
+    #d8bb92 50%,
+    transparent 70%,
+    #f1f3f6 85%,
+    transparent
+  ) border-box;
+  animation: electric-orbit-b 4.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.orbit-tertiary {
+  inset: -3px;
   opacity: 0.6;
-  animation: devmark-ring-spin 14s linear infinite;
+  background: conic-gradient(
+    from 90deg,
+    #c5a275,
+    transparent 35%,
+    #ffffff 55%,
+    transparent
+  ) border-box;
+  animation: electric-orbit-c 5.6s linear infinite;
 }
 
-.binary-devmark-wrap.is-assembled .binary-devmark-ring {
-  border: 1px solid var(--accent);
-  box-shadow: 0 0 12px var(--shadow);
-  opacity: 0.9;
-  animation: devmark-ring-lock 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.electric-reticle {
+  position: absolute;
+  inset: -15px;
+  border: 1px dashed rgba(216, 187, 146, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4;
+  animation: electric-reticle-spin 18s linear infinite;
 }
 
-@keyframes devmark-ring-spin {
+.electric-spinner-stage.is-resolved .electric-reticle {
+  border: 1px solid rgba(216, 187, 146, 0.8);
+  box-shadow: 0 0 15px rgba(216, 187, 146, 0.5);
+  animation: electric-reticle-lock 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes electric-orbit-a {
+  0% { transform: rotateY(0deg) rotateX(25deg) rotateZ(0deg) scale(0.98); }
+  50% { transform: rotateY(180deg) rotateX(65deg) rotateZ(180deg) scale(1.08); }
+  100% { transform: rotateY(360deg) rotateX(25deg) rotateZ(360deg) scale(0.98); }
+}
+
+@keyframes electric-orbit-b {
+  0% { transform: rotateY(180deg) rotateX(-35deg) rotateZ(90deg) scale(1.06); }
+  50% { transform: rotateY(0deg) rotateX(-75deg) rotateZ(270deg) scale(0.96); }
+  100% { transform: rotateY(-180deg) rotateX(-35deg) rotateZ(450deg) scale(1.06); }
+}
+
+@keyframes electric-orbit-c {
+  0% { transform: rotateZ(0deg) rotateX(15deg); }
+  100% { transform: rotateZ(360deg) rotateX(15deg); }
+}
+
+@keyframes electric-reticle-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-@keyframes devmark-ring-lock {
-  0% { transform: scale(0.95); opacity: 0.5; }
-  50% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.85; }
+@keyframes electric-reticle-lock {
+  0% { transform: scale(0.94); opacity: 0.5; }
+  50% { transform: scale(1.06); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
 }
 
 @media (max-width: 600px) {
-  .binary-devmark-wrap,
-  .binary-devmark-img,
-  .binary-devmark-canvas {
+  .electric-spinner-stage {
+    width: 76px;
+    height: 76px;
+  }
+  .electric-core,
+  .electric-avatar {
     width: 70px;
     height: 70px;
+  }
+  .electric-rings-cluster {
+    inset: -9px;
+  }
+  .electric-reticle {
+    inset: -11px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .binary-devmark-canvas,
-  .binary-devmark-ring {
+  .electric-rings-cluster,
+  .electric-reticle {
     display: none !important;
   }
-  .binary-devmark-img {
-    opacity: 1 !important;
-  }
 }
+
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import BinaryDevMark from './BinaryDevMark';
+import ElectricSpinnerMark from './ElectricSpinnerMark';
 import { introProgress } from '../interaction/intro.mjs';
 export default function SplashScreen() {
   const dialog=useRef<HTMLDialogElement>(null),closed=useRef(false),exit=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
@@ -27,7 +27,7 @@ export default function SplashScreen() {
   useEffect(()=>{if(!show)return;const old=document.body.style.overflow,focus=document.activeElement as HTMLElement|null;document.body.style.overflow='hidden';dialog.current?.close();dialog.current?.showModal();return()=>{dialog.current?.close();document.body.style.overflow=old;focus?.focus({preventScroll:true});};},[show]);
   if(!show)return null;
   return <dialog open ref={dialog} className={`intro-screen ${leaving?'intro-leaving':''}`} aria-label="Intro R_HMT" onCancel={e=>{e.preventDefault();finish();}}>
-    <div className="intro-stage" aria-hidden="true"><span className="intro-panel intro-panel-one"/><span className="intro-panel intro-panel-two"/><span className="intro-panel intro-panel-three"/><div className="intro-identity"><BinaryDevMark progress={progress}/></div><span className="intro-orbit"/><span className="intro-scan"/></div>
+    <div className="intro-stage" aria-hidden="true"><span className="intro-panel intro-panel-one"/><span className="intro-panel intro-panel-two"/><span className="intro-panel intro-panel-three"/><div className="intro-identity"><ElectricSpinnerMark progress={progress}/></div><span className="intro-orbit"/><span className="intro-scan"/></div>
     <div className="intro-copy"><p className="eyebrow">R_HMT / PERSONAL ARCHIVE</p><h2>Learning <em>in Progress.</em></h2><div className="intro-progress-caption"><span>{progress===100?'READY TO EXPLORE':'LOADING'}</span><output aria-label="Progres intro" aria-live="off">{String(progress).padStart(2,'0')}<small>%</small></output></div><div className="intro-load" role="progressbar" aria-label="Progres pembukaan portofolio" aria-valuemin={1} aria-valuemax={100} aria-valuenow={progress}><span style={{transform:`scaleX(${progress/100})`}}/></div><span>MEMBUKA RUANG EKSPLORASI.</span></div><button className="intro-skip" onClick={finish}>Lewati intro ↗</button>
   </dialog>;
 }
