@@ -1252,7 +1252,7 @@ html[data-motion=off] .work-visual-button{transform:none}
   inset: -18px;
   border-radius: 50%;
   pointer-events: none;
-  filter: url(#electricGooey);
+  filter: drop-shadow(0 0 10px rgba(216, 187, 146, 0.45));
   transform-style: preserve-3d;
   contain: strict;
   will-change: transform;
