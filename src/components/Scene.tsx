@@ -1,7 +1,6 @@
 import { useRef, useState, type PointerEvent } from 'react';
 import { ArrowUpRight, Braces, Layers3 } from 'lucide-react';
 import { PROJECTS } from '../data';
-import BinaryPhoto from './BinaryPhoto';
 const photos=[
   {id:'portrait',src:'/images/pp.webp',alt:'Foto asli R_HMT dengan kacamata dan hoodie hitam',title:'R_HMT',caption:'Student · Developer · Explorer',width:762,height:960},
   {id:'work',src:'/components/works/repo-flow.svg',alt:'Ilustrasi RepoFlow, salah satu karya R_HMT',title:'Selected Works',caption:'Build. Learn. Repeat.',width:820,height:500},
@@ -19,21 +18,7 @@ export default function Scene({paused=false}:{mode?:'hero';paused?:boolean}) {
   return <div className={`scene scene-hero ${expanded?'stack-open':''}`} ref={ref} onPointerMove={tilt} onPointerLeave={reset} onPointerDown={down} onPointerUp={up} onPointerCancel={()=>{gesture.current=null;}} onClickCapture={e=>{if(performance.now()<suppressClick.current){e.preventDefault();e.stopPropagation();}}} data-paused={paused}>
     <div className="portrait-assembly">
       {photos.map((photo,index)=>{const slot=order.indexOf(index);return <button type="button" key={photo.id} className={`portrait-sheet ${slot===0?'portrait-glass':`portrait-backplate ${slot===1?'backplate-work':'backplate-personal'}`}`} data-slot={slot} data-photo-index={index} aria-label={`${slot===0?'Gambar utama:':'Tampilkan di depan:'} ${photo.title}`} aria-pressed={slot===0} onClick={()=>choose(index)} onKeyDown={e=>{if(slot===0&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){e.preventDefault();cycle(e.key==='ArrowRight'?1:-1,true);}}}>
-        <div className={`portrait-window ${photo.id==='portrait'?'portrait-original':'portrait-art'}`}>
-          {photo.id === 'portrait' ? (
-            <BinaryPhoto
-              src={photo.src}
-              alt={photo.alt}
-              width={photo.width}
-              height={photo.height}
-              fetchPriority={index === 0 ? 'high' : 'auto'}
-              loading={index === 0 ? 'eager' : 'lazy'}
-              isActiveSlot={slot === 0}
-            />
-          ) : (
-            <img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} fetchPriority={index===0?'high':'auto'} loading={index===0?'eager':'lazy'}/>
-          )}
-        </div>
+        <div className={`portrait-window ${photo.id==='portrait'?'portrait-original':'portrait-art'}`}><img src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} fetchPriority={index===0?'high':'auto'} loading={index===0?'eager':'lazy'}/></div>
         <span className="portrait-caption"><strong>{photo.title}</strong><span>{photo.id==='work'?`${PROJECTS.length} karya & eksperimen`:photo.caption}</span></span>
         <span className="portrait-sheen" aria-hidden="true"/><span className="glass-corner corner-one"/><span className="glass-corner corner-two"/>
       </button>;})}
