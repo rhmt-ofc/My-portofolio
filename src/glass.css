@@ -1196,3 +1196,91 @@ html[data-motion=off] .work-visual-button{transform:none}
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================================
+   BINARY SCATTER-ASSEMBLY PHOTO (HERO SECTION)
+   ============================================================ */
+.binary-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: block;
+}
+
+.binary-real-img {
+  position: absolute;
+  width: 282%;
+  height: auto;
+  max-width: none;
+  left: -176%;
+  top: -28%;
+  display: block;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+}
+
+.binary-real-img.hidden {
+  opacity: 0;
+  filter: brightness(1.2) contrast(1.1);
+  pointer-events: none;
+}
+
+.binary-real-img.visible {
+  opacity: 1;
+  filter: brightness(1) contrast(1);
+}
+
+.binary-photo-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.5s ease;
+}
+
+.binary-photo-canvas.canvas-fade {
+  opacity: 0;
+}
+
+.binary-photo-hud {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  pointer-events: none;
+  background: rgba(10, 15, 25, 0.75);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.binary-photo-hud span {
+  font: 600 7px/1 Space, "JetBrains Mono", monospace;
+  letter-spacing: 0.8px;
+  color: #38bdf8;
+  display: block;
+  text-shadow: 0 0 5px rgba(56, 189, 248, 0.5);
+}
+
+.binary-photo-wrap.is-assembled .binary-photo-hud {
+  border-color: rgba(74, 222, 128, 0.35);
+}
+
+.binary-photo-wrap.is-assembled .binary-photo-hud span {
+  color: #4ade80;
+  text-shadow: 0 0 5px rgba(74, 222, 128, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .binary-photo-canvas,
+  .binary-photo-hud {
+    display: none !important;
+  }
+  .binary-real-img {
+    opacity: 1 !important;
+  }
+}
+
