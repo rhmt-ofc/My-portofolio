@@ -1196,3 +1196,106 @@ html[data-motion=off] .work-visual-button{transform:none}
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================================
+   BINARY DEVMARK SCATTER-ASSEMBLY (SPLASH SCREEN PP DEV)
+   ============================================================ */
+.binary-devmark-wrap {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.binary-devmark-img {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--line-strong);
+  transition: opacity 0.4s ease, border-color 0.4s ease;
+}
+
+.binary-devmark-img.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.binary-devmark-img.visible {
+  opacity: 1;
+  border-color: var(--accent);
+}
+
+.binary-devmark-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 78px;
+  height: 78px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+  transition: opacity 0.4s ease;
+}
+
+.binary-devmark-canvas.hidden {
+  opacity: 0;
+}
+
+.binary-devmark-canvas.visible {
+  opacity: 1;
+}
+
+.binary-devmark-ring {
+  position: absolute;
+  inset: -6px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.6;
+  animation: devmark-ring-spin 14s linear infinite;
+}
+
+.binary-devmark-wrap.is-assembled .binary-devmark-ring {
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 12px var(--shadow);
+  opacity: 0.9;
+  animation: devmark-ring-lock 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes devmark-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes devmark-ring-lock {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.85; }
+}
+
+@media (max-width: 600px) {
+  .binary-devmark-wrap,
+  .binary-devmark-img,
+  .binary-devmark-canvas {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .binary-devmark-canvas,
+  .binary-devmark-ring {
+    display: none !important;
+  }
+  .binary-devmark-img {
+    opacity: 1 !important;
+  }
+}
+
