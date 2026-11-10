@@ -1211,13 +1211,13 @@ html[data-motion=off] .work-visual-button{transform:none}
 
 .electric-spinner-stage {
   position: relative;
-  width: 86px;
-  height: 86px;
+  width: 96px;
+  height: 96px;
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 400px;
-  contain: layout paint;
+  perspective: 500px;
+  contain: layout;
 }
 
 .electric-core {
@@ -1228,7 +1228,7 @@ html[data-motion=off] .work-visual-button{transform:none}
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  z-index: 1;
 }
 
 .electric-avatar {
@@ -1249,20 +1249,21 @@ html[data-motion=off] .work-visual-button{transform:none}
 
 .electric-rings-cluster {
   position: absolute;
-  inset: -12px;
+  inset: -18px;
   border-radius: 50%;
   pointer-events: none;
   filter: url(#electricGooey);
   transform-style: preserve-3d;
   contain: strict;
   will-change: transform;
+  z-index: 5;
 }
 
 .electric-ring-orbit {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  --ring-w: 2.2px;
+  --ring-w: 2.8px;
   border: var(--ring-w) solid transparent;
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
           mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
@@ -1271,11 +1272,11 @@ html[data-motion=off] .work-visual-button{transform:none}
   background: conic-gradient(
     from 0deg,
     #d8bb92,
-    transparent 20%,
-    #ffffff 40%,
-    #b45309 60%,
-    transparent 75%,
-    #d8bb92 90%,
+    transparent 18%,
+    #ffffff 38%,
+    #b45309 58%,
+    transparent 72%,
+    #d8bb92 88%,
     transparent
   ) border-box;
   contain: strict;
@@ -1287,27 +1288,27 @@ html[data-motion=off] .work-visual-button{transform:none}
 }
 
 .orbit-secondary {
-  inset: 3px;
+  inset: 4px;
   background: conic-gradient(
     from 180deg,
     #ffffff,
-    transparent 25%,
-    #d8bb92 50%,
-    transparent 70%,
-    #f1f3f6 85%,
+    transparent 22%,
+    #d8bb92 48%,
+    transparent 68%,
+    #f1f3f6 84%,
     transparent
   ) border-box;
   animation: electric-orbit-b 4.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
 .orbit-tertiary {
-  inset: -3px;
-  opacity: 0.6;
+  inset: -4px;
+  opacity: 0.75;
   background: conic-gradient(
     from 90deg,
     #c5a275,
-    transparent 35%,
-    #ffffff 55%,
+    transparent 30%,
+    #ffffff 52%,
     transparent
   ) border-box;
   animation: electric-orbit-c 5.6s linear infinite;
@@ -1315,11 +1316,11 @@ html[data-motion=off] .work-visual-button{transform:none}
 
 .electric-reticle {
   position: absolute;
-  inset: -15px;
+  inset: -22px;
   border: 1px dashed rgba(216, 187, 146, 0.35);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 4;
+  z-index: 6;
   animation: electric-reticle-spin 18s linear infinite;
 }
 

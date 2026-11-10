@@ -28,16 +28,16 @@ export default function ElectricSpinnerMark({ progress }: Props) {
         </defs>
       </svg>
 
-      {/* GPU-composited 3D electric gooey rings */}
+      {/* Center PP Dev Icon - rendered underneath */}
+      <div className="electric-core">
+        <Mark className="electric-avatar" />
+      </div>
+
+      {/* GPU-composited 3D electric gooey rings - rendered on top of the avatar */}
       <div className="electric-rings-cluster" aria-hidden="true">
         <div className="electric-ring-orbit orbit-primary" />
         <div className="electric-ring-orbit orbit-secondary" />
         <div className="electric-ring-orbit orbit-tertiary" />
-      </div>
-
-      {/* Center PP Dev Icon */}
-      <div className="electric-core">
-        <Mark className="electric-avatar" />
       </div>
 
       {/* Reticle / HUD lock accent */}
