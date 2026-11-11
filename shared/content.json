@@ -728,27 +728,6 @@
       "banner": "/images/works/finora-banner.webp"
     },
     {
-      "id": "tierlist-maker",
-      "name": "Tierlist Maker",
-      "category": "Utilities",
-      "url": "https://tierlist-maker-gamma.vercel.app/",
-      "description": "Editor tier list berbasis gambar: upload gambar, atur baris dan peringkat lewat drag atau sentuhan, ubah tema canvas, lalu download hasilnya.",
-      "problem": "Pembuatan bagan peringkat (tier list) seringkali lambat di mobile dan memerlukan proses crop gambar manual yang tidak ramah pengguna.",
-      "exploration": "Optimalisasi penanganan drag-and-drop murni berpadu rendering grid dinamis berbasis HTML Canvas untuk ekspor cepat.",
-      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
-      "ecosystem": [
-        "JavaScript",
-        "Tailwind CSS",
-        "html2canvas"
-      ],
-      "summary": "Susun gambar ke tier list, atur peringkat, lalu ekspor hasil visual.",
-      "status": "ONLINE_UNVERIFIED",
-      "type": "work",
-      "visualType": "illustrative",
-      "icon": "",
-      "banner": "/images/works/tierlist-banner.webp"
-    },
-    {
       "id": "veritas",
       "name": "Veritas (Artikel OCR)",
       "category": "AI Tools",
@@ -768,6 +747,27 @@
       "visualType": "illustrative",
       "icon": "https://artikel-ocr.vercel.app/favicon.jpg",
       "banner": "/images/works/veritas-banner.webp"
+    },
+    {
+      "id": "tierlist-maker",
+      "name": "Tierlist Maker",
+      "category": "Utilities",
+      "url": "https://tierlist-maker-gamma.vercel.app/",
+      "description": "Editor tier list berbasis gambar: upload gambar, atur baris dan peringkat lewat drag atau sentuhan, ubah tema canvas, lalu download hasilnya.",
+      "problem": "Pembuatan bagan peringkat (tier list) seringkali lambat di mobile dan memerlukan proses crop gambar manual yang tidak ramah pengguna.",
+      "exploration": "Optimalisasi penanganan drag-and-drop murni berpadu rendering grid dinamis berbasis HTML Canvas untuk ekspor cepat.",
+      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "ecosystem": [
+        "JavaScript",
+        "Tailwind CSS",
+        "html2canvas"
+      ],
+      "summary": "Susun gambar ke tier list, atur peringkat, lalu ekspor hasil visual.",
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative",
+      "icon": "",
+      "banner": "/images/works/tierlist-banner.webp"
     },
     {
       "id": "anime-quote",
