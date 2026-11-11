@@ -633,30 +633,6 @@
   ],
   "PROJECTS": [
     {
-      "id": "latihan-tka",
-      "name": "Latihan TKA SMA",
-      "category": "Productivity",
-      "url": "https://tka-hmmodz.vercel.app/",
-      "description": "Platform interaktif persiapan Tes Kemampuan Akademik (TKA) SMA dengan simulasi ujian CBT berpengawas anti-curang, latihan drill topik terfokus, formula lab interaktif, serta akses unduh 14 modul materi PDF resmi.",
-      "problem": "Persiapan menghadapi seleksi ujian TKA sering terkendala minimnya akses ke simulasi CBT yang autentik, tata letak mobile yang kaku, dan bank materi yang terpisah-pisah.",
-      "exploration": "Merancang antarmuka Cyber-Brutalist modern berstandar aksesibilitas tinggi, deteksi tab-switch anti-curang dengan audio warning, formula lab interaktif, dan optimasi performa ultra-cepat tanpa dependensi berat.",
-      "outcome": "Platform aktif live production di Vercel, responsif penuh di berbagai ukuran layar mobile dan desktop, serta menyajikan bank soal dan simulasi CBT siap pakai.",
-      "ecosystem": [
-        "JavaScript",
-        "HTML5",
-        "CSS3 Cyber-Brutalist",
-        "Web Audio API",
-        "LocalStorage",
-        "Vercel"
-      ],
-      "summary": "Platform persiapan TKA SMA dengan simulasi CBT anti-curang, formula lab, dan 14 modul PDF.",
-      "status": "LIVE_VERIFIED",
-      "type": "work",
-      "visualType": "illustrative",
-      "icon": "https://tka-hmmodz.vercel.app/favicon.ico",
-      "banner": "/images/works/tka-banner.webp"
-    },
-    {
       "id": "repo-flow",
       "name": "RepoFlow",
       "category": "Utilities",
@@ -680,6 +656,30 @@
       "visualType": "illustrative",
       "icon": "https://repoflow.web.id/icon.png",
       "banner": "/images/works/repoflow-banner.webp"
+    },
+    {
+      "id": "latihan-tka",
+      "name": "Latihan TKA SMA",
+      "category": "Productivity",
+      "url": "https://tka-hmmodz.vercel.app/",
+      "description": "Platform interaktif persiapan Tes Kemampuan Akademik (TKA) SMA dengan simulasi ujian CBT berpengawas anti-curang, latihan drill topik terfokus, formula lab interaktif, serta akses unduh 14 modul materi PDF resmi.",
+      "problem": "Persiapan menghadapi seleksi ujian TKA sering terkendala minimnya akses ke simulasi CBT yang autentik, tata letak mobile yang kaku, dan bank materi yang terpisah-pisah.",
+      "exploration": "Merancang antarmuka Cyber-Brutalist modern berstandar aksesibilitas tinggi, deteksi tab-switch anti-curang dengan audio warning, formula lab interaktif, dan optimasi performa ultra-cepat tanpa dependensi berat.",
+      "outcome": "Platform aktif live production di Vercel, responsif penuh di berbagai ukuran layar mobile dan desktop, serta menyajikan bank soal dan simulasi CBT siap pakai.",
+      "ecosystem": [
+        "JavaScript",
+        "HTML5",
+        "CSS3 Cyber-Brutalist",
+        "Web Audio API",
+        "LocalStorage",
+        "Vercel"
+      ],
+      "summary": "Platform persiapan TKA SMA dengan simulasi CBT anti-curang, formula lab, dan 14 modul PDF.",
+      "status": "LIVE_VERIFIED",
+      "type": "work",
+      "visualType": "illustrative",
+      "icon": "https://tka-hmmodz.vercel.app/favicon.ico",
+      "banner": "/images/works/tka-banner.webp"
     },
     {
       "id": "pixcraft",
