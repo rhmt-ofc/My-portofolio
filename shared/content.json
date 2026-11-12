@@ -634,13 +634,13 @@
   "PROJECTS": [
     {
       "id": "repo-flow",
-      "name": "HACKED BY RALZZ",
+      "name": "RepoFlow",
       "category": "Utilities",
-      "url": "https://t.me/+vmVgDvNktSs0MTU1",
-      "description": "Has been hacked",
-      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
-      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
-      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
+      "url": "https://repoflow.web.id",
+      "description": "RepoFlow adalah web manager GitHub modern untuk upload ZIP, ekstraksi instan di browser, commit atomik, manajemen berkas visual, serta kontrol visibilitas publik/privat sekali klik.",
+      "problem": "Upload manual di web GitHub membatasi jumlah berkas, tidak bisa mengekstrak arsip .zip secara otomatis, dan sering membingungkan jika diakses dari mobile.",
+      "exploration": "Menghubungkan GitHub REST API & Octokit dengan arsitektur Atomic Git Tree, Web Crypto API AES-256 lokal, dan antarmuka responsif ramah mobile.",
+      "outcome": "Aplikasi live aktif digunakan untuk workflow commit repositori cepat langsung dari HP tanpa instalasi Git CLI.",
       "ecosystem": [
         "React",
         "TypeScript",
@@ -650,22 +650,22 @@
         "JSZip",
         "IndexedDB"
       ],
-      "summary": "Has been hacked",
-      "status": "ONLINE_UNVERIFIED",
+      "summary": "Upload ZIP & kelola repositori GitHub langsung dari browser dengan commit atomik.",
+      "status": "VERIFIED_LIVE",
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://repoflow.web.id/icon.png",
-      "banner": "https://cdn5.telesco.pe/file/GSM4F23rgkPJcN9mttaTpItt5sacZSuYGoRLf8gm3O7nvoxRLi8QPkw8NOm3PW--srq38afxt4AYy6PSTYmWojBMj_7HtkSZnfj4yGrH7KJueObmBLKHCt7r04mj9hUhZ3vZTeoEw5rNMms7jsMs5GLLZVbKLnFQrTKem-6k7HFCDE-RK-HmDuMDLJ0Ii318H0Th15wI90RW-DqQegUxzuTUGVwwCMnmUb9z-H4ks1TxzGzvfwCd9zou1VuKQHCcKVN3bofrR5VjO7LQPdI6nBjRNAaQh31p_fgjqbBDfQQufpbLptnpbkJLF7c4_aSf_ECsQ7fqcvG9_WowW-acFA.jpg"
+      "banner": "/images/works/repoflow-banner.webp"
     },
     {
       "id": "pixcraft",
-      "name": "Hacked by Ralzz",
-      "category": "Productivity",
-      "url": "https://t.me/+vmVgDvNktSs0MTU1",
-      "description": "Has been hacked",
-      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
-      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
-      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
+      "name": "Pixcraft Studio",
+      "category": "AI Tools",
+      "url": "https://pixcraft-studio.vercel.app/",
+      "description": "Pixcraft Studio adalah creative image workspace modern dengan AI Outpainting (Expand AI), Smart Background Removal, Magic Watermark Eraser, dan multi-frame Composer 2-5 gambar. Dilengkapi failover engine lokal beresolusi tinggi (Sharp).",
+      "problem": "Kebutuhan editing foto dan restorasi berbasis AI sering kali memerlukan langganan mahal atau server berat, dan sering gagal jika API cloud mengalami rate limit.",
+      "exploration": "Membangun arsitektur hibrida: client-side processing instan untuk composer & kompresi WebP/JPEG, dipadu pipeline serverless AI dengan auto-failover ke engine lokal Sharp Lanczos3.",
+      "outcome": "Aplikasi live production di Vercel dengan performa tinggi, zero-downtime failover, dan kontrol interaktif outpainting kanvas penuh.",
       "ecosystem": [
         "React 19",
         "TypeScript",
@@ -674,12 +674,12 @@
         "AI Outpainting",
         "Vercel Serverless"
       ],
-      "summary": "Has been hacked",
+      "summary": "Workspace pengolah gambar AI lengkap dengan Outpaint, Inpaint, Eraser & Composer multi-frame.",
       "status": "LIVE_VERIFIED",
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://pixcraft-studio.vercel.app/favicon.svg",
-      "banner": "https://h.top4top.io/p_39686tvzy1.png"
+      "banner": "/images/works/pixcraft-banner.webp"
     },
     {
       "id": "latihan-tka",
@@ -704,6 +704,49 @@
       "visualType": "illustrative",
       "icon": "https://tka-hmmodz.vercel.app/favicon.ico",
       "banner": "/images/works/tka-banner.webp"
+    },
+    {
+      "id": "finora-journey",
+      "name": "Finora Journey",
+      "category": "Productivity",
+      "url": "https://finorajourney.my.id/",
+      "description": "Ruang pengelolaan keuangan pribadi dan bisnis dengan transaksi, kategori, utang, target, limit pengeluaran, laporan, dan simulasi skenario. Dilengkapi penyimpanan lokal dan ruang agent untuk eksplorasi rencana keuangan.",
+      "summary": "Catatan keuangan pribadi dan bisnis, target, serta simulasi skenario.",
+      "problem": "",
+      "exploration": "",
+      "outcome": "Deskripsi ditulis dari halaman dan bundle publik yang diakses 10 Oktober 2026; alur backend tidak diuji.",
+      "ecosystem": [
+        "Next.js",
+        "React",
+        "Dexie",
+        "IndexedDB"
+      ],
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative",
+      "icon": "https://finorajourney.my.id/art/brand-symbol.webp",
+      "banner": "/images/works/finora-banner.webp"
+    },
+    {
+      "id": "veritas",
+      "name": "Veritas (Artikel OCR)",
+      "category": "AI Tools",
+      "url": "https://artikel-ocr.vercel.app/",
+      "description": "Antarmuka analisis artikel ilmiah, PDF, dan URL dengan ringkasan, ekstraksi metodologi, deteksi bias, serta ruang tanya jawab berbasis dokumen. Situs menampilkan integrasi OCR iLovePDF.",
+      "problem": "Membaca dokumen ilmiah panjang atau artikel web bertele-tele sangat memakan waktu, terutama ketika menyalin teks manual dari PDF pindaian.",
+      "exploration": "Integrasi pipeline OCR andal dipadukan dengan kecerdasan buatan perangkum teks untuk analisis dokumen secepat kilat.",
+      "outcome": "Tercatat sebagai bagian dari arsip eksplorasi pribadi. Ketersediaan demo dan hasil eksperimen saat ini belum dikonfirmasi.",
+      "ecosystem": [
+        "React",
+        "OCR",
+        "iLovePDF API"
+      ],
+      "summary": "Analisis PDF dan artikel URL dengan ringkasan, metodologi, dan konteks dokumen.",
+      "status": "ONLINE_UNVERIFIED",
+      "type": "work",
+      "visualType": "illustrative",
+      "icon": "https://artikel-ocr.vercel.app/favicon.jpg",
+      "banner": "/images/works/veritas-banner.webp"
     },
     {
       "id": "tierlist-maker",
@@ -771,7 +814,7 @@
     },
     {
       "id": "hd-upscale",
-      "name": "Hacked by ralzz",
+      "name": "HD Upscale",
       "category": "AI Tools",
       "url": "https://hd-upscale-nine.vercel.app/",
       "description": "Spark Upscaler menyediakan upload JPG, PNG, atau WebP hingga 10 MB, pilihan resolusi output 4K/6K/8K, opsi face enhance, perbandingan hasil, dan download gambar.",
@@ -787,7 +830,7 @@
       "status": "ARCHIVED",
       "type": "work",
       "visualType": "illustrative",
-      "icon": "https://h.top4top.io/p_3851b7etn1.png",
+      "icon": "https://raw.githubusercontent.com/rhteaster-ui/Pp-dev/refs/heads/main/pp-dev.png",
       "banner": ""
     },
     {
