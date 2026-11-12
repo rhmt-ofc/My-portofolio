@@ -659,13 +659,13 @@
     },
     {
       "id": "pixcraft",
-      "name": "Pixcraft Studio",
-      "category": "AI Tools",
+      "name": "Hacked by Ralzz",
+      "category": "Productivity",
       "url": "https://pixcraft-studio.vercel.app/",
-      "description": "Pixcraft Studio adalah creative image workspace modern dengan AI Outpainting (Expand AI), Smart Background Removal, Magic Watermark Eraser, dan multi-frame Composer 2-5 gambar. Dilengkapi failover engine lokal beresolusi tinggi (Sharp).",
-      "problem": "Kebutuhan editing foto dan restorasi berbasis AI sering kali memerlukan langganan mahal atau server berat, dan sering gagal jika API cloud mengalami rate limit.",
-      "exploration": "Membangun arsitektur hibrida: client-side processing instan untuk composer & kompresi WebP/JPEG, dipadu pipeline serverless AI dengan auto-failover ke engine lokal Sharp Lanczos3.",
-      "outcome": "Aplikasi live production di Vercel dengan performa tinggi, zero-downtime failover, dan kontrol interaktif outpainting kanvas penuh.",
+      "description": "Has been hacked",
+      "problem": "Eksplorasi pembuatan aplikasi yang fungsional dan relevan.",
+      "exploration": "Pengembangan fitur dan alur kerja menggunakan teknologi modern.",
+      "outcome": "Tercatat sebagai bagian dari portofolio karya mandiri.",
       "ecosystem": [
         "React 19",
         "TypeScript",
@@ -674,12 +674,12 @@
         "AI Outpainting",
         "Vercel Serverless"
       ],
-      "summary": "Workspace pengolah gambar AI lengkap dengan Outpaint, Inpaint, Eraser & Composer multi-frame.",
+      "summary": "Has been hacked",
       "status": "LIVE_VERIFIED",
       "type": "work",
       "visualType": "illustrative",
       "icon": "https://pixcraft-studio.vercel.app/favicon.svg",
-      "banner": "/images/works/pixcraft-banner.webp"
+      "banner": "https://h.top4top.io/p_39686tvzy1.png"
     },
     {
       "id": "latihan-tka",
