@@ -1383,4 +1383,94 @@ html[data-motion=off] .work-visual-button{transform:none}
   }
 }
 
+/* GitHub Pulse Badge (Tactile Cybernetic Slate) */
+.github-pulse-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
+  border-radius: 10px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  max-width: 460px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 18px;
+}
+.pulse-indicator {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+.pulse-dot {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+}
+.pulse-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid #38bdf8;
+  animation: pulse-ring-anim 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+@keyframes pulse-ring-anim {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.pulse-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+.pulse-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8.5px;
+  font-family: Space, sans-serif;
+  letter-spacing: 0.1em;
+  color: #7dd3fc;
+}
+.pulse-date {
+  color: #64748b;
+  margin-left: auto;
+  font-size: 8px;
+  flex-shrink: 0;
+}
+.pulse-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #e2e8f0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  min-width: 0;
+}
+.pulse-link:hover {
+  color: #38bdf8;
+}
+.pulse-repo {
+  font-family: monospace;
+  font-weight: 600;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+.pulse-msg {
+  color: #cbd5e1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
 
