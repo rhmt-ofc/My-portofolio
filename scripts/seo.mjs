@@ -14,7 +14,7 @@ export async function applySEO(page){
 
   const today = new Date().toISOString().slice(0, 10);
   page = page.replaceAll(old, origin).replace(/"dateModified":"[^"]+"/, `"dateModified":"${today}"`);
-  await fs.writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: ${origin}sitemap.xml\n`);
+  await fs.writeFile('dist/robots.txt', (await fs.readFile('public/robots.txt', 'utf8')).replace(/^Sitemap:.*$/m, `Sitemap: ${origin}sitemap.xml`));
   await fs.writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${origin}</loc><lastmod>${today}</lastmod></url></urlset>\n`);
   console.log(`Canonical, sitemap and robots: ${origin}`);
   return page;
