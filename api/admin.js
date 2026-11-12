@@ -5,8 +5,8 @@ import path from 'node:path';
 const REPO_OWNER = process.env.REPO_OWNER || 'rhmt-ofc';
 const REPO_NAME = process.env.REPO_NAME || 'My-portofolio';
 const REPO_BRANCH = process.env.REPO_BRANCH || 'main';
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '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';
-const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || 'rahmat2026';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || '';
 const REDIS_PREFIX = 'rhmt:{ratings}:v23:';
 
 function safeCompare(a, b) {
@@ -34,8 +34,9 @@ function getProvidedKey(req) {
 function verifyAdmin(req) {
   const providedKey = getProvidedKey(req);
   if (!providedKey) return false;
-  const adminSecret = (process.env.ADMIN_SECRET_KEY || 'rahmat2026').trim();
-  return safeCompare(providedKey, adminSecret) || safeCompare(providedKey, 'rahmat2026');
+  const adminSecret = (process.env.ADMIN_SECRET_KEY || '').trim();
+  if (!adminSecret) return false;
+  return safeCompare(providedKey, adminSecret);
 }
 
 async function redisCommand(command, ...args) {
