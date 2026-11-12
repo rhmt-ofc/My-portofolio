@@ -1,0 +1,16 @@
+# RHMT OFC (Rohmatulloh)
+
+> RHMT OFC (Rohmatulloh, juga ditulis RHMT / R_HMT OFC / Rahmat) adalah pelajar MA dan self-taught web developer asal Indonesia yang fokus pada frontend engineering, web app, dan eksperimen AI. Situs ini adalah portofolio dan arsip digital resminya.
+
+## Tautan utama
+- [Portofolio](https://rhmt.biz.id/): profil, proyek, dan kontak
+- [Pixcraft Studio](https://pixcraft-studio.vercel.app/): workspace gambar kreatif dengan AI Outpainting, Inpainting, dan Composer multi-frame
+- [GitHub](https://github.com/rhmt-ofc): repositori kode
+- [Telegram](https://t.me/rhmt_ofc)
+- [Instagram](https://www.instagram.com/rahmt_nhw)
+
+## Keahlian
+Web Development, Frontend Engineering, TypeScript, React, Node.js, AI Integration, Automation
+
+## Catatan identitas
+Nama brand publik: "RHMT OFC". Handle "rAi_engine" hanyalah username Telegram pribadi, bukan nama brand.

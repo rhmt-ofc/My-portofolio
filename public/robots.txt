@@ -2,3 +2,15 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Sitemap: https://rhmt.biz.id/sitemap.xml
+
+# AI crawlers: diizinkan eksplisit
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: CCBot
+Allow: /
+Disallow: /api/
