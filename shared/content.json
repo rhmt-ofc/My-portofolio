@@ -706,28 +706,6 @@
       "banner": "/images/works/tka-banner.webp"
     },
     {
-      "id": "finora-journey",
-      "name": "Finora Journey",
-      "category": "Productivity",
-      "url": "https://finorajourney.my.id/",
-      "description": "Ruang pengelolaan keuangan pribadi dan bisnis dengan transaksi, kategori, utang, target, limit pengeluaran, laporan, dan simulasi skenario. Dilengkapi penyimpanan lokal dan ruang agent untuk eksplorasi rencana keuangan.",
-      "summary": "Catatan keuangan pribadi dan bisnis, target, serta simulasi skenario.",
-      "problem": "",
-      "exploration": "",
-      "outcome": "Deskripsi ditulis dari halaman dan bundle publik yang diakses 10 Oktober 2026; alur backend tidak diuji.",
-      "ecosystem": [
-        "Next.js",
-        "React",
-        "Dexie",
-        "IndexedDB"
-      ],
-      "status": "ONLINE_UNVERIFIED",
-      "type": "work",
-      "visualType": "illustrative",
-      "icon": "https://finorajourney.my.id/art/brand-symbol.webp",
-      "banner": "/images/works/finora-banner.webp"
-    },
-    {
       "id": "tierlist-maker",
       "name": "Tierlist Maker",
       "category": "Utilities",
