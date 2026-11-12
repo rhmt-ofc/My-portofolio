@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import adminHandler from '../api/admin.js';
 
+const TEST_KEY = 'test-only-key-not-a-real-secret';
+process.env.ADMIN_SECRET_KEY = TEST_KEY;
+
 test('admin endpoint rejects invalid pin', async () => {
   let statusCode = 0;
   let responseData = null;
@@ -25,7 +28,7 @@ test('admin endpoint accepts correct default pin', async () => {
     json: (data) => { responseData = data; }
   };
 
-  await adminHandler({ method: 'GET', headers: { 'x-admin-key': 'rahmat2026' } }, res);
+  await adminHandler({ method: 'GET', headers: { 'x-admin-key': TEST_KEY } }, res);
   assert.equal(statusCode, 200);
   assert.equal(responseData?.success, true);
   assert.equal(responseData?.authenticated, true);
@@ -42,7 +45,7 @@ test('admin endpoint rejects unsupported methods', async () => {
     json: (data) => { responseData = data; }
   };
 
-  await adminHandler({ method: 'DELETE', headers: { 'x-admin-key': 'rahmat2026' } }, res);
+  await adminHandler({ method: 'DELETE', headers: { 'x-admin-key': TEST_KEY } }, res);
   assert.equal(statusCode, 405);
 });
 
@@ -57,7 +60,7 @@ test('admin endpoint validates project name on save_project', async () => {
 
   await adminHandler({
     method: 'POST',
-    headers: { 'x-admin-key': 'rahmat2026' },
+    headers: { 'x-admin-key': TEST_KEY },
     body: { action: 'save_project', project: {} }
   }, res);
   assert.equal(statusCode, 400);
@@ -75,7 +78,7 @@ test('admin endpoint move_to_front requires id', async () => {
 
   await adminHandler({
     method: 'POST',
-    headers: { 'x-admin-key': 'rahmat2026' },
+    headers: { 'x-admin-key': TEST_KEY },
     body: { action: 'move_to_front' }
   }, res);
   assert.equal(statusCode, 400);
@@ -92,7 +95,7 @@ test('admin endpoint detect_banner validates target url', async () => {
 
   await adminHandler({
     method: 'POST',
-    headers: { 'x-admin-key': 'rahmat2026' },
+    headers: { 'x-admin-key': TEST_KEY },
     body: { action: 'detect_banner' }
   }, res);
   assert.equal(statusCode, 400);
@@ -110,7 +113,7 @@ test('admin endpoint detect_banner finds og banner on Repo Flow', async () => {
 
   await adminHandler({
     method: 'POST',
-    headers: { 'x-admin-key': 'rahmat2026' },
+    headers: { 'x-admin-key': TEST_KEY },
     body: { action: 'detect_banner', url: 'https://auto-reporistory-githb.vercel.app/' }
   }, res);
   assert.equal(statusCode, 200);
