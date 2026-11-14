@@ -4,7 +4,7 @@ import { PROJECTS } from '../data';
 const photos=[
   {id:'portrait',src:'/images/pp.webp',alt:'Foto asli R_HMT dengan kacamata dan hoodie hitam',title:'R_HMT',caption:'Student · Developer · Explorer',width:762,height:960},
   {id:'work',src:'/components/works/repo-flow.svg',alt:'Ilustrasi RepoFlow, salah satu karya R_HMT',title:'Selected Works',caption:'Build. Learn. Repeat.',width:820,height:500},
-  {id:'personal',src:'/images/anime-v22/elaina.jpg',alt:'Elaina',title:'Elaina',caption:'A little more me.',width:600,height:900}
+  {id:'personal',src:'/images/anime-v22/elaina.webp',alt:'Elaina',title:'Elaina',caption:'A little more me.',width:600,height:900}
 ];
 export default function Scene({paused=false}:{mode?:'hero';paused?:boolean}) {
   const ref=useRef<HTMLDivElement>(null),[expanded,setExpanded]=useState(false),[order,setOrder]=useState([0,1,2]);
